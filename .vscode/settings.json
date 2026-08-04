@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": true,
+    "files.autoSave": "afterDelay",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

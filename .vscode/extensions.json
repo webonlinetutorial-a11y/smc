@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode",
+        "ecmel.vscode-html-css",
+        "pranaygp.vscode-css-peek",
+        "usernamehw.errorlens",
+        "eamodio.gitlens"
+    ]
+}
