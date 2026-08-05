@@ -1,5 +1,19 @@
 # Nepack Website - Project Scope Document
 
+## Document Control
+
+| Field | Value |
+| --- | --- |
+| Project Name | Nepack Website |
+| Document Type | Project Scope Document |
+| Version | 1.0 |
+| Document Status | Approved |
+| Last Reviewed | 2026-08-05 |
+| Technology Stack | HTML5, CSS3, Vanilla JavaScript, PHP 8.2, MySQL, Apache, XAMPP, Hostinger Shared Hosting |
+| Reference Website | https://nepackassociates.co.in/|
+
+---
+
 ## 1. Executive Summary
 
 The **Nepack Website** is planned as a production-ready, dynamic website for an industrial automation company. The website will present company information, product categories, brands, product details, downloadable PDF resources, gallery items, industry applications, contact information, inquiry forms, and search functionality through a structured content management system.
@@ -90,7 +104,7 @@ The website should be practical, professional, fast, easy to search, and focused
 
 The functional scope defines the features and modules planned for the website.
 
-### Public Website
+### 6.1 Public Website
 
 The public website will include:
 
@@ -112,7 +126,7 @@ The public website will include:
 - SEO-friendly public pages
 - Responsive navigation
 
-### Dynamic CMS
+### 6.2 Dynamic CMS
 
 The CMS will support management of:
 
@@ -128,7 +142,7 @@ The CMS will support management of:
 - Contact inquiries
 - General website settings where required
 
-### Admin Panel
+### 6.3 Admin Panel
 
 The admin panel will include:
 
@@ -145,7 +159,7 @@ The admin panel will include:
 - SEO field management
 - Admin logout
 
-### Search
+### 6.4 Search
 
 Search functionality will support users in finding:
 
@@ -156,7 +170,7 @@ Search functionality will support users in finding:
 - Industries
 - Downloads where applicable
 
-### Inquiry System
+### 6.5 Inquiry System
 
 The inquiry system will support:
 
@@ -168,11 +182,11 @@ The inquiry system will support:
 
 ---
 
-## 7. Non Functional Scope
+## 7. Non-Functional Scope
 
-The non functional scope defines quality, security, performance, and maintainability expectations.
+The non-functional scope defines quality, security, performance, and maintainability expectations.
 
-### Security
+### 7.1 Security
 
 - Prepared statements for all dynamic database queries
 - Input validation
@@ -184,7 +198,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Restricted file uploads
 - Safe error handling
 
-### Performance
+### 7.2 Performance
 
 - Lightweight frontend without unnecessary frameworks
 - Optimized images
@@ -195,7 +209,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Indexed searchable fields
 - Minimal CSS and JavaScript
 
-### Maintainability
+### 7.3 Maintainability
 
 - Clean folder structure
 - Reusable PHP includes
@@ -204,7 +218,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Professional documentation
 - Module-by-module development
 
-### Compatibility
+### 7.4 Compatibility
 
 - Apache compatible
 - PHP 8.2 compatible
@@ -213,7 +227,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Hostinger Shared Hosting compatible
 - Responsive across common modern browsers and devices
 
-### Accessibility
+### 7.5 Accessibility
 
 - Semantic HTML5
 - Proper labels for forms
@@ -226,7 +240,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 
 ## 8. Technical Scope
 
-### Frontend Technology
+### 8.1 Frontend Technology
 
 - HTML5 for page structure
 - CSS3 for styling and responsive design
@@ -235,7 +249,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - No inline JavaScript
 - No frontend framework by default
 
-### Backend Technology
+### 8.2 Backend Technology
 
 - PHP 8.2
 - Reusable includes for layout, configuration, authentication, validation, and database operations
@@ -244,7 +258,7 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Admin panel logic
 - CMS content rendering
 
-### Database Technology
+### 8.3 Database Technology
 
 - MySQL
 - Relational database structure
@@ -252,14 +266,14 @@ The non functional scope defines quality, security, performance, and maintainabi
 - Indexing for performance
 - Prepared statements for all dynamic queries
 
-### Server Environment
+### 8.4 Server Environment
 
 - Apache
 - XAMPP for local development
 - Hostinger Shared Hosting for production deployment
 - `.htaccess` support where clean URLs or routing rules are required
 
-### File Storage
+### 8.5 File Storage
 
 - Product images
 - Brand images or logos
@@ -498,14 +512,14 @@ Future scope items should be added only after the core CMS and public website mo
 
 ---
 
-## Acceptance Checklist
+## 16. Acceptance Checklist
 
 - Project scope is clearly defined.
 - Business objectives are documented.
 - Website objectives are documented.
 - Target audience is identified.
 - Functional scope is documented.
-- Non functional scope is documented.
+- Non-functional scope is documented.
 - Technical scope is documented.
 - Deliverables are listed.
 - Assumptions are identified.
@@ -515,3 +529,115 @@ Future scope items should be added only after the core CMS and public website mo
 - Future scope is documented.
 - Milestones are defined.
 - No application source code is included in this document.
+
+---
+
+## 17. Website Pages
+
+### Public Pages
+
+- Home
+- About Us
+- Products
+- Product Details
+- Brands
+- Downloads
+- Gallery
+- Applications
+- Industries
+- Contact
+- Search Results
+- 404 Page
+- Privacy Policy
+- Terms & Conditions
+- Sitemap
+
+### Admin Pages
+
+- Login
+- Dashboard
+- Products
+- Categories
+- Brands
+- Downloads
+- Gallery
+- Applications
+- Industries
+- SEO
+- Settings
+- Profile
+- Change Password
+
+---
+
+## 18. File Upload Standards
+
+### Images
+
+- JPG
+- PNG
+- WEBP
+- Maximum image size: 500 KB
+- Recommended width: 1600 px
+
+### PDF
+
+- Maximum PDF size: 10 MB
+- Only PDF files are allowed
+- Files must be renamed before upload
+- Virus check is required where practical
+- Store outside public root if required
+
+---
+
+## 19. SEO Requirements
+
+Each page must support:
+
+- Meta Title
+- Meta Description
+- Canonical URL
+- Open Graph Image
+- Twitter Card
+- Schema.org JSON-LD
+- XML Sitemap
+- robots.txt
+- Breadcrumb
+- Friendly URL
+
+---
+
+## 20. Media Standards
+
+### Image Processing
+
+- Generate thumbnails automatically where applicable.
+- Alt text is mandatory
+
+### PDF Processing
+
+- Compression should be applied before upload
+
+---
+
+## 21. Audit Log Requirements
+
+- Admin login
+- Admin logout
+- Product created
+- Product updated
+- Product deleted
+- PDF uploaded
+- Settings changed
+
+---
+
+## 22. Browser Compatibility
+
+- Chrome
+- Edge
+- Firefox
+- Safari
+- Responsive desktop layout
+- Responsive tablet layout
+- Responsive mobile layout
