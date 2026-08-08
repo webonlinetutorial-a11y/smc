@@ -1,0 +1,11 @@
+<?php
+
+define('ROOT_PATH', dirname(__DIR__));
+define('APP_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'app');
+define('CONFIG_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'config');
+define('INCLUDES_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'includes');
+define('PUBLIC_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'public');
+define('ASSETS_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'assets');
+define('UPLOADS_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'uploads');
+define('STORAGE_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'storage');
+define('LOGS_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'logs');

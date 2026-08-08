@@ -9,17 +9,39 @@ Thumbs.db
 
 # Logs
 *.log
+logs/*
+!logs/.gitkeep
 
 # Cache
 storage/cache/*
 storage/logs/*
 storage/sessions/*
+!storage/cache/.gitkeep
+!storage/logs/.gitkeep
+!storage/sessions/.gitkeep
 
 # Uploads
 assets/uploads/temp/
+uploads/*
+!uploads/.gitkeep
+!uploads/brands/
+!uploads/gallery/
+!uploads/pdfs/
+!uploads/products/
+!uploads/sliders/
+!uploads/temp/
+!uploads/testimonials/
+!uploads/brands/.gitkeep
+!uploads/gallery/.gitkeep
+!uploads/pdfs/.gitkeep
+!uploads/products/.gitkeep
+!uploads/sliders/.gitkeep
+!uploads/temp/.gitkeep
+!uploads/testimonials/.gitkeep
 
 # Database Backups
 database/backups/*
+!database/backups/.gitkeep
 
 # Composer
 /vendor/

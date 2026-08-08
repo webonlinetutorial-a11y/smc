@@ -23,7 +23,9 @@
 
 This document defines the JavaScript architecture for the Nepack Website project.
 
-The project uses Vanilla JavaScript ES6+ only. No JavaScript framework is required for the frontend architecture. JavaScript should be used to progressively enhance user interactions, improve usability, support dynamic behavior, and communicate with backend services where required.
+The project uses Vanilla JavaScript ES6+ as the default frontend approach. No JavaScript framework is required for the frontend architecture. JavaScript should be used to progressively enhance user interactions, improve usability, support dynamic behavior, and communicate with backend services where required.
+
+Approved exception: Slick Slider may be used through CDN for public carousel/slider components where carousel behavior benefits from a proven plugin. Because Slick Slider depends on jQuery, jQuery may be loaded only as a Slick dependency. jQuery must not become the default coding style for custom project behavior.
 
 The architecture is designed to keep frontend behavior maintainable, scalable, predictable, loosely coupled, reusable, easy to debug, and optimized for performance across public website pages and administrative interfaces.
 
@@ -102,6 +104,8 @@ JavaScript may manage navigation behavior such as active states, menu toggles, s
 ### Hero Carousel
 
 JavaScript may control carousel slide transitions, navigation controls, autoplay behavior, pause behavior, accessibility states, and interaction timing.
+
+Slick Slider is approved for hero, testimonial, and product carousel behavior where needed. Slick initialization should remain isolated to carousel components, should be loaded externally, and should preserve progressive enhancement where practical.
 
 ### Dropdown Menus
 

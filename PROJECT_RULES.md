@@ -31,6 +31,7 @@ The project must use only the approved technology stack.
 - Vanilla JavaScript only
 - No frontend frameworks unless explicitly approved in a future architecture decision
 - No unnecessary external libraries
+- Approved exception: Slick Slider may be used through CDN for public carousel/slider components only. Because Slick depends on jQuery, jQuery CDN is approved only as a Slick dependency and must not be used for unrelated custom development.
 
 ### Backend
 
@@ -190,7 +191,7 @@ The AI must not:
 
 ## 9. JavaScript Rules
 
-JavaScript must use Vanilla JavaScript only.
+JavaScript must use Vanilla JavaScript only, except for the approved Slick Slider carousel exception.
 
 The AI must:
 
@@ -208,6 +209,7 @@ The AI must not:
 - Use inline event handlers
 - Depend on JavaScript for critical security
 - Add external JavaScript frameworks without approval
+- Use jQuery for custom site behavior outside Slick Slider initialization
 
 ---
 

@@ -219,7 +219,7 @@ JavaScript should follow the approved JavaScript Architecture.
 
 JavaScript foundation expectations:
 
-- Vanilla JavaScript only.
+- Vanilla JavaScript by default, with the approved Slick Slider exception for carousel/slider components.
 - External JavaScript files only.
 - Progressive enhancement.
 - Event listeners instead of inline event handlers.
@@ -227,6 +227,7 @@ JavaScript foundation expectations:
 - Foundation for navigation, back-to-top, and future components.
 - No frontend framework.
 - No unnecessary third-party libraries.
+- Approved exception: Slick Slider CDN and its jQuery CDN dependency may be used for carousel/slider components only.
 
 Frontend Foundation should prepare JavaScript structure, not complete all interactions.
 

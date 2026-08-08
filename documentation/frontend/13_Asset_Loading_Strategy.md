@@ -54,6 +54,7 @@ The strategy must also support the following approved project-specific decisions
 - WebP should be used wherever practical.
 - All non-critical images should be lazy loaded.
 - Unnecessary third-party libraries should be avoided.
+- Approved carousel exception: Slick Slider CDN and its jQuery CDN dependency may be used only for public carousel/slider components.
 - Performance should be prioritized for shared hosting.
 
 ## 3. Asset Loading Philosophy
@@ -127,6 +128,8 @@ Video assets are reserved for future use. If introduced, video files should be c
 Third-party assets include external scripts, tracking tools, widgets, CDNs, embeds, and external libraries.
 
 Third-party assets should be minimized and approved before use.
+
+Approved third-party exception: Slick Slider may be loaded from a CDN for carousel/slider components. jQuery may be loaded only because Slick requires it. These assets should be limited to pages that actually use carousel behavior where practical.
 
 ## 5. CSS Loading Strategy
 
@@ -374,6 +377,8 @@ Before adding an external library, script, widget, tracking tool, or CDN depende
 - Whether Vanilla JavaScript can meet the requirement.
 
 Unnecessary third-party libraries should be avoided.
+
+Slick Slider is an approved exception for public carousel behavior. The project should not treat this exception as approval for broad jQuery-based development or additional UI plugin usage.
 
 Third-party scripts should not block rendering of critical content.
 

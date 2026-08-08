@@ -1,0 +1,283 @@
+body.admin-shell {
+    display: flex;
+    min-height: 100vh;
+    color: #202b36;
+    background: #eef2f6;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell h5,
+.admin-shell h6 {
+    font-family: "Cormorant", Georgia, "Times New Roman", serif;
+    letter-spacing: 0;
+    line-height: 1.18;
+}
+
+.admin-sidebar {
+    position: sticky;
+    top: 0;
+    width: 248px;
+    height: 100vh;
+    flex: 0 0 248px;
+    overflow-y: auto;
+    background: #101820;
+    color: #ffffff;
+}
+
+.admin-brand {
+    display: grid;
+    gap: 2px;
+    padding: 22px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-brand span {
+    font-weight: 700;
+}
+
+.admin-brand small {
+    color: #9fb3c8;
+}
+
+.admin-nav {
+    display: grid;
+    gap: 4px;
+    padding: 14px;
+}
+
+.admin-nav a {
+    padding: 10px 12px;
+    color: #d6e2ef;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-nav a:hover,
+.admin-nav a.is-active {
+    color: #ffffff;
+    background: #1f6fb2;
+}
+
+.admin-main {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-topbar {
+    display: flex;
+    min-height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 24px;
+    background: #ffffff;
+    border-bottom: 1px solid #d7dee8;
+}
+
+.admin-menu-button {
+    display: none;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    background: #ffffff;
+    border: 1px solid #c9d2df;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.admin-menu-button span {
+    display: block;
+    height: 2px;
+    margin: 5px 0;
+    background: #202b36;
+}
+
+.admin-topbar-title {
+    font-weight: 700;
+}
+
+.admin-account {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #536170;
+}
+
+.admin-account a,
+.admin-table a {
+    color: #1261a6;
+    text-decoration: none;
+}
+
+.admin-content {
+    padding: 24px;
+}
+
+.admin-page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.admin-page-heading h1,
+.admin-section-heading h2 {
+    margin: 0;
+}
+
+.admin-page-heading p,
+.admin-muted {
+    margin: 6px 0 0;
+    color: #647386;
+}
+
+.admin-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.admin-summary-card,
+.admin-panel {
+    background: #ffffff;
+    border: 1px solid #d7dee8;
+    border-radius: 8px;
+}
+
+.admin-summary-card {
+    display: grid;
+    gap: 8px;
+    padding: 18px;
+}
+
+.admin-summary-card span {
+    color: #647386;
+}
+
+.admin-summary-card strong {
+    font-size: 22px;
+}
+
+.admin-panel {
+    padding: 18px;
+}
+
+.admin-section-heading {
+    margin-bottom: 14px;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e7ee;
+}
+
+.admin-table th {
+    color: #536170;
+    font-weight: 700;
+}
+
+.admin-status {
+    display: inline-block;
+    padding: 4px 8px;
+    color: #22543d;
+    background: #def7ec;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+.admin-message {
+    margin: 16px 24px 0;
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+.admin-message-success {
+    color: #22543d;
+    background: #def7ec;
+}
+
+.admin-message-error {
+    color: #8a1f11;
+    background: #fff0ed;
+}
+
+.admin-message-warning {
+    color: #744210;
+    background: #fff8db;
+}
+
+.admin-message-info {
+    color: #164e63;
+    background: #e6f6fb;
+}
+
+.admin-footer {
+    padding: 16px 24px 24px;
+    color: #647386;
+}
+
+@media (max-width: 860px) {
+    body.admin-shell {
+        display: block;
+    }
+
+    .admin-sidebar {
+        position: fixed;
+        z-index: 20;
+        transform: translateX(-100%);
+        transition: transform 160ms ease;
+    }
+
+    body.admin-nav-open .admin-sidebar {
+        transform: translateX(0);
+    }
+
+    .admin-menu-button {
+        display: inline-block;
+    }
+
+    .admin-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .admin-topbar {
+        padding: 0 16px;
+    }
+
+    .admin-account span {
+        display: none;
+    }
+
+    .admin-content {
+        padding: 18px 16px;
+    }
+
+    .admin-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}

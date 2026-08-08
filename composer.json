@@ -1,0 +1,11 @@
+{
+    "name": "nepack/website",
+    "description": "Nepack Website PHP foundation for XAMPP and Hostinger shared hosting.",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
