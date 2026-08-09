@@ -29,7 +29,7 @@
                 ] as $category): ?>
                     <a class="product-category-card" href="<?= e(appUrl('/products.php?category=' . $category[3])); ?>">
                         <span class="product-category-card__image">
-                            <img src="<?= e(assetUrl('images/' . $category[2])); ?>" alt="<?= e($category[0]); ?>">
+                            <img src="<?= e(assetUrl('images/' . $category[2])); ?>" alt="<?= e($category[0]); ?>" loading="lazy">
                         </span>
                         <span class="product-category-card__body">
                             <strong><?= e($category[0]); ?></strong>
@@ -59,7 +59,7 @@
                 ] as $product): ?>
                     <article class="new-product-card">
                         <div class="new-product-card__media">
-                            <img src="<?= e(assetUrl('images/' . $product[2])); ?>" alt="<?= e($product[0]); ?>">
+                            <img src="<?= e(assetUrl('images/' . $product[2])); ?>" alt="<?= e($product[0]); ?>" loading="lazy">
                         </div>
                         <div class="new-product-card__body">
                             <h3><?= e($product[0]); ?></h3>
@@ -91,7 +91,7 @@
                 ] as $product): ?>
                     <article class="featured-product-card featured-product-card--<?= e($product[3]); ?>">
                         <div class="featured-product-card__media">
-                            <img src="<?= e(assetUrl('images/' . $product[2])); ?>" alt="<?= e($product[0]); ?>">
+                            <img src="<?= e(assetUrl('images/' . $product[2])); ?>" alt="<?= e($product[0]); ?>" loading="lazy">
                         </div>
                         <div class="featured-product-card__body">
                             <h3><?= e($product[0]); ?></h3>
@@ -170,7 +170,7 @@
                     <div class="swiper-wrapper">
                         <?php foreach ($industries as $industry): ?>
                             <div class="swiper-slide industry-center-slide">
-                                <img src="<?= e(assetUrl('images/' . $industry[2])); ?>" alt="">
+                                <img src="<?= e(assetUrl('images/' . $industry[2])); ?>" alt="" loading="lazy">
                             </div>
                         <?php endforeach; ?>
                     </div>

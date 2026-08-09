@@ -13,6 +13,7 @@ renderView('public/search-results', [
     'pageIntro' => 'Search active products, brands, and downloads.',
     'query' => $query,
     'results' => $content->search($query),
+    'robots' => 'noindex, follow',
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Search'],

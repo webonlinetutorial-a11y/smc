@@ -36,7 +36,7 @@
                     <a class="text-link" href="<?= e(appUrl('/products.php')); ?>">View More &rarr;</a>
                 </div>
                 <div class="product-line-intro__image">
-                    <img src="<?= e(assetUrl('images/smc-product-line1.png')); ?>" alt="SMC pneumatic cylinder">
+                    <img src="<?= e(assetUrl('images/smc-product-line1.png')); ?>" alt="SMC pneumatic cylinder" loading="lazy">
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                 ] as $product): ?>
                     <article class="product-card">
                         <div class="product-card__image">
-                            <img src="<?= e(assetUrl('images/' . $product[1])); ?>" alt="<?= e($product[0]); ?>">
+                            <img src="<?= e(assetUrl('images/' . $product[1])); ?>" alt="<?= e($product[0]); ?>" loading="lazy">
                         </div>
                         <h3><?= e($product[0]); ?></h3>
                     </article>
@@ -116,8 +116,8 @@
                 <h2>Authorized Brand</h2>
             </div>
             <div class="brand-strip">
-                <article><img src="<?= e(assetUrl('images/brand-anest-iwata.webp')); ?>" alt="ANEST IWATA brand logo"></article>
-                <article><img src="<?= e(assetUrl('images/brand-smc.webp')); ?>" alt="SMC brand logo"></article>
+                <article><img src="<?= e(assetUrl('images/brand-anest-iwata.webp')); ?>" alt="ANEST IWATA brand logo" loading="lazy"></article>
+                <article><img src="<?= e(assetUrl('images/brand-smc.webp')); ?>" alt="SMC brand logo" loading="lazy"></article>
             </div>
         </div>
     </section>
@@ -125,7 +125,7 @@
     <section class="section section--compact">
         <div class="container about-preview">
             <div class="about-preview__image">
-                <img src="<?= e(assetUrl('images/about-nepack.webp')); ?>" alt="Nepack industrial automation team">
+                <img src="<?= e(assetUrl('images/about-nepack.webp')); ?>" alt="Nepack industrial automation team" loading="lazy">
             </div>
             <div>
                 <h2>About Nepack</h2>
@@ -188,8 +188,9 @@
                 </ul>
             </div>
             <form class="inquiry-form" action="<?= e(appUrl('/contact-us.php')); ?>" method="post">
+                <?= csrfField(); ?>
                 <div class="form-grid">
-                    <label>Your Name<input type="text" name="name" placeholder="Enter your name"></label>
+                    <label>Your Name<input type="text" name="visitor_name" placeholder="Enter your name"></label>
                     <label>Company Name<input type="text" name="company" placeholder="Enter your company name"></label>
                     <label>Email<input type="email" name="email" placeholder="Enter your email"></label>
                     <label>Phone<input type="tel" name="phone" placeholder="Enter your phone number"></label>
