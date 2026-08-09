@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS media_files (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    category ENUM('products', 'brands', 'gallery', 'sliders', 'testimonials', 'pdfs') NOT NULL,
+    file_type ENUM('image', 'pdf') NOT NULL,
+    title VARCHAR(190) NOT NULL,
+    original_name VARCHAR(255) NOT NULL,
+    stored_name VARCHAR(255) NOT NULL,
+    relative_path VARCHAR(255) NOT NULL,
+    mime_type VARCHAR(120) NOT NULL,
+    extension VARCHAR(20) NOT NULL,
+    file_size INT UNSIGNED NOT NULL,
+    alt_text VARCHAR(190) NULL,
+    status ENUM('active', 'archived') NOT NULL DEFAULT 'active',
+    uploaded_by INT UNSIGNED NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_media_files_relative_path (relative_path),
+    INDEX idx_media_files_category_status (category, status),
+    INDEX idx_media_files_file_type (file_type),
+    CONSTRAINT fk_media_files_uploaded_by FOREIGN KEY (uploaded_by) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -24,6 +24,7 @@ storage/sessions/*
 assets/uploads/temp/
 uploads/*
 !uploads/.gitkeep
+!uploads/.htaccess
 !uploads/brands/
 !uploads/gallery/
 !uploads/pdfs/

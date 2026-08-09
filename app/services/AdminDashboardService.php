@@ -15,6 +15,7 @@ class AdminDashboardService extends BaseService
     public function moduleItems(): array
     {
         return [
+            ['label' => 'Media', 'path' => '/admin/media.php', 'status' => 'Active'],
             ['label' => 'Products', 'path' => '/admin/products.php', 'status' => 'Foundation'],
             ['label' => 'Categories', 'path' => '/admin/categories.php', 'status' => 'Foundation'],
             ['label' => 'Brands', 'path' => '/admin/brands.php', 'status' => 'Foundation'],

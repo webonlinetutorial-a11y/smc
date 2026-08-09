@@ -30,6 +30,12 @@ Run settings table:
 C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/002_create_settings_table.sql"
 ```
 
+Run media library table:
+
+```powershell
+C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/003_create_media_files_table.sql"
+```
+
 Create or update the local admin user:
 
 ```powershell

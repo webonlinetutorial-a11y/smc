@@ -4,6 +4,7 @@ function adminNavigationItems(): array
 {
     return [
         ['label' => 'Dashboard', 'path' => '/admin/dashboard.php'],
+        ['label' => 'Media', 'path' => '/admin/media.php'],
         ['label' => 'Products', 'path' => '/admin/products.php'],
         ['label' => 'Categories', 'path' => '/admin/categories.php'],
         ['label' => 'Brands', 'path' => '/admin/brands.php'],

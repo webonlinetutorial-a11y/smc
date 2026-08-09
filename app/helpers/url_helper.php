@@ -36,3 +36,16 @@ function isActivePath(string $path): bool
 {
     return rtrim(currentPath(), '/') === rtrim($path, '/');
 }
+
+function formatFileSize(int $bytes): string
+{
+    if ($bytes >= 1048576) {
+        return number_format($bytes / 1048576, 1) . ' MB';
+    }
+
+    if ($bytes >= 1024) {
+        return number_format($bytes / 1024, 1) . ' KB';
+    }
+
+    return $bytes . ' B';
+}
