@@ -803,6 +803,27 @@ img {
     transform: translateY(-3px);
 }
 
+.featured-product-card--ise20-zse20-series {
+    --featured-image-scale: 1.32;
+    --featured-image-hover-scale: 1.42;
+}
+
+.featured-product-card--itv-series {
+    --featured-image-scale: 0.86;
+    --featured-image-hover-scale: 0.96;
+}
+
+.featured-product-card--refrigerated-air-dryer-idfa60-70-80-90-series,
+.featured-product-card--air-cylinder-mb1-z-series {
+    --featured-image-scale: 1.12;
+    --featured-image-hover-scale: 1.22;
+}
+
+.featured-product-card--s-couplers-kk-kkh-series {
+    --featured-image-scale: 1.16;
+    --featured-image-hover-scale: 1.26;
+}
+
 .featured-product-card__media {
     display: grid;
     height: 158px;

@@ -83,13 +83,13 @@
 
             <div class="featured-products-carousel" data-featured-products-carousel aria-label="Featured products">
                 <?php foreach ([
-                    ['ISE20/ZSE20 Series', '', 'ISE20-ZSE20-Series.webp', 'ise20-zse20-series', '1.32', '1.42'],
-                    ['ITV Series', '', 'ITV-series.webp', 'itv-series', '0.86', '0.96'],
-                    ['Refrigerated Air Dryer IDFA60/70/80/90 Series', 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to ~20 hp, depending on the required dew point.', 'Refrigerator-Air-Drayer-IDFA.webp', 'refrigerated-air-dryer-idfa60-70-80-90-series', '1.12', '1.22'],
-                    ['S Couplers KK/KKH Series', 'Simplify your setup with S couplers and multi-connectors - quick-connect solutions that allow fast changes and modular configurations in pneumatic systems.', 'S-Coupler-KK-KKH.webp', 's-couplers-kk-kkh-series', '1.16', '1.26'],
-                    ['Air Cylinder, MB1-Z Series', 'Reduced weight by changing the shape of the rod cover and head cover.', 'Air Cylinder MB1-MDB1.webp', 'air-cylinder-mb1-z-series', '1.12', '1.22'],
+                    ['ISE20/ZSE20 Series', '', 'ISE20-ZSE20-Series.webp', 'ise20-zse20-series'],
+                    ['ITV Series', '', 'ITV-series.webp', 'itv-series'],
+                    ['Refrigerated Air Dryer IDFA60/70/80/90 Series', 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to ~20 hp, depending on the required dew point.', 'Refrigerator-Air-Drayer-IDFA.webp', 'refrigerated-air-dryer-idfa60-70-80-90-series'],
+                    ['S Couplers KK/KKH Series', 'Simplify your setup with S couplers and multi-connectors - quick-connect solutions that allow fast changes and modular configurations in pneumatic systems.', 'S-Coupler-KK-KKH.webp', 's-couplers-kk-kkh-series'],
+                    ['Air Cylinder, MB1-Z Series', 'Reduced weight by changing the shape of the rod cover and head cover.', 'Air Cylinder MB1-MDB1.webp', 'air-cylinder-mb1-z-series'],
                 ] as $product): ?>
-                    <article class="featured-product-card" style="--featured-image-scale: <?= e($product[4]); ?>; --featured-image-hover-scale: <?= e($product[5]); ?>;">
+                    <article class="featured-product-card featured-product-card--<?= e($product[3]); ?>">
                         <div class="featured-product-card__media">
                             <img src="<?= e(assetUrl('images/' . $product[2])); ?>" alt="<?= e($product[0]); ?>">
                         </div>
