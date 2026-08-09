@@ -6,6 +6,7 @@
         "php": ">=8.2"
     },
     "scripts": {
+        "deploy:check": "php scripts/deploy_check.php",
         "qa": "php scripts/qa_check.php"
     },
     "config": {

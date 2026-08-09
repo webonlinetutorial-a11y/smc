@@ -10,6 +10,19 @@ PHP 8.2 website foundation for Nepack, designed for XAMPP localhost development 
 
 The first implementation phase provides configuration loading, bootstrap initialization, session setup, safe error handling, helper functions, and a reusable PDO database connection foundation.
 
+## Production Readiness
+
+Before preparing a Hostinger release, copy `.env.production.example` to the production `.env` file and replace the placeholder domain and database credentials.
+
+Run the local QA and deployment readiness checks with XAMPP PHP:
+
+```powershell
+C:\xampp\php\php.exe scripts\qa_check.php
+C:\xampp\php\php.exe scripts\deploy_check.php
+```
+
+The deployment readiness check validates required release files, production-safe defaults, protected paths, upload execution protection, migration availability, environment templates, and the Phase 8 QA suite.
+
 ## Database Setup
 
 Create the local database:
