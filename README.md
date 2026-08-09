@@ -36,6 +36,12 @@ Run media library table:
 C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/003_create_media_files_table.sql"
 ```
 
+Run categories table:
+
+```powershell
+C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/004_create_categories_table.sql"
+```
+
 Create or update the local admin user:
 
 ```powershell

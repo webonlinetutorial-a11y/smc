@@ -17,7 +17,7 @@ class AdminDashboardService extends BaseService
         return [
             ['label' => 'Media', 'path' => '/admin/media.php', 'status' => 'Active'],
             ['label' => 'Products', 'path' => '/admin/products.php', 'status' => 'Foundation'],
-            ['label' => 'Categories', 'path' => '/admin/categories.php', 'status' => 'Foundation'],
+            ['label' => 'Categories', 'path' => '/admin/categories.php', 'status' => 'Active'],
             ['label' => 'Brands', 'path' => '/admin/brands.php', 'status' => 'Foundation'],
             ['label' => 'Gallery', 'path' => '/admin/gallery.php', 'status' => 'Foundation'],
             ['label' => 'Downloads', 'path' => '/admin/downloads.php', 'status' => 'Foundation'],

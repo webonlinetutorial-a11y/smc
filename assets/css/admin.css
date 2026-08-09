@@ -208,6 +208,37 @@ body.admin-shell {
     font-size: 13px;
 }
 
+.admin-status-inactive {
+    color: #744210;
+    background: #fff8db;
+}
+
+.admin-status-archived {
+    color: #536170;
+    background: #e2e7ee;
+}
+
+.admin-table-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-table-actions form {
+    margin: 0;
+}
+
+.admin-table-actions button,
+.admin-button-secondary {
+    color: #1261a6;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 .admin-message {
     margin: 16px 24px 0;
     padding: 10px 12px;
@@ -307,6 +338,13 @@ body.admin-shell {
 .admin-button-primary {
     color: #ffffff;
     background: #1f6fb2;
+}
+
+.admin-button-secondary {
+    min-height: 42px;
+    padding: 10px 14px;
+    border: 1px solid #c9d2df;
+    border-radius: 6px;
 }
 
 .admin-button-primary:hover,
