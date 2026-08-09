@@ -5,6 +5,9 @@
     "require": {
         "php": ">=8.2"
     },
+    "scripts": {
+        "qa": "php scripts/qa_check.php"
+    },
     "config": {
         "sort-packages": true
     }
