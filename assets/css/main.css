@@ -494,8 +494,8 @@ img {
 .hero-carousel__track {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 4.8;
-    min-height: 260px;
+    aspect-ratio: 16 / 5.35;
+    min-height: 300px;
 }
 
 .hero-carousel__slide {
