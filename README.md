@@ -24,6 +24,12 @@ Run authentication tables:
 C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/001_create_auth_tables.sql"
 ```
 
+Run settings table:
+
+```powershell
+C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/002_create_settings_table.sql"
+```
+
 Create or update the local admin user:
 
 ```powershell

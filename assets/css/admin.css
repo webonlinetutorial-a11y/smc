@@ -234,6 +234,98 @@ body.admin-shell {
     background: #e6f6fb;
 }
 
+.admin-form {
+    display: grid;
+    gap: 18px;
+}
+
+.admin-form-section {
+    display: grid;
+    gap: 14px;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.admin-form label {
+    display: grid;
+    gap: 7px;
+    color: #344153;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-form input,
+.admin-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    color: #202b36;
+    background: #ffffff;
+    border: 1px solid #c9d2df;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 500;
+}
+
+.admin-form textarea {
+    resize: vertical;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+    outline: 3px solid rgba(31, 111, 178, 0.18);
+    border-color: #1f6fb2;
+}
+
+.admin-form-field-wide {
+    grid-column: 1 / -1;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.admin-button-primary {
+    color: #ffffff;
+    background: #1f6fb2;
+}
+
+.admin-button-primary:hover,
+.admin-button-primary:focus {
+    background: #185d96;
+}
+
+.admin-form-errors {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 18px;
+    padding: 12px;
+    color: #8a1f11;
+    background: #fff0ed;
+    border-radius: 6px;
+}
+
+.admin-form-errors p {
+    margin: 0;
+}
+
 .admin-footer {
     padding: 16px 24px 24px;
     color: #647386;
@@ -261,6 +353,10 @@ body.admin-shell {
 
     .admin-summary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
     }
 }
 

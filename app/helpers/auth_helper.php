@@ -10,6 +10,11 @@ function currentUser(): ?array
     return isAuthenticated() ? $_SESSION['auth'] : null;
 }
 
+function currentAdminUserId(): ?int
+{
+    return isAuthenticated() ? (int) $_SESSION['auth']['user_id'] : null;
+}
+
 function requireAuth(): void
 {
     if (isAuthenticated()) {

@@ -2,8 +2,22 @@
 
 require_once dirname(__DIR__) . '/includes/admin-auth.php';
 
-renderView('admin/placeholder', [
-    'pageTitle' => 'Settings',
-    'moduleTitle' => 'Settings',
-    'moduleStatus' => 'Settings foundation is ready.',
-], 'admin');
+$controller = new SettingsController();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller->update();
+}
+
+$data = $controller->edit();
+
+if (isset($_SESSION['settings_form'])) {
+    $data['settings'] = array_merge($data['settings'], $_SESSION['settings_form']);
+    unset($_SESSION['settings_form']);
+}
+
+if (isset($_SESSION['settings_errors'])) {
+    $data['errors'] = $_SESSION['settings_errors'];
+    unset($_SESSION['settings_errors']);
+}
+
+renderView('admin/settings', $data, 'admin');
