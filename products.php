@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
+$content = new PublicContentService();
+
 renderView('products', [
     'title' => 'Products | ' . configValue('app.name', 'Nepack Website'),
     'metaDescription' => 'Explore Nepack industrial automation product categories.',
@@ -11,4 +13,5 @@ renderView('products', [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Products'],
     ],
+    'cmsProducts' => $content->publishedProducts(),
 ]);

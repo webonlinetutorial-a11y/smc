@@ -2,14 +2,20 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('public/page', [
+$content = new PublicContentService();
+
+renderView('public/listing', [
     'title' => 'Brands | ' . configValue('app.name', 'Nepack Website'),
     'metaDescription' => 'Browse brands represented by Nepack.',
     'pageEyebrow' => 'Partners',
     'pageHeading' => 'Brands',
-    'pageIntro' => 'Brand listing and brand detail rendering will connect to CMS modules in later phases.',
-    'contentHeading' => 'Brand Foundation',
-    'contentText' => 'This page shell is ready for brand logos, descriptions, products, and downloads.',
+    'pageIntro' => 'Browse active brands represented by Nepack.',
+    'contentHeading' => 'Active Brands',
+    'items' => $content->activeBrands(),
+    'titleField' => 'name',
+    'descriptionField' => 'overview',
+    'linkField' => '',
+    'emptyText' => 'No active brand records are available yet.',
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Brands'],

@@ -1,9 +1,10 @@
 <?php
 
-$seoTitle = $title ?? configValue('app.name', 'Nepack Website');
-$seoDescription = $metaDescription ?? 'Nepack Website public page.';
+$cmsSeo = (new SeoService())->metadataForPath(currentPath());
+$seoTitle = $cmsSeo['meta_title'] ?? $title ?? configValue('app.name', 'Nepack Website');
+$seoDescription = $cmsSeo['meta_description'] ?? $metaDescription ?? 'Nepack Website public page.';
 $seoCanonical = $canonicalUrl ?? appUrl(ltrim(currentPath(), '/'));
-$seoRobots = $robots ?? 'index, follow';
+$seoRobots = $cmsSeo['robots'] ?? $robots ?? 'index, follow';
 ?>
 <title><?= e($seoTitle); ?></title>
 <meta name="description" content="<?= e($seoDescription); ?>">

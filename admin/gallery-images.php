@@ -2,4 +2,4 @@
 
 require_once dirname(__DIR__) . '/includes/admin-auth.php';
 
-renderCmsModuleAdmin('downloads');
+renderCmsModuleAdmin('gallery_images');

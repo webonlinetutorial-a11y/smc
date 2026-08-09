@@ -2,16 +2,30 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('public/page', [
+$controller = new InquiryController();
+$inquiryData = $controller->publicSubmit();
+$productContext = null;
+$productSlug = sanitizeSlug($_GET['product'] ?? '');
+
+if ($productSlug !== '') {
+    try {
+        $statement = databaseConnection()->prepare('SELECT id, name FROM products WHERE slug = :slug AND status != "archived" LIMIT 1');
+        $statement->execute(['slug' => $productSlug]);
+        $productContext = $statement->fetch() ?: null;
+    } catch (Throwable $exception) {
+        error_log($exception);
+    }
+}
+
+renderView('contact', array_merge($inquiryData, [
     'title' => 'Contact Us | ' . configValue('app.name', 'Nepack Website'),
     'metaDescription' => 'Contact Nepack for industrial automation products and support.',
     'pageEyebrow' => 'Contact',
     'pageHeading' => 'Contact Us',
-    'pageIntro' => 'Contact details and inquiry form processing will be added in later phases.',
-    'contentHeading' => 'Contact Foundation',
-    'contentText' => 'This page shell is ready for inquiry forms, contact details, and location information.',
+    'pageIntro' => 'Contact Nepack for industrial automation products and support.',
+    'productContext' => $productContext,
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Contact Us'],
     ],
-]);
+]));

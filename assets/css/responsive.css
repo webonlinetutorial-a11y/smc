@@ -151,6 +151,14 @@
 }
 
 @media (max-width: 560px) {
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .cms-listing-grid {
+        grid-template-columns: 1fr;
+    }
+}
     .top-strip__inner {
         display: grid;
         gap: 2px;

@@ -42,6 +42,12 @@ Run categories table:
 C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/004_create_categories_table.sql"
 ```
 
+Run remaining CMS tables:
+
+```powershell
+C:\xampp\mysql\bin\mysql.exe -u root nepack_website --execute="source database/migrations/005_create_remaining_cms_tables.sql"
+```
+
 Create or update the local admin user:
 
 ```powershell

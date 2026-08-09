@@ -239,6 +239,17 @@ body.admin-shell {
     text-decoration: none;
 }
 
+.admin-inline-form {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-inline-form select,
+.admin-inline-form button {
+    min-height: 34px;
+    font: inherit;
+}
+
 .admin-message {
     margin: 16px 24px 0;
     padding: 10px 12px;

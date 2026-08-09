@@ -109,6 +109,27 @@
         </div>
     </section>
 
+    <?php if (($cmsProducts ?? []) !== []): ?>
+        <section class="section">
+            <div class="container content-shell">
+                <div class="section-heading section-heading--tight">
+                    <h2>CMS Products</h2>
+                </div>
+                <div class="cms-listing-grid">
+                    <?php foreach ($cmsProducts as $product): ?>
+                        <article class="cms-listing-card">
+                            <h3><?= e($product['name']); ?></h3>
+                            <?php if (($product['short_description'] ?? '') !== ''): ?>
+                                <p><?= e(mb_strimwidth((string) $product['short_description'], 0, 180, '...')); ?></p>
+                            <?php endif; ?>
+                            <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>">Send Query</a>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <section class="section industry-section">
         <div class="container">
             <div class="section-heading section-heading--tight">

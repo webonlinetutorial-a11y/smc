@@ -2,8 +2,10 @@
 
 require_once dirname(__DIR__) . '/includes/admin-auth.php';
 
-renderView('admin/placeholder', [
-    'pageTitle' => 'Inquiries',
-    'moduleTitle' => 'Inquiries',
-    'moduleStatus' => 'Inquiry management foundation is ready.',
-], 'admin');
+$controller = new InquiryController();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller->adminUpdateStatus();
+}
+
+renderView('admin/inquiries', $controller->adminIndex(), 'admin');
