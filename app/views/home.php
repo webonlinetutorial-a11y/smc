@@ -28,17 +28,17 @@
             <div class="section-heading section-heading--tight">
                 <h1>SMC Product Line</h1>
             </div>
-            <div class="product-line-intro">
+            <a class="product-line-intro" href="<?= e(appUrl('/products.php')); ?>">
                 <div>
                     <h2>Automation</h2>
                     <p>SMC Corporation (India) Pvt. Ltd., a 100% subsidiary of SMC Corporation Japan, was incorporated in 1995 and is a leading provider of precision automation solutions in India.</p>
                     <p>We offer a wide range of industrial products including automation, food, packaging, testing and pharmaceutical solutions.</p>
-                    <a class="text-link" href="<?= e(appUrl('/products.php')); ?>">View More &rarr;</a>
+                    <span class="text-link">View More &rarr;</span>
                 </div>
                 <div class="product-line-intro__image">
                     <img src="<?= e(assetUrl('images/smc-product-line1.png')); ?>" alt="SMC pneumatic cylinder" loading="lazy">
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 

@@ -15,19 +15,19 @@
 
             <div class="product-category-list" aria-label="Product categories">
                 <?php foreach ([
-                    ['Air Cylinders', 'Linear motion for precise and reliable operation', 'air-cylinder.webp', 'air-cylinders'],
-                    ['Directional Control Valves', 'Control airflow direction for efficient automation', 'Direction-control-valves.webp', 'directional-control-valves'],
-                    ['Pressure Control Equipment', 'Maintain optimal system pressure', 'Presure-control-equipment.webp', 'pressure-control-equipment'],
-                    ['Modular FRL Units', 'Air preparation in a compact design', 'modular-frl-unit.webp', 'modular-frl-units'],
-                    ['Switches / Sensors', 'Accurate position and presence detection', 'Switches-sensors.webp', 'switches-sensors'],
-                    ['Flow Control Equipment', 'Precise flow regulation', 'flow-control-equipment.webp', 'flow-control-equipment'],
-                    ['Vacuum Equipment', 'Reliable vacuum generation and handling', 'Vacuum-Equipment.webp', 'vacuum-equipment'],
-                    ['Process Valves', 'Accurate control for process applications', 'Process-Valves.webp', 'process-valves'],
-                    ['Air Preparation Equipment', 'Clean, dry and regulated air supply', 'Air-Preperation-Equipment.webp', 'air-preparation-equipment'],
-                    ['Silencers / Exhaust', 'Noise reduction for quiet operation', 'Silencer-Exhaust.webp', 'silencers-exhaust'],
-                    ['Fittings & Tubings', 'Secure connections and flexible routing', 'Fittings-Tubings.webp', 'fittings-tubings'],
+                    ['Air Cylinders', 'Linear motion for precise and reliable operation', 'air-cylinder.webp', '/automation-air-cylinders.php'],
+                    ['Directional Control Valves', 'Control airflow direction for efficient automation', 'Direction-control-valves.webp', '/automation-directional-control-valves.php'],
+                    ['Pressure Control Equipment', 'Maintain optimal system pressure', 'pressure-control-equipment.webp', '/automation-pressure-control-equipment.php'],
+                    ['Modular FRL Units', 'Air preparation in a compact design', 'modular-frl-unit.webp', '/automation-modular-f.r.l.-units-.php'],
+                    ['Switches / Sensors', 'Accurate position and presence detection', 'Switches-sensors.webp', '/automation-switches-sensors-controller-.php'],
+                    ['Flow Control Equipment', 'Precise flow regulation', 'flow-control-equipment.webp', '/automation-flow-control-equipment-speed-controllers.php'],
+                    ['Vacuum Equipment', 'Reliable vacuum generation and handling', 'Vacuum-Equipment.webp', '/automation-vacuum-equipment-vacuum-ejectors-.php'],
+                    ['Process Valves', 'Accurate control for process applications', 'Process-Valves.webp', '/automation-process-valves.php'],
+                    ['Air Preparation Equipment', 'Clean, dry and regulated air supply', 'air-preparation-equipment.webp', '/automation-air-preparation-equipment.php'],
+                    ['Silencers / Exhaust', 'Noise reduction for quiet operation', 'Silencer-Exhaust.webp', '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
+                    ['Fittings & Tubings', 'Secure connections and flexible routing', 'Fittings-Tubings.webp', '/automation-fittings-tubings.php'],
                 ] as $category): ?>
-                    <a class="product-category-card" href="<?= e(appUrl('/products.php?category=' . $category[3])); ?>">
+                    <a class="product-category-card" href="<?= e(appUrl($category[3])); ?>">
                         <span class="product-category-card__image">
                             <img src="<?= e(assetUrl('images/' . $category[2])); ?>" alt="<?= e($category[0]); ?>" loading="lazy">
                         </span>
@@ -85,7 +85,7 @@
                 <?php foreach ([
                     ['ISE20/ZSE20 Series', '', 'ISE20-ZSE20-Series.webp', 'ise20-zse20-series'],
                     ['ITV Series', '', 'ITV-series.webp', 'itv-series'],
-                    ['Refrigerated Air Dryer IDFA60/70/80/90 Series', 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to ~20 hp, depending on the required dew point.', 'Refrigerator-Air-Drayer-IDFA.webp', 'refrigerated-air-dryer-idfa60-70-80-90-series'],
+                    ['Refrigerated Air Dryer IDFA60/70/80/90 Series', 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to ~20 hp, depending on the required dew point.', 'refrigerator-air-dryer-idfa.webp', 'refrigerated-air-dryer-idfa60-70-80-90-series'],
                     ['S Couplers KK/KKH Series', 'Simplify your setup with S couplers and multi-connectors - quick-connect solutions that allow fast changes and modular configurations in pneumatic systems.', 'S-Coupler-KK-KKH.webp', 's-couplers-kk-kkh-series'],
                     ['Air Cylinder, MB1-Z Series', 'Reduced weight by changing the shape of the rod cover and head cover.', 'Air Cylinder MB1-MDB1.webp', 'air-cylinder-mb1-z-series'],
                 ] as $product): ?>

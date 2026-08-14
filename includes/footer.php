@@ -24,7 +24,7 @@
         </nav>
         <nav aria-label="Product links">
             <h2>Products</h2>
-            <a href="<?= e(appUrl('/products.php')); ?>">Automation</a>
+            <a href="<?= e(appUrl('/automation.php')); ?>">Automation</a>
             <a href="<?= e(appUrl('/products.php')); ?>">Pneumatic Components</a>
             <a href="<?= e(appUrl('/products.php')); ?>">Industrial Valves</a>
             <a href="<?= e(appUrl('/products.php')); ?>">Air Compressors</a>

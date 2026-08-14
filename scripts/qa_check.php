@@ -66,6 +66,53 @@ function runPhpLint(string $rootPath): array
     return $failures;
 }
 
+function collectRootPublicPhpFiles(string $rootPath): array
+{
+    $files = [];
+
+    foreach (glob($rootPath . DIRECTORY_SEPARATOR . '*.php') ?: [] as $file) {
+        if (is_file($file)) {
+            $files[] = $file;
+        }
+    }
+
+    sort($files);
+
+    return $files;
+}
+
+function runPublicPageSmokeCheck(string $rootPath): array
+{
+    $failures = [];
+    $fatalPatterns = [
+        'Fatal error',
+        'Parse error',
+        'Warning: require',
+        'Warning: require_once',
+        'View not found',
+    ];
+
+    foreach (collectRootPublicPhpFiles($rootPath) as $file) {
+        $command = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg($file) . ' 2>&1';
+        exec($command, $output, $exitCode);
+        $renderedOutput = implode(PHP_EOL, $output);
+        $hasFatalOutput = false;
+
+        foreach ($fatalPatterns as $pattern) {
+            if (str_contains($renderedOutput, $pattern)) {
+                $hasFatalOutput = true;
+                break;
+            }
+        }
+
+        if ($exitCode !== 0 || trim($renderedOutput) === '' || $hasFatalOutput) {
+            $failures[] = relativePath($rootPath, $file);
+        }
+    }
+
+    return $failures;
+}
+
 function referencedAssetPaths(string $rootPath): array
 {
     $assets = [];
@@ -112,6 +159,14 @@ addResult(
     'PHP syntax lint',
     $lintFailures === [],
     $lintFailures === [] ? 'All PHP files pass php -l.' : 'Failures: ' . implode(', ', $lintFailures)
+);
+
+$publicPageFailures = runPublicPageSmokeCheck($rootPath);
+addResult(
+    $results,
+    'Public page render smoke check',
+    $publicPageFailures === [],
+    $publicPageFailures === [] ? 'All root public PHP endpoints render non-empty output.' : 'Failures: ' . implode(', ', $publicPageFailures)
 );
 
 $missingAssets = [];

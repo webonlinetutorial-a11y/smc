@@ -4,6 +4,137 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{REQUEST_URI} ^(.*/)?air-cylinders\.php$
+    RewriteRule ^air-cylinders\.php$ %1automation-air-cylinders.php [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-cylinders-standard-air-cylinders-square-cover\.php[\s?] [NC]
+    RewriteRule ^automation-air-cylinders-standard-air-cylinders-square-cover\.php$ products/automation/automation-air-cylinders/automation-air-cylinders-standard-air-cylinders--square-cover [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-cylinders-compact-air-cylinders\.php[\s?] [NC]
+    RewriteRule ^automation-air-cylinders-compact-air-cylinders\.php$ products/automation/automation-air-cylinders/automation-air-cylinders-compact-air-cylinders [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-cylinders-iso-cylinders\.php[\s?] [NC]
+    RewriteRule ^automation-air-cylinders-iso-cylinders\.php$ products/automation/automation-air-cylinders/automation-air-cylinders-iso-cylinders [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-cylinders-air-gripper\.php[\s?] [NC]
+    RewriteRule ^automation-air-cylinders-air-gripper\.php$ products/automation/automation-air-cylinders/automation-air-cylinders-air-gripper [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-cylinders-auto-switchr?\.php[\s?] [NC]
+    RewriteRule ^automation-air-cylinders-auto-switchr?\.php$ products/automation/automation-air-cylinders/automation-air-cylinders-auto-switch [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-prep(ar|er)ation-equipment-air-preparation-filters\.php[\s?] [NC]
+    RewriteRule ^automation-air-prep(ar|er)ation-equipment-air-preparation-filters\.php$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-preparation-filters [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-prep(ar|er)ation-equipment-air-dryer\.php[\s?] [NC]
+    RewriteRule ^automation-air-prep(ar|er)ation-equipment-air-dryer\.php$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-dryer [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-air-prep(ar|er)ation-equipment-auto-drains\.php[\s?] [NC]
+    RewriteRule ^automation-air-prep(ar|er)ation-equipment-auto-drains\.php$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-auto-drains [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves\.php[\s?] [NC]
+    RewriteRule ^automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves\.php$ products/automation/automation-directional-control-valves/automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves\.php[\s?] [NC]
+    RewriteRule ^automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves\.php$ products/automation/automation-directional-control-valves/automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-directional-control-valves-mechanical-valves\.php[\s?] [NC]
+    RewriteRule ^automation-directional-control-valves-mechanical-valves\.php$ products/automation/automation-directional-control-valves/automation-directional-control-valves-mechanical-valves [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve\.php[\s?] [NC]
+    RewriteRule ^automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve\.php$ products/automation/automation-directional-control-valves/automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-directional-control-valves-blow-guns\.php[\s?] [NC]
+    RewriteRule ^automation-directional-control-valves-blow-guns\.php$ products/automation/automation-directional-control-valves/automation-directional-control-valves-blow-guns [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-fittings-and-tubings-fittings-for-general-purposes\.php[\s?] [NC]
+    RewriteRule ^automation-fittings-and-tubings-fittings-for-general-purposes\.php$ products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-fittings-for-general-purposes [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors\.php[\s?] [NC]
+    RewriteRule ^automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors\.php$ products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-fittings-and-tubings-tubing\.php[\s?] [NC]
+    RewriteRule ^automation-fittings-and-tubings-tubing\.php$ products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-tubing [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-fittings-and-tubings-related-products\.php[\s?] [NC]
+    RewriteRule ^automation-fittings-and-tubings-related-products\.php$ products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-related-products [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes\.php[\s?] [NC]
+    RewriteRule ^automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes\.php$ products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-pressure-control-equipment-electro-automatic-regulators\.php[\s?] [NC]
+    RewriteRule ^automation-pressure-control-equipment-electro-automatic-regulators\.php$ products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-electro-automatic-regulators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-pressure-control-equipment-regulators\.php[\s?] [NC]
+    RewriteRule ^automation-pressure-control-equipment-regulators\.php$ products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-regulators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-pressure-control-equipment-booster-regulators\.php[\s?] [NC]
+    RewriteRule ^automation-pressure-control-equipment-booster-regulators\.php$ products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-booster-regulators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-modular-f\.r\.l\.-units-modular-f\.r\.l\.-units-air-combination\.php[\s?] [NC]
+    RewriteRule ^automation-modular-f\.r\.l\.-units-modular-f\.r\.l\.-units-air-combination\.php$ products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-modular-f.r.l.-units-air-combination [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-modular-f\.r\.l\.-units-filter-regulators\.php[\s?] [NC]
+    RewriteRule ^automation-modular-f\.r\.l\.-units-filter-regulators\.php$ products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-filter-regulators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-modular-f\.r\.l\.-units-air-filters\.php[\s?] [NC]
+    RewriteRule ^automation-modular-f\.r\.l\.-units-air-filters\.php$ products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-air-filters [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-modular-f\.r\.l\.-units-regulators\.php[\s?] [NC]
+    RewriteRule ^automation-modular-f\.r\.l\.-units-regulators\.php$ products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-regulators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector\.php[\s?] [NC]
+    RewriteRule ^automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector\.php$ products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-vacuum-equipment-vacuum-ejectors-vacuum-pad\.php[\s?] [NC]
+    RewriteRule ^automation-vacuum-equipment-vacuum-ejectors-vacuum-pad\.php$ products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-switches-sensors-controller-flow-switch\.php[\s?] [NC]
+    RewriteRule ^automation-switches-sensors-controller-flow-switch\.php$ products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-flow-switch [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-switches-sensors-controller-digital-pressure-switch\.php[\s?] [NC]
+    RewriteRule ^automation-switches-sensors-controller-digital-pressure-switch\.php$ products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-digital-pressure-switch [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers\.php[\s?] [NC]
+    RewriteRule ^automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers\.php$ products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-process-valves-2-3-port-solenoid-valves-air-operated-valves\.php[\s?] [NC]
+    RewriteRule ^automation-process-valves-2-3-port-solenoid-valves-air-operated-valves\.php$ products/automation/automation-process-valves/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves [R=301,L]
+
+    RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-standard-air-cylinders--square-cover/?$ automation-air-cylinders-standard-air-cylinders-square-cover.php [L]
+    RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-compact-air-cylinders/?$ automation-air-cylinders-compact-air-cylinders.php [L]
+    RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-iso-cylinders/?$ automation-air-cylinders-iso-cylinders.php [L]
+    RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-air-gripper/?$ automation-air-cylinders-air-gripper.php [L]
+    RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-auto-switch/?$ automation-air-cylinders-auto-switch.php [L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preperation-equipment-air-preparation-filters/?$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-preparation-filters [R=301,L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preperation-equipment-air-dryer/?$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-dryer [R=301,L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preperation-equipment-auto-drains/?$ products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-auto-drains [R=301,L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-preparation-filters/?$ automation-air-preparation-equipment-air-preparation-filters.php [L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-air-dryer/?$ automation-air-preparation-equipment-air-dryer.php [L]
+    RewriteRule ^products/automation/automation-air-preparation-equipment/automation-air-preparation-equipment-auto-drains/?$ automation-air-preparation-equipment-auto-drains.php [L]
+    RewriteRule ^products/automation/automation-directional-control-valves/automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves/?$ automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves.php [L]
+    RewriteRule ^products/automation/automation-directional-control-valves/automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves/?$ automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves.php [L]
+    RewriteRule ^products/automation/automation-directional-control-valves/automation-directional-control-valves-mechanical-valves/?$ automation-directional-control-valves-mechanical-valves.php [L]
+    RewriteRule ^products/automation/automation-directional-control-valves/automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve/?$ automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve.php [L]
+    RewriteRule ^products/automation/automation-directional-control-valves/automation-directional-control-valves-blow-guns/?$ automation-directional-control-valves-blow-guns.php [L]
+    RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-fittings-for-general-purposes/?$ automation-fittings-and-tubings-fittings-for-general-purposes.php [L]
+    RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors/?$ automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors.php [L]
+    RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-tubing/?$ automation-fittings-and-tubings-tubing.php [L]
+    RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-related-products/?$ automation-fittings-and-tubings-related-products.php [L]
+    RewriteRule ^products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes/?$ automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php [L]
+    RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-electro-automatic-regulators/?$ automation-pressure-control-equipment-electro-automatic-regulators.php [L]
+    RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-regulators/?$ automation-pressure-control-equipment-regulators.php [L]
+    RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-booster-regulators/?$ automation-pressure-control-equipment-booster-regulators.php [L]
+    RewriteRule ^products/automation/automation-modular-frl-units/automation-modular-f\.r\.l\.-units-modular-f\.r\.l\.-units-air-combination/?$ automation-modular-f.r.l.-units-modular-f.r.l.-units-air-combination.php [L]
+    RewriteRule ^products/automation/automation-modular-frl-units/automation-modular-f\.r\.l\.-units-filter-regulators/?$ automation-modular-f.r.l.-units-filter-regulators.php [L]
+    RewriteRule ^products/automation/automation-modular-frl-units/automation-modular-f\.r\.l\.-units-air-filters/?$ automation-modular-f.r.l.-units-air-filters.php [L]
+    RewriteRule ^products/automation/automation-modular-frl-units/automation-modular-f\.r\.l\.-units-regulators/?$ automation-modular-f.r.l.-units-regulators.php [L]
+    RewriteRule ^products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector/?$ automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector.php [L]
+    RewriteRule ^products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad/?$ automation-vacuum-equipment-vacuum-ejectors-vacuum-pad.php [L]
+    RewriteRule ^products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-flow-switch/?$ automation-switches-sensors-controller-flow-switch.php [L]
+    RewriteRule ^products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-digital-pressure-switch/?$ automation-switches-sensors-controller-digital-pressure-switch.php [L]
+    RewriteRule ^products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers/?$ automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php [L]
+    RewriteRule ^products/automation/automation-process-valves/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves/?$ automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php [L]
+
     RewriteRule ^sitemap\.xml$ sitemap.php [L]
     RewriteRule ^robots\.txt$ robots.php [L]
 

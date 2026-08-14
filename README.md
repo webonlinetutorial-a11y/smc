@@ -21,7 +21,7 @@ C:\xampp\php\php.exe scripts\qa_check.php
 C:\xampp\php\php.exe scripts\deploy_check.php
 ```
 
-The deployment readiness check validates required release files, production-safe defaults, protected paths, upload execution protection, migration availability, environment templates, and the Phase 8 QA suite.
+The QA check validates PHP syntax, root public page rendering, referenced assets, CSS structure, SEO/security markers, responsive breakpoints, and sitemap/robots endpoints. The deployment readiness check validates required release files, production-safe defaults, protected paths, upload execution protection, migration availability, environment templates, and the Phase 8 QA suite.
 
 ## Database Setup
 

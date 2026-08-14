@@ -379,8 +379,10 @@ Verification completed:
 
 - Added `scripts/qa_check.php` for repeatable static QA and regression validation.
 - Added Composer `qa` script entry for the QA check.
+- Added root public page render smoke validation to catch missing views, fatal render errors, and empty public endpoints after page or route changes.
 - Ran `C:\xampp\php\php.exe scripts/qa_check.php`.
 - PHP syntax lint passed for all PHP files.
+- Root public page render smoke validation passed.
 - Referenced asset validation passed.
 - CSS brace balance validation passed.
 - Root `.htaccess` routing and cache validation passed.

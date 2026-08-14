@@ -14,6 +14,10 @@ $urls = [
     ['loc' => appUrl('/contact-us.php'), 'priority' => '0.8'],
 ];
 
+foreach (automationSitemapPaths() as $automationPath) {
+    $urls[] = ['loc' => appUrl($automationPath), 'priority' => '0.8'];
+}
+
 try {
     $content = new PublicContentService();
 

@@ -69,9 +69,12 @@ function configValue(string $key, mixed $default = null): mixed
 
 function assetUrl(string $path): string
 {
-    $normalizedPath = ltrim($path, '/');
-    $url = appUrl('assets/' . $normalizedPath);
-    $filePath = ASSETS_PATH . DIRECTORY_SEPARATOR . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $normalizedPath);
+    $normalizedPath = str_replace('\\', '/', ltrim($path, '/'));
+    $encodedPath = implode('/', array_map(static function (string $segment): string {
+        return rawurlencode(rawurldecode($segment));
+    }, explode('/', $normalizedPath)));
+    $url = appUrl('assets/' . $encodedPath);
+    $filePath = ASSETS_PATH . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, rawurldecode($normalizedPath));
 
     if (is_file($filePath)) {
         $url .= '?v=' . filemtime($filePath);
@@ -85,7 +88,23 @@ function appUrl(string $path = ''): string
     $baseUrl = rtrim((string) configValue('app.url', ''), '/');
     $path = ltrim($path, '/');
 
-    return $path === '' ? $baseUrl : $baseUrl . '/' . $path;
+    if ($path === '') {
+        return $baseUrl;
+    }
+
+    [$pathOnly, $queryString] = array_pad(explode('?', $path, 2), 2, '');
+    $path = publicPathAliases()[$pathOnly] ?? $pathOnly;
+
+    return $baseUrl . '/' . $path . ($queryString !== '' ? '?' . $queryString : '');
+}
+
+function resolvePublicPathAlias(string $path): string
+{
+    $path = ltrim($path, '/');
+    $aliases = publicPathAliases();
+    $resolved = array_search($path, $aliases, true);
+
+    return $resolved === false ? $path : $resolved;
 }
 
 function e(mixed $value): string

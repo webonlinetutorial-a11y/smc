@@ -34,7 +34,10 @@ function redirectTo(string $path, int $statusCode = 302): never
 
 function isActivePath(string $path): bool
 {
-    return rtrim(currentPath(), '/') === rtrim($path, '/');
+    $currentPath = trim(resolvePublicPathAlias(currentPath()), '/');
+    $targetPath = trim(resolvePublicPathAlias($path), '/');
+
+    return $currentPath === $targetPath;
 }
 
 function formatFileSize(int $bytes): string
