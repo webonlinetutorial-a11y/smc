@@ -17,20 +17,24 @@ $isoCylinderProducts = [
             [
                 'title' => 'ISO Cylinder C85 Series',
                 'image' => 'ISO-Cylinder/images/ISO Standards (6432) Air Cylinder.jpg',
+                'detailUrl' => '/product-detail.php?product=iso-cylinder-c85-series',
+                'detailImage' => 'Air-cylinders/ISO-Cylinder/C85-img1.webp',
                 'description' => 'The C85 Series, compliant with ISO 6432, is designed for durability in dusty environments. Its unique rod packing effectively...',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=iso-cylinder-c85-series#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/iso-cylinder-c85-series.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
             [
                 'title' => 'Air Cylinder C75 Series',
                 'image' => 'Air-cylinders/ISO-Cylinder/C75.webp',
+                'detailUrl' => '/product-detail.php?product=air-cylinder-c75-series',
+                'detailImage' => 'Air-cylinders/ISO-Cylinder/C75-img1.webp',
                 'description' => 'The C75 series air cylinders feature a compact, space-efficient design with exceptional dimensional precision, ensuring ease o...',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=air-cylinder-c75-series#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/air-cylinder-c75-series.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -45,9 +49,11 @@ $isoCylinderProducts = [
             [
                 'title' => 'Compact Cylinder C55/CD55',
                 'image' => 'Air-cylinders/ISO-Cylinder/Compact Cylinder CQ2-CDQ2.webp',
+                'detailUrl' => '/product-detail.php?product=compact-cylinder-c55-cd55',
+                'detailImage' => 'Air-cylinders/ISO-Cylinder/Compact Cylinder CQ2-CDQ2.webp',
                 'description' => 'C55 Series air-operated, double-acting cylinders are built for a broad range of automation needs. With features like rubber...',
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/compact-cylinder-c55-cd55.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -61,11 +67,13 @@ $isoCylinderProducts = [
         'detailItems' => [
             [
                 'title' => 'ISO Cylinder CP96/CP96SD Series',
-                'image' => 'Air-cylinders/ISO-Cylinder/Air-Cylinder-Double-Acting-MB1-Z-Series.webp',
+                'image' => 'Air-cylinders/ISO-Cylinder/cp96-img2.webp',
+                'detailUrl' => '/product-detail.php?product=iso-cylinder-cp96-cp96sd-series',
+                'detailImage' => 'Air-cylinders/ISO-Cylinder/cp96-img2.webp',
                 'description' => 'The CP96 Series conforms to ISO standards. Standard Type Double Acting, Single/Double Rod',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=iso-cylinder-cp96-cp96sd-series#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/iso-cylinder-cp96-cp96sd-series.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -80,10 +88,11 @@ foreach ($isoCylinderProducts as $product) {
         'items' => array_map(
             static function (array $item): array {
                 return [
-                    'title' => $item['title'],
-                    'image' => assetUrl('images/' . $item['image']),
+                    'title' => $item['detailTitle'] ?? $item['title'],
+                    'image' => assetUrl('images/' . ($item['detailImage'] ?? $item['image'])),
                     'description' => $item['description'],
                     'actions' => $item['actions'],
+                    'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
                 ];
             },
             $product['detailItems']

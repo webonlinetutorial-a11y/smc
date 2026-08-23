@@ -12,6 +12,7 @@ $flowSwitchProducts = [
                 'title' => '2-Color Display Digital Flow Switch (Integrated Display Type)',
                 'image' => 'Switches-Sensors/Flow-Switch/PFMB.webp',
                 'description' => 'The PFMB series offers accurate airflow monitoring with a compact, integrated 2-color digital display. Ideal for space-saving...',
+                'detailUrl' => '/product-detail.php?product=2-color-display-digital-flow-switch-pfmb',
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -21,6 +22,7 @@ $flowSwitchProducts = [
                 'title' => 'Digital Flow Switch (Integrated Display Type)',
                 'image' => 'Switches-Sensors/Flow-Switch/PF2A.webp',
                 'description' => 'The PF2A series monitors compressed air flow with high accuracy and a built-in digital display. With its IO-Link compatibility and...',
+                'detailUrl' => '/product-detail.php?product=digital-flow-switch-pf2a',
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -38,6 +40,7 @@ foreach ($flowSwitchProducts as $product) {
             'title' => $item['title'],
             'image' => assetUrl('images/' . $item['image']),
             'description' => $item['description'],
+            'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
             'actions' => $item['actions'],
         ];
     }

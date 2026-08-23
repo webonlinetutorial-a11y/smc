@@ -66,7 +66,7 @@
                             <p><?= e($product[1]); ?></p>
                             <div class="new-product-card__actions">
                                 <a class="button button--secondary" href="<?= e(appUrl('/products.php?product=' . $product[3])); ?>">View Details</a>
-                                <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product[3])); ?>">Send Enquiry</a>
+                                <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product[3])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product[0]); ?>">Send Enquiry</a>
                             </div>
                         </div>
                     </article>
@@ -100,7 +100,7 @@
                             <?php endif; ?>
                             <div class="featured-product-card__actions">
                                 <a class="button button--primary" href="<?= e(appUrl('/products.php?product=' . $product[3])); ?>">View Detail</a>
-                                <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product[3])); ?>">Send Query</a>
+                                <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product[3])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product[0]); ?>">Send Query</a>
                             </div>
                         </div>
                     </article>
@@ -122,7 +122,7 @@
                             <?php if (($product['short_description'] ?? '') !== ''): ?>
                                 <p><?= e(mb_strimwidth((string) $product['short_description'], 0, 180, '...')); ?></p>
                             <?php endif; ?>
-                            <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>">Send Query</a>
+                            <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product['name']); ?>">Send Query</a>
                         </article>
                     <?php endforeach; ?>
                 </div>

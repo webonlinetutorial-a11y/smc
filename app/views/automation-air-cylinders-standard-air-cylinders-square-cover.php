@@ -10,13 +10,15 @@ $categorySidebar = automationSidebarCategories('air-cylinders');
 $standardAirCylinderProducts = [
     [
         'title' => 'Air Cylinder MB/MDB',
-        'image' => 'Standard Air Cylinders (Square Cover)/images/standard-air-cylndr-mb-mdb.webp',
+        'image' => 'Air-cylinders/standard-air-cylinder/standard-air-cylndr-mb-mdb.webp',
         'description' => 'The MB/MDB series air cylinders from SMC are double-acting, single rod type cylinders that conform to ISO 6431. They feature...',
         'slug' => 'air-cylinder-mb-mdb',
+        'detailUrl' => '/product-detail.php?product=air-cylinder-double-acting-mb-z-series',
         'detailTitle' => 'Air Cylinder, Double Acting MB-Z Series',
         'detailDescription' => 'The MB/MDB Series is a lightweight, double-acting, single-rod tie rod cylinder designed for medium-duty applications. It features a...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/air-cylinder-double-acting-mb-z-series.pdf')],
+            ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=414o_eNOQlw&t=12s'],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -25,11 +27,12 @@ $standardAirCylinderProducts = [
         'image' => 'Standard Air Cylinders (Square Cover)/images/standard-air-cylinder-mb1-mdb1.webp',
         'description' => 'The MB1/MDB1 series are lightweight pneumatic cylinders based on JIS standards. These are compact, single rod...',
         'slug' => 'air-cylinder-mb1-mdb1',
+        'detailUrl' => '/product-detail.php?product=air-cylinder-double-acting-mb1-z-series',
         'detailTitle' => 'Air Cylinder, Double Acting MB1-Z Series',
         'detailImage' => 'Air-cylinders/standard-air-cylinder/Air-Cylinder-Double-Acting-MB1-Z-Series.webp',
         'detailDescription' => 'Reduced weight by changing the shape of the rod cover and head cover',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/air-cylinder-double-acting-mb1-z-series.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -38,11 +41,13 @@ $standardAirCylinderProducts = [
         'image' => 'Standard Air Cylinders (Square Cover)/images/ISO Cylinder CP96CP96SD.webp',
         'description' => 'The CP96/CP96SD series are ISO 15552-compliant cylinders offering enhanced cushioning and low-friction operation. These double-...',
         'slug' => 'iso-cylinder-cp96-cp96sd',
+        'detailUrl' => '/product-detail.php?product=iso-cylinder-cp96-cp96sd-series',
         'detailTitle' => 'ISO Cylinder CP96/CP96SD Series',
+        'detailImage' => 'Air-cylinders/standard-air-cylinder/ISO-Cylinder-CP96-CP96SD.jpg',
         'detailDescription' => 'The CP96 Series conforms to ISO standards. Standard Type Double Acting, Single/Double Rod',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=iso-cylinder-cp96-cp96sd-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/iso-cylinder-cp96-cp96sd-series.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -56,6 +61,7 @@ foreach ($standardAirCylinderProducts as $product) {
         'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
     ];
 }
 ?>

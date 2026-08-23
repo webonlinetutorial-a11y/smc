@@ -12,9 +12,11 @@ $airPreparationFilterProducts = [
         'description' => 'Designed for installation near air preparation lines, the AMG Series effectively removes water droplets from compressed air. With zero...',
         'slug' => 'water-separator-amg',
         'detailTitle' => 'Water Separator AMG',
+        'detailUrl' => '/product-detail.php?product=water-separator-amg',
+        'detailImage' => 'Air-Preparation-Equipment/Air-preparation-filter/AMG-img1.webp',
         'detailDescription' => 'Designed for installation on air pressure lines, the AMG Series effectively removes water droplets from compressed air. With seve...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/water-separator-amg.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -24,9 +26,11 @@ $airPreparationFilterProducts = [
         'description' => 'The AFF Series main line filter effectively removes both water droplets and solid particles from compressed air...',
         'slug' => 'main-line-filter-aff',
         'detailTitle' => 'Main Line Filter AFF Series',
+        'detailUrl' => '/product-detail.php?product=main-line-filter-aff',
+        'detailImage' => 'Air-Preparation-Equipment/Air-preparation-filter/main-line-filter-img1.webp',
         'detailDescription' => 'The AFF Series main line filter effectively removes both water droplets and solid particles from compressed air.',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/main-line-filter-aff.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -36,9 +40,11 @@ $airPreparationFilterProducts = [
         'description' => 'The AFF Series main line filter effectively removes both water droplets and solid particles from compressed air. Its...',
         'slug' => 'modular-connection-type-line-filter-aff',
         'detailTitle' => 'Modular Connection Type Line filter AFF',
+        'detailUrl' => '/product-detail.php?product=modular-connection-type-line-filter-aff',
+        'detailImage' => 'Air-Preparation-Equipment/Air-preparation-filter/modular-connection-type-line-filter-img1.webp',
         'detailDescription' => 'The AFF Series main line filter effectively removes both water droplets and solid particles from compressed air. By...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/modular-connection-type-line-filter-aff.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -49,9 +55,10 @@ $airPreparationFilterProductDetails = [];
 foreach ($airPreparationFilterProducts as $product) {
     $airPreparationFilterProductDetails[$product['slug']] = [
         'title' => $product['detailTitle'],
-        'image' => assetUrl('images/' . $product['image']),
+        'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
     ];
 }
 ?>

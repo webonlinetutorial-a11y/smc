@@ -16,6 +16,7 @@
 <body>
     <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'header.php'; ?>
     <?= $content ?? ''; ?>
+    <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'enquiry-modal.php'; ?>
     <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'footer.php'; ?>
     <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">Top</button>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>

@@ -18,6 +18,10 @@ foreach (automationSitemapPaths() as $automationPath) {
     $urls[] = ['loc' => appUrl($automationPath), 'priority' => '0.8'];
 }
 
+foreach (productDetailSitemapPaths() as $productDetailPath) {
+    $urls[] = ['loc' => appUrl($productDetailPath), 'priority' => '0.8'];
+}
+
 try {
     $content = new PublicContentService();
 

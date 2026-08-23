@@ -7,9 +7,10 @@ $airFilterProducts = [
         'image' => 'Modular-FRL-Unit/Air-Filters/AF-D.webp',
         'description' => '',
         'slug' => 'air-filter-af-d',
+        'detailUrl' => '/product-detail.php?product=air-filter-af-d',
         'detailDescription' => 'The AF-D series offers a sleek, updated design while delivering the same reliable performance as previous SMC filters.',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=air-filter-af-d#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
@@ -19,7 +20,15 @@ $airFilterProducts = [
         'image' => 'Modular-FRL-Unit/Air-Filters/AF-A.webp',
         'description' => '',
         'slug' => 'air-filter-af-a',
+        'detailUrl' => '/product-detail.php?product=air-filter-af-a',
         'detailDescription' => 'Compatible mounting ... Bowl material options: ... Easy-to-replace filter el... Available thread types: ... Available Body Sizes: 2...',
+        'detailDescriptionItems' => [
+            'Compatible mounting ...',
+            'Bowl material options: ...',
+            'Easy-to-replace filter el...',
+            'Available thread types: ...',
+            'Available Body Sizes: 2...',
+        ],
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -27,10 +36,18 @@ $airFilterProducts = [
     ],
     [
         'title' => 'Air Filter AF-B',
-        'image' => 'Modular-FRL-Unit/Air-Filters/AF-A (1).webp',
+        'image' => 'Modular-FRL-Unit/Air-Filters/AF20-AF40-A.webp',
         'description' => '',
         'slug' => 'air-filter-af-b',
+        'detailUrl' => '/product-detail.php?product=air-filter-af-b',
         'detailDescription' => 'New Style modular air ... Lighter weight than old... Thickness reduction of... Improved water separa... Rc, NPT, or G(PF) type t...',
+        'detailDescriptionItems' => [
+            'New Style modular air ...',
+            'Lighter weight than old...',
+            'Thickness reduction of...',
+            'Improved water separa...',
+            'Rc, NPT, or G(PF) type t...',
+        ],
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -44,6 +61,8 @@ foreach ($airFilterProducts as $product) {
         'title' => $product['title'],
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
+        'descriptionItems' => isset($product['detailDescriptionItems']) ? $product['detailDescriptionItems'] : [],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }

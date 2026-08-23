@@ -85,5 +85,5 @@ $automationCategoryRoutes = automationCategoryRoutes();
         <?php endif; ?>
     <?php endforeach; ?>
     <a class="site-nav__search" href="<?= e(appUrl('/search.php')); ?>" aria-label="Search"><?= lucideIcon('search'); ?><span>Search</span></a>
-    <a class="site-nav__quote" href="<?= e(appUrl('/contact-us.php')); ?>">Request Quotation <?= lucideIcon('send'); ?></a>
+    <a class="site-nav__quote" href="<?= e(appUrl('/contact-us.php')); ?>" data-enquiry-trigger data-enquiry-product="General Quotation">Request Quotation <?= lucideIcon('send'); ?></a>
 </nav>

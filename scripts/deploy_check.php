@@ -59,6 +59,7 @@ $requiredFiles = [
     '.htaccess',
     'composer.json',
     'index.php',
+    'product-detail.php',
     'products.php',
     'brands.php',
     'downloads.php',

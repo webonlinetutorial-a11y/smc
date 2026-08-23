@@ -4,13 +4,14 @@ $categorySidebar = automationSidebarCategories('fittings-tubings');
 $tubingProducts = [
     [
         'title' => 'Polyurethane Tubing TU Series',
-        'image' => 'Fittings-tube/Tubing-compressed/TU.webp',
+        'image' => 'Fittings-tube/Tubing-compressed/TU -img1.webp',
         'description' => "SMC's TU Series sets a high standard for metric-size polyurethane tubing. TUH offers hard tubing in standard and high-pressur...",
         'slug' => 'polyurethane-tubing-tu-series',
+        'url' => appUrl('/product-detail.php?product=polyurethane-tubing-tu-series'),
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=polyurethane-tubing-tu-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/TU.pdf'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -22,6 +23,7 @@ foreach ($tubingProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['description'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? null,
     ];
 }
 ?>
@@ -50,6 +52,7 @@ foreach ($tubingProducts as $product) {
                             <a
                                 class="automation-category-card fittings-tubing-product-card tubing-product-card"
                                 href="#tubing-detail"
+                                data-product-url="<?= e($product['url'] ?? ''); ?>"
                                 data-product-detail-trigger
                                 data-product-id="<?= e($product['slug']); ?>"
                                 aria-controls="tubing-detail"

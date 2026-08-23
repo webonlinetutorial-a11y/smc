@@ -12,6 +12,7 @@ $regulatorProducts = [
                 'title' => 'Precision Regulator IR1000/2000/3000...',
                 'image' => 'Pressure-Control-Equipment/Regulator/IR.webp',
                 'description' => 'The IR Series precision regulator offers flexible installation, with bracket and pressure gauge mountable from two...',
+                'url' => appUrl('/product-detail.php?product=precision-regulator-ir1000-2000-3000-series'),
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -21,6 +22,7 @@ $regulatorProducts = [
                 'title' => 'Regulator IR1200-A/2200-A/3200-A...',
                 'image' => 'Pressure-Control-Equipment/Regulator/Regulator IR1200.jpg',
                 'description' => 'Precision Regulator: IR Series',
+                'url' => appUrl('/product-detail.php?product=regulator-ir1200-a-2200-a-3200-a-series'),
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -29,9 +31,10 @@ $regulatorProducts = [
             [
                 'title' => 'Precision Regulator IR1000-A/2000-...',
                 'image' => 'Pressure-Control-Equipment/Regulator/Precision Regulator IR1000.jpg',
+                'url' => appUrl('/product-detail.php?product=precision-regulator-ir1000-a-2000-a-3000-a-series'),
                 'description' => 'Air consumption: Redu... High flow rate: Up to ap... Lightweight: Reduced b... Sensitivity: 0.2% (Full s... Repeatability: ±0.5% (F...',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=precision-regulator-ir1000-a-2000-a-3000-a-series#part-numbers'), 'sameTab' => true],
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],

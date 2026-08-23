@@ -18,9 +18,10 @@ $autoSwitchProducts = [
                 'title' => 'Reed Auto Switch D-A',
                 'image' => 'Air-cylinders/Auto-switch/D-A73.webp',
                 'description' => 'Reed switches offer dependable detection, available in standard and 2-colour indication for enhanced visibility.',
+                'detailUrl' => '/product-detail.php?product=reed-auto-switch-d-a',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=reed-auto-switch-d-a#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/reed-auto-switch-d-a.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -28,9 +29,10 @@ $autoSwitchProducts = [
                 'title' => 'Solid State Auto Switch D-M9',
                 'image' => 'Air-cylinders/Auto-switch/D-M9.jpg',
                 'description' => 'The D-M9*-5 is a compact solid-state auto switch designed for precise end-of-stroke detection in pneumatic actuators.',
+                'detailUrl' => '/product-detail.php?product=solid-state-auto-switch-d-m9',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=solid-state-auto-switch-d-m9#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/solid-state-auto-switch-d-m9.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -38,8 +40,9 @@ $autoSwitchProducts = [
                 'title' => 'Reed Auto Switch D-Z',
                 'image' => 'Air-cylinders/Auto-switch/D-Z.jpg',
                 'description' => 'Reed switch offer dependable detection, available in standard and 2-colour indication for enhanced visibility.',
+                'detailUrl' => '/product-detail.php?product=reed-auto-switch-d-z',
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/reed-auto-switch-d-z.pdf')],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -58,6 +61,7 @@ foreach ($autoSwitchProducts as $product) {
                     'image' => assetUrl('images/' . $item['image']),
                     'description' => $item['description'],
                     'actions' => $item['actions'],
+                    'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
                 ];
             },
             $product['detailItems']

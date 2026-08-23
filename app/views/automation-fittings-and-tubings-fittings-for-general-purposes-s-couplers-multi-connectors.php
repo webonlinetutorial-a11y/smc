@@ -4,13 +4,14 @@ $categorySidebar = automationSidebarCategories('fittings-tubings');
 $couplerProducts = [
     [
         'title' => 'S Couplers KK/KKH Series',
-        'image' => 'Fittings-tube/Fittings-General-Purpose-Coupler-compressed/S-Couplers.webp',
+        'image' => 'Fittings-tube/Fittings-General-Purpose-Coupler-compressed/S-Couplers-img1.webp',
         'description' => 'The KK/KKH series S Couplers feature a unique, spring-free connection design that eliminates the need for steel balls or valv...',
         'slug' => 's-couplers-kk-kkh-series',
+        'url' => appUrl('/product-detail.php?product=s-couplers-kk-kkh-series'),
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=s-couplers-kk-kkh-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/KK-KKH_en.pdf'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -22,6 +23,7 @@ foreach ($couplerProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['description'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? null,
     ];
 }
 ?>
@@ -50,6 +52,7 @@ foreach ($couplerProducts as $product) {
                             <a
                                 class="automation-category-card fittings-tubing-product-card fittings-coupler-product-card"
                                 href="#fittings-coupler-detail"
+                                data-product-url="<?= e($product['url'] ?? ''); ?>"
                                 data-product-detail-trigger
                                 data-product-id="<?= e($product['slug']); ?>"
                                 aria-controls="fittings-coupler-detail"

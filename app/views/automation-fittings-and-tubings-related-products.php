@@ -4,12 +4,13 @@ $categorySidebar = automationSidebarCategories('fittings-tubings');
 $relatedProducts = [
     [
         'title' => 'Tube Cutter TK Series',
-        'image' => 'Fittings-tube/Related-Product-compressed/tube-cutter.webp',
+        'image' => 'Fittings-tube/Related-Product-compressed/TK-img1.webp',
         'description' => 'The TK Series Tube Cutter delivers precise, perpendicular cuts, helping eliminate air leakage right at the source. Designed...',
         'slug' => 'tube-cutter-tk-series',
+        'url' => appUrl('/product-detail.php?product=tube-cutter-tk-series'),
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/tube-cutter-tk-series.pdf')],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -21,6 +22,7 @@ foreach ($relatedProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['description'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? null,
     ];
 }
 ?>
@@ -51,6 +53,7 @@ foreach ($relatedProducts as $product) {
                                 href="#related-product-detail"
                                 data-product-detail-trigger
                                 data-product-id="<?= e($product['slug']); ?>"
+                                data-product-url="<?= e($product['url'] ?? ''); ?>"
                                 aria-controls="related-product-detail"
                                 aria-expanded="false"
                             >

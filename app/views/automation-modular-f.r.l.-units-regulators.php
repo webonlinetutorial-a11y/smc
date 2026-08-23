@@ -7,8 +7,15 @@ $regulatorProducts = [
         'image' => 'Modular-FRL-Unit/Regulators/AR-B.webp',
         'description' => '',
         'slug' => 'regulator-ar-b',
+        'detailUrl' => '/product-detail.php?product=regulator-ar-b',
         'detailImage' => 'Modular-FRL-Unit/Regulators/AR20K-AR60K-B.jpg',
         'detailDescription' => 'Modular type regulator Available with a built-in... Optional embedded pr... The diaphragm is mad...',
+        'detailDescriptionItems' => [
+            'Modular type regulator',
+            'Available with a built-in...',
+            'Optional embedded pr...',
+            'The diaphragm is mad...',
+        ],
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -19,7 +26,15 @@ $regulatorProducts = [
         'image' => 'Modular-FRL-Unit/Regulators/AR-A.webp',
         'description' => '',
         'slug' => 'regulator-ar-a',
+        'detailUrl' => '/product-detail.php?product=regulator-ar-a',
         'detailDescription' => 'Modular type regulator Available with built-in b... Optional embedded pr... Rc, NPT or G(PF) threa... The diaphragm is mad...',
+        'detailDescriptionItems' => [
+            'Modular type regulator',
+            'Available with built-in b...',
+            'Optional embedded pr...',
+            'Rc, NPT or G(PF) threa...',
+            'The diaphragm is mad...',
+        ],
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -30,9 +45,17 @@ $regulatorProducts = [
         'image' => 'Modular-FRL-Unit/Regulators/AR-D.webp',
         'description' => '',
         'slug' => 'regulator-ar-d',
+        'detailUrl' => '/product-detail.php?product=regulator-ar-d',
         'detailDescription' => 'Ergonomically improve... Optional integrated pre... Compatible mounting ... Bracket and set nut av... Thread types: Rc, NPT, ...',
+        'detailDescriptionItems' => [
+            'Ergonomically improve...',
+            'Optional integrated pre...',
+            'Compatible mounting ...',
+            'Bracket and set nut av...',
+            'Thread types: Rc, NPT, ...',
+        ],
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=regulator-ar-d#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
@@ -45,6 +68,8 @@ foreach ($regulatorProducts as $product) {
         'title' => $product['title'],
         'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
+        'descriptionItems' => isset($product['detailDescriptionItems']) ? $product['detailDescriptionItems'] : [],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }
