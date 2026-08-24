@@ -13,7 +13,7 @@
 | Architecture Approach | Modular, Server Side Rendering, Mobile First, SEO Friendly, CMS Based |
 | Document Status | Completed |
 | Owner | Implementation Architecture |
-| Last Updated | August 9, 2026 |
+| Last Updated | August 14, 2026 |
 
 ## Revision History
 
@@ -21,6 +21,7 @@
 |---|---|---|---|
 | 1.0 | August 6, 2026 | Initial Production Deployment implementation planning document | Implementation Architecture |
 | 1.1 | August 9, 2026 | Completed production deployment readiness with local release checks and verification | Codex |
+| 1.2 | August 14, 2026 | Added SMTP readiness notes for public enquiry email notifications | Codex |
 
 ## 1. Introduction
 
@@ -217,6 +218,18 @@ Review areas:
 - JavaScript files.
 - Fonts.
 - Icons.
+
+## 9.1 SMTP and Enquiry Email Readiness
+
+Public enquiry forms save submissions to the `contact_inquiries` table and can also send email notifications through SMTP.
+
+Production readiness requirements:
+
+- Keep `MAIL_ENABLED=false` until real SMTP credentials are available.
+- Set `MAIL_ENABLED=true` after configuring `MAIL_HOST`, `MAIL_PORT`, `MAIL_ENCRYPTION`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME`, and `MAIL_TO_ADDRESS` in production `.env`.
+- Use a trusted SMTP provider or Hostinger mailbox SMTP credentials.
+- Verify the enquiry modal from at least one product bottom card and one public enquiry button after deployment.
+- Confirm that submitted enquiries appear in the admin inquiries module even if SMTP delivery fails.
 
 Expectations:
 

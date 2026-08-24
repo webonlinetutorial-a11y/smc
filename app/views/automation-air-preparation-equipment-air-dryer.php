@@ -12,9 +12,11 @@ $airDryerProducts = [
         'description' => 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to...',
         'slug' => 'refrigerated-air-dryer-idfa60-70-80-90',
         'detailTitle' => 'Refrigerated Air Dryer IDFA60/70/80/90 Series',
+        'detailUrl' => '/product-detail.php?product=refrigerated-air-dryer-idfa60-70-80-90-series',
+        'detailImage' => 'Air-Preparation-Equipment/Air-dryer/IDFA-img1.webp',
         'detailDescription' => 'The IDFA*E Series refrigerated air dryers are ideal for aftercooled compressed air systems using compressors up to...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=refrigerated-air-dryer-idfa60-70-80-90-series#part-numbers'), 'sameTab' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -24,9 +26,10 @@ $airDryerProductDetails = [];
 foreach ($airDryerProducts as $product) {
     $airDryerProductDetails[$product['slug']] = [
         'title' => $product['detailTitle'],
-        'image' => assetUrl('images/' . $product['image']),
+        'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
     ];
 }
 ?>

@@ -4,14 +4,15 @@ $categorySidebar = automationSidebarCategories('fittings-tubings');
 $fittingProducts = [
     [
         'title' => 'One-touch Fittings KQ2 Series',
-        'image' => 'Fittings-tube/Fittings-Generals-compressed/Fitting-KQ2.webp',
+        'image' => 'Fittings-tube/Fittings-Generals-compressed/Fitting-KQ2-img1.webp',
         'description' => '',
         'slug' => 'one-touch-fittings-kq2-series',
+        'url' => appUrl('/product-detail.php?product=one-touch-fittings-kq2-series'),
         'detailDescription' => 'Expanded product vari... Lightweight and comp... Consistent height for s... Available in two surfac...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=one-touch-fittings-kq2-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/KQ2.pdf'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -23,6 +24,7 @@ foreach ($fittingProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? null,
     ];
 }
 ?>
@@ -37,7 +39,7 @@ foreach ($fittingProducts as $product) {
                 <p>Connect with confidence using SMC's general-purpose pneumatic fittings. Leak-proof and durable, these fittings suit various tubing sizes and working environments.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Fittings-tube/Fittings-Generals-compressed/Fitting-KQ2.webp')); ?>" alt="Fittings for General Purposes" loading="eager">
+                <img src="<?= e(assetUrl('images/Fittings-tube/Fittings-Generals-compressed/Fitting-KQ2-img1.webp')); ?>" alt="Fittings for General Purposes" loading="eager">
             </div>
         </section>
 

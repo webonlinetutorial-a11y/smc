@@ -14,6 +14,8 @@ The first implementation phase provides configuration loading, bootstrap initial
 
 Before preparing a Hostinger release, copy `.env.production.example` to the production `.env` file and replace the placeholder domain and database credentials.
 
+For enquiry email delivery, set `MAIL_ENABLED=true` and fill the `MAIL_*` SMTP values in production `.env`. If SMTP is not enabled, enquiries are still saved in the database/admin panel and email delivery is skipped.
+
 Run the local QA and deployment readiness checks with XAMPP PHP:
 
 ```powershell

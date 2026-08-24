@@ -12,10 +12,11 @@ $digitalPressureSwitchProducts = [
                 'title' => '3-Screen Display High-Precision Digital Pressure Switch',
                 'image' => 'Switches-Sensors/Digital-Pressure-Switch/ISE20.webp',
                 'description' => 'The ISE20 series features a multi-color, 3-screen display for easy pressure monitoring at a glance. It offers fast response, high...',
+                'detailUrl' => '/product-detail.php?product=3-screen-display-high-precision-digital-pressure-switch-ise20',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=3-screen-display-high-precision-digital-pressure-switch-ise20#part-numbers'), 'sameTab' => true],
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-                    ['label' => 'Video', 'icon' => 'circle-play'],
+                    ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=mTBOxH3Qq9w'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -31,6 +32,7 @@ foreach ($digitalPressureSwitchProducts as $product) {
             'title' => $item['title'],
             'image' => assetUrl('images/' . $item['image']),
             'description' => $item['description'],
+            'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
             'actions' => $item['actions'],
         ];
     }

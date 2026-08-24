@@ -7,12 +7,13 @@ $vacuumEjectorProducts = [
         'image' => 'Vaccum-Equipment-Ejectors/Vaccum-Equipment-Ejectors-compressed/Vaccum-Ejector/ZH.webp',
         'description' => 'Compact and space-saving, Body Ported (Box Type) Vacuum Ejectors feature a body-integrated port design for easy piping and flexibl...',
         'slug' => 'body-ported-type-box-type',
+        'detailUrl' => '/product-detail.php?product=zh-series-vacuum-ejector-body-ported-box-type',
         'detailTitle' => 'ZH Series Vacuum Ejector Body Ported...',
         'detailDescription' => 'The ZH Series offers compact, body-ported (box type) vacuum ejectors with an integrated silencer for quieter operation. Designe...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=zh-series-vacuum-ejector-body-ported-box-type#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Video', 'icon' => 'circle-play'],
+            ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=VXJE6OHi6MA'],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -24,6 +25,7 @@ foreach ($vacuumEjectorProducts as $product) {
         'title' => $product['detailTitle'] ?? $product['title'],
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }

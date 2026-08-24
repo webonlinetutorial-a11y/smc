@@ -7,11 +7,13 @@ $fingerValveProducts = [
         'image' => 'Directional-control-valve/Finger-valve/VHK.webp',
         'description' => 'Finger valves are compact manual valves used for on/off control in benchtop or test equipment. Simple to operate with push-but...',
         'slug' => '2-3-port-finger-valve',
+        'url' => appUrl('/product-detail.php?product=finger-valve-vhk-a-series'),
         'detailTitle' => 'Finger Valve VHK-A Series',
+        'detailImage' => 'Directional-control-valve/Finger-valve/Finger-valve-intro-img1.webp',
         'detailDescription' => 'The VHK-A Series offers compact, user-friendly manual valves with a clear open/close indication via knob direction (counter-...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VHK-A'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
     [
@@ -19,12 +21,13 @@ $fingerValveProducts = [
         'image' => 'Directional-control-valve/Finger-valve/VHS-D.webp',
         'description' => 'OSHA-compliant 3-port pressure relief valves ensure safe depressurization during maintenance. These valve...',
         'slug' => 'osha-standard-compliant-pressure',
+        'url' => appUrl('/product-detail.php?product=osha-standard-compliant-pressure-relief-3-port-valve-with-locking-holes-vhs-d-vhs-w-d'),
         'detailTitle' => 'OSHA Standard Compliant Pressure...',
-        'detailImage' => 'Directional-control-valve/Finger-valve/VHS.jpg',
+        'detailImage' => 'Directional-control-valve/Finger-valve/VHS-img1.jpg',
         'detailDescription' => 'Panel mount specificat... Improved flow rate cha... Energy saving: Zero blo... OSHA (Occupational S... Safety measure: Can pr...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VHS-D'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
     [
@@ -32,10 +35,12 @@ $fingerValveProducts = [
         'image' => 'Directional-control-valve/Finger-valve/VHS400.webp',
         'description' => 'Residual pressure relief valves safely release trapped air from pneumatic systems to avoid unintentional actuator...',
         'slug' => 'residual-relief-3-port-valve',
+        'url' => appUrl('/product-detail.php?product=residual-pressure-relief-3-port-hand-valve-vhs400-500-series'),
         'detailTitle' => 'Residual Pressure Relief 3 Port Hand...',
+        'detailImage' => 'Directional-control-valve/Finger-valve/VHS400-img1.webp',
         'detailDescription' => 'Designed to meet OSHA safety standards, this 3-port pressure relief valve enhances system safety and energy efficiency. Wit...',
         'detailActions' => [
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -47,6 +52,7 @@ foreach ($fingerValveProducts as $product) {
         'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? '',
     ];
 }
 ?>

@@ -14,31 +14,34 @@ $autoDrainProducts = [
         'detailItems' => [
             [
                 'title' => 'Auto Drain Valve AD600',
-                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD600.webp',
+                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD600-img1.webp',
                 'description' => 'The AD series automatically removes condensate from compressed air systems.',
+                'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad600'),
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad600#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
             [
                 'title' => 'Auto Drain Valve AD402-A',
-                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD402-A.webp',
+                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD402-A-img1.webp',
                 'description' => 'The AD402-A offering improved durability, performance and Improved foreign matter resistance',
+                'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-a'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-                    ['label' => 'Video', 'icon' => 'circle-play'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
+                    ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=-HSngKnit5M'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
             [
                 'title' => 'Auto Drain Valve AD402 Series',
-                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD402.webp',
+                'image' => 'Air-Preparation-Equipment/Auto-Drain/AD402-img1.webp',
                 'description' => 'The AD series automatically removes condensate from compressed air systems.',
+                'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-series'),
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-series#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],

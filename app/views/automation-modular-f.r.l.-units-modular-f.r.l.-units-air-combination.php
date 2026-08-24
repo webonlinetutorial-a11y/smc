@@ -7,6 +7,7 @@ $airCombinationProducts = [
         'image' => 'Modular-FRL-Unit/Modular-FRL-Unit-Combination/AC-B.jpg',
         'description' => 'SMC modular FRL combinations integrate filters, regulators, and lubricators into one unit.',
         'slug' => 'modular-frl-units-ac-b',
+        'detailUrl' => '/product-detail.php?product=modular-frl-units-ac-b',
         'detailDescription' => 'Modular, compact and ... ISO8573-1:2010 certifi... Durable, ergonomic de... The transparent bowl g... Built-in square pressur...',
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
@@ -18,11 +19,12 @@ $airCombinationProducts = [
         'image' => 'Modular-FRL-Unit/Modular-FRL-Unit-Combination/AC-D.webp',
         'description' => 'SMC modular FRL combinations',
         'slug' => 'modular-frl-units-ac-d-series',
+        'detailUrl' => '/product-detail.php?product=modular-frl-units-ac-d-series',
         'detailDescription' => 'Modular, compact and ... ISO8573-1:2010 certifi... Durable, ergonomic de... The transparent bowl g... Built-in square pressur...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=modular-frl-units-ac-d-series#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Video', 'icon' => 'circle-play'],
+            ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=qbmY9Isvcc0'],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -31,6 +33,7 @@ $airCombinationProducts = [
         'image' => 'Modular-FRL-Unit/Modular-FRL-Unit-Combination/AC-A (1).webp',
         'description' => 'Air Combination Air Filter + Regulator + Lubricator',
         'slug' => 'modular-frl-units-ac-a',
+        'detailUrl' => '/product-detail.php?product=modular-frl-units-ac-a',
         'detailDescription' => 'Air Combination Air Filter + Regulator + Lubricator',
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
@@ -45,6 +48,7 @@ foreach ($airCombinationProducts as $product) {
         'title' => $product['title'],
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }

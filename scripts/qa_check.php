@@ -113,6 +113,34 @@ function runPublicPageSmokeCheck(string $rootPath): array
     return $failures;
 }
 
+function runPublicQuerySmokeCheck(string $rootPath): array
+{
+    $failures = [];
+    $checks = [
+        [
+            'path' => 'product-detail.php',
+            'query' => 'product=air-cylinder-double-acting-mb-z-series',
+            'needle' => 'Air Cylinder, Double Acting MB-Z Series',
+        ],
+    ];
+
+    foreach ($checks as $check) {
+        $filePath = $rootPath . DIRECTORY_SEPARATOR . $check['path'];
+        $code = 'parse_str(' . var_export($check['query'], true) . ', $_GET); '
+            . '$_SERVER[\'REQUEST_METHOD\'] = \'GET\'; '
+            . 'require ' . var_export($filePath, true) . ';';
+        $command = escapeshellarg(PHP_BINARY) . ' -r ' . escapeshellarg($code) . ' 2>&1';
+        exec($command, $output, $exitCode);
+        $renderedOutput = implode(PHP_EOL, $output);
+
+        if ($exitCode !== 0 || !str_contains($renderedOutput, $check['needle'])) {
+            $failures[] = $check['path'] . '?' . $check['query'];
+        }
+    }
+
+    return $failures;
+}
+
 function referencedAssetPaths(string $rootPath): array
 {
     $assets = [];
@@ -167,6 +195,14 @@ addResult(
     'Public page render smoke check',
     $publicPageFailures === [],
     $publicPageFailures === [] ? 'All root public PHP endpoints render non-empty output.' : 'Failures: ' . implode(', ', $publicPageFailures)
+);
+
+$publicQueryFailures = runPublicQuerySmokeCheck($rootPath);
+addResult(
+    $results,
+    'Public query render smoke check',
+    $publicQueryFailures === [],
+    $publicQueryFailures === [] ? 'Known public query endpoints render expected content.' : 'Failures: ' . implode(', ', $publicQueryFailures)
 );
 
 $missingAssets = [];

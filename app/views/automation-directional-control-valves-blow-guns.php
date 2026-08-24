@@ -4,14 +4,15 @@ $categorySidebar = automationSidebarCategories('directional-control-valves');
 $blowGunProducts = [
     [
         'title' => 'Blow Gun VMG Series',
-        'image' => 'Directional-control-valve/Blow-guns/vmg.webp',
+        'image' => 'Directional-control-valve/Blow-guns/vmg-img1.webp',
         'description' => '',
         'slug' => 'blow-gun-vmg-series',
+        'url' => appUrl('/product-detail.php?product=blow-gun-vmg-series'),
         'detailDescription' => "SMC's VMG Series blow gun is engineered for energy efficiency and powerful performance. With significantly lower pressur...",
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=blow-gun-vmg-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/VMG.pdf'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -23,6 +24,7 @@ foreach ($blowGunProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? null,
     ];
 }
 ?>
@@ -37,7 +39,7 @@ foreach ($blowGunProducts as $product) {
                 <p>SMC's air blow guns provide high-performance cleaning for industrial machines and parts. Ergonomic, efficient, and available in various nozzle types for every cleaning task.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Directional-control-valve/Blow-guns/vmg.webp')); ?>" alt="Blow Guns" loading="eager">
+                <img src="<?= e(assetUrl('images/Directional-control-valve/Blow-guns/vmg-img1.webp')); ?>" alt="Blow Guns" loading="eager">
             </div>
         </section>
 

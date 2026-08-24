@@ -7,9 +7,10 @@ $electroPneumaticProducts = [
         'image' => 'Pressure-Control-Equipment/Electro-Pneumatic/ITV.webp',
         'description' => '',
         'slug' => 'electro-pneumatic-regulator-itv-series',
+        'detailUrl' => '/product-detail.php?product=electro-pneumatic-regulator-itv-series',
         'detailDescription' => 'Designed for precise, stepless air or vacuum pressure control in response to electrical input signals. The compact,...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=electro-pneumatic-regulator-itv-series#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
@@ -22,6 +23,7 @@ foreach ($electroPneumaticProducts as $product) {
         'title' => $product['title'],
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }

@@ -12,6 +12,7 @@ $processValveProducts = [
                 'title' => 'Direct Operated 2 Port Solenoid Valve VX2...',
                 'image' => assetUrl('images/Process-Valve/Port-Solenoid-Valve/23 Port Solenoid ValvesAir Operated Valves.webp'),
                 'description' => 'The VX21/22/23 Series features a compact, high-flow solenoid valve designed for versatile fluid control. With IP65-rated...',
+                'url' => appUrl('/product-detail.php?product=direct-operated-2-port-solenoid-valve-vx2-series'),
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],

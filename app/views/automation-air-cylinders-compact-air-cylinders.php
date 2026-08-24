@@ -13,12 +13,13 @@ $compactAirCylinderProducts = [
         'image' => 'Compact-air-cylinders/images/Compact Cylinder C55CD55.webp',
         'description' => 'ISO 21287-compliant compact air cylinders, the C55/CD55 series offer a space-efficient design for high-cycle applications...',
         'slug' => 'compact-cylinder-c55-cd55',
+        'detailUrl' => '/product-detail.php?product=air-cylinder-double-acting-c55-z-series',
         'detailTitle' => 'Air Cylinder, Double Acting C55-Z Series',
         'detailImage' => 'Air-cylinders/Compact-air-cylinder/c55-img2.webp',
         'detailDescription' => 'C55 Series air-operated, double-acting cylinders are built for a broad range of automation needs. With features like rubber...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=air-cylinder-double-acting-c55-z-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/air-cylinder-double-acting-c55-z-series.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -27,12 +28,13 @@ $compactAirCylinderProducts = [
         'image' => 'Compact-air-cylinders/images/Compact Cylinder CQ2CDQ2.webp',
         'description' => 'The CQ2/CDQ2 series are space-saving compact cylinders featuring double-acting motion and built-in magnet options. Available...',
         'slug' => 'compact-cylinder-cq2-cdq2',
+        'detailUrl' => '/product-detail.php?product=air-cylinder-double-acting-cq2-z-series',
         'detailTitle' => 'Air Cylinder, Double Acting CQ2-Z Series',
-        'detailImage' => 'Air-cylinders/Compact-air-cylinder/Air-Cylinder-Double-Acting-CQ2-Z.webp',
+        'detailImage' => 'Air-cylinders/Compact-air-cylinder/CQ2-Z-img3.webp',
         'detailDescription' => 'The CQ2 Series offers a space-saving design with a compact body and is available in 18 bore sizes ranging from ø4 to ø200...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=air-cylinder-double-acting-cq2-z-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/air-cylinder-double-acting-cq2-z-series.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -46,6 +48,7 @@ foreach ($compactAirCylinderProducts as $product) {
         'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
     ];
 }
 ?>

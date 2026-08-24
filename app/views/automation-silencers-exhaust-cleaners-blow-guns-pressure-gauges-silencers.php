@@ -12,8 +12,9 @@ $silencerProducts = [
                 'title' => 'Silencer;Compact Resin Type AN Series',
                 'image' => 'Silencer-Exhaust-Cleaner/Silencers/AN.webp',
                 'description' => 'The AN Series silencers are designed for efficient noise reduction and mist control in pneumatic systems.',
+                'detailUrl' => '/product-detail.php?product=silencer-compact-resin-type-an-series',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=silencer-compact-resin-type-an-series#part-numbers'), 'sameTab' => true],
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
@@ -22,8 +23,9 @@ $silencerProducts = [
                 'title' => 'Silencer: Metal Body Type AN*00 Series',
                 'image' => 'Silencer-Exhaust-Cleaner/Silencers/Metal body AN.webp',
                 'description' => 'Metal body type. Noise reduction: 30 dB ...',
+                'detailUrl' => '/product-detail.php?product=silencer-metal-body-type-an-00-series',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=silencer-metal-body-type-an-00-series#part-numbers'), 'sameTab' => true],
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
@@ -40,6 +42,7 @@ foreach ($silencerProducts as $product) {
             'title' => $item['title'],
             'image' => assetUrl('images/' . $item['image']),
             'description' => $item['description'],
+            'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
             'actions' => $item['actions'],
         ];
     }

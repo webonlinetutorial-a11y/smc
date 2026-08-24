@@ -7,9 +7,10 @@ $boosterRegulatorProducts = [
         'image' => 'Pressure-Control-Equipment/Booster-Regulator/VBA.webp',
         'description' => 'The VBA Series booster regulator enhances factory air pressure by up to 200%, without the need for an external power source. By...',
         'slug' => 'booster-regulator-vba-series',
+        'detailUrl' => '/product-detail.php?product=booster-regulator-vba-series',
         'detailDescription' => 'The VBA Series booster regulator enhances factory air pressure by up to 200% without the need for an external power source. By...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=booster-regulator-vba-series#part-numbers'), 'sameTab' => true],
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
@@ -19,10 +20,11 @@ $boosterRegulatorProducts = [
         'image' => 'Pressure-Control-Equipment/Booster-Regulator/VBA10A.webp',
         'description' => '',
         'slug' => 'booster-regulator-vba10a-11a-series',
+        'detailUrl' => '/product-detail.php?product=booster-regulator-vba10a-11a-series',
         'detailDescription' => 'Increase factory air pre... Air-only operation requi... Air consumption: Max. ... Max. flow rate: 10% inc... Charging time: Max. 30...',
         'detailActions' => [
             ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Video', 'icon' => 'circle-play'],
+            ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=WhMzTSNJn5k'],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -34,6 +36,7 @@ foreach ($boosterRegulatorProducts as $product) {
         'title' => $product['title'],
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'actions' => $product['detailActions'],
     ];
 }

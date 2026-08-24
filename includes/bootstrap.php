@@ -8,6 +8,7 @@ loadEnvFile(ROOT_PATH . DIRECTORY_SEPARATOR . '.env');
 $GLOBALS['config'] = [
     'app' => require CONFIG_PATH . DIRECTORY_SEPARATOR . 'app.php',
     'database' => require CONFIG_PATH . DIRECTORY_SEPARATOR . 'database.php',
+    'mail' => require CONFIG_PATH . DIRECTORY_SEPARATOR . 'mail.php',
     'security' => require CONFIG_PATH . DIRECTORY_SEPARATOR . 'security.php',
 ];
 

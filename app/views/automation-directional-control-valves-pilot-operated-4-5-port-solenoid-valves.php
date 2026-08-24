@@ -12,22 +12,24 @@ $pilotOperatedValveProducts = [
         'detailItems' => [
             [
                 'title' => 'Solenoid Valve SY3000/5000/7000/9...',
-                'image' => 'Directional-control-valve/Pilot-operated-ports/SY3000-9000.webp',
+                'image' => 'Directional-control-valve/Pilot-operated-ports/SY3000-9000-img1.webp',
                 'description' => 'The combined mountin... Power consumption: 0.... A wide variety of manif... Manifold type no.: SS5... Supports Interface reg...',
+                'url' => appUrl('/product-detail.php?product=solenoid-valve-sy3000-5000-7000-9000-series'),
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=solenoid-valve-sy3000-5000-7000-9000-series#part-numbers'), 'sameTab' => true],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/SY3000-9000.pdf'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
             [
-                'title' => 'Solenoid Valve, Plugin Type...',
+                'title' => 'Solenoid Valve, Plugin Type SY3000/5000/7000 Series',
                 'image' => 'Directional-control-valve/Pilot-operated-ports/SY3000-7000.webp',
                 'description' => 'Body-ported or base-mounted styles, SY valves can operate individually or manifold-mounted. A new back pressure check valve...',
+                'url' => appUrl('/product-detail.php?product=solenoid-valve-plugin-type-sy3000-5000-7000-series'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-                    ['label' => 'Video', 'icon' => 'circle-play'],
-                    ['label' => 'Enquiry', 'icon' => 'circle-help'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/SY3000-7000.pdf'],
+                    ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=23JRXvTBd44'],
+                    ['label' => 'Enquiry', 'icon' => 'circle-help', 'url' => '/contact-us.php'],
                 ],
             ],
         ],

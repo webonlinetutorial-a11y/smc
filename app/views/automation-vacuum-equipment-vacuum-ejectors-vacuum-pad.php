@@ -12,8 +12,9 @@ $vacuumPadProducts = [
                 'title' => 'Basic Vacuum Pad ZP',
                 'image' => 'Vaccum-Equipment-Ejectors/Vaccum-Equipment-Ejectors-compressed/Vacuum Pad/ZP.jpg',
                 'description' => 'The Basic Vacuum Pad ZP provides reliable, general-purpose gripping with a simple design suited for a variety of flat and slightly...',
+                'detailUrl' => '/product-detail.php?product=basic-vacuum-pad-zp',
                 'actions' => [
-                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
+                    ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=basic-vacuum-pad-zp#part-numbers'), 'sameTab' => true],
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
@@ -22,6 +23,7 @@ $vacuumPadProducts = [
                 'title' => 'Oval Vacuum Pad ZP/ZP2',
                 'image' => 'Vaccum-Equipment-Ejectors/Vaccum-Equipment-Ejectors-compressed/Vacuum Pad/ZP2.jpg',
                 'description' => 'The Oval Vacuum Pad ZP/ZP2 features an elongated shape for improved contact area and stable gripping on uneven...',
+                'detailUrl' => '/product-detail.php?product=oval-vacuum-pad-zp-zp2',
                 'actions' => [
                     ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
@@ -39,6 +41,7 @@ foreach ($vacuumPadProducts as $product) {
             'title' => $item['title'],
             'image' => assetUrl('images/' . $item['image']),
             'description' => $item['description'],
+            'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
             'actions' => $item['actions'],
         ];
     }

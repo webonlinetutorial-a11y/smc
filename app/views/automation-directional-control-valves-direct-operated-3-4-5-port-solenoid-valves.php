@@ -4,15 +4,16 @@ $categorySidebar = automationSidebarCategories('directional-control-valves');
 $directOperatedValveProducts = [
     [
         'title' => '3-Port Solenoid Valve',
-        'image' => 'Directional-control-valve/Direct-operated-port/VT307.webp',
+        'image' => 'Directional-control-valve/Direct-operated-port/VT307-img1.webp',
         'description' => '3-port valves are commonly used for single-acting cylinders or vacuum break functions. These solenoid valves offer quick...',
         'slug' => '3-port-solenoid-valve',
+        'url' => appUrl('/product-detail.php?product=poppet-type-solenoid-valve-vt307-series'),
         'detailTitle' => 'Poppet Type Solenoid Valve VT307 Series',
         'detailDescription' => 'The VT307 Series is a space-saving, direct-operated 3-port solenoid valve that delivers high flow with low power usage. Its...',
         'detailActions' => [
-            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+            ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=poppet-type-solenoid-valve-vt307-series#part-numbers'), 'sameTab' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/VT307.pdf'],
+            ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
 ];
@@ -24,6 +25,7 @@ foreach ($directOperatedValveProducts as $product) {
         'image' => assetUrl('images/' . $product['image']),
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
+        'url' => $product['url'] ?? '',
     ];
 }
 ?>
@@ -38,7 +40,7 @@ foreach ($directOperatedValveProducts as $product) {
                 <p>SMC direct-operated solenoid valves provide quick and precise control of airflow in compact designs. Ideal for low-flow applications or when fast response is critical.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Directional-control-valve/Direct-operated-port/VT307.webp')); ?>" alt="Direct Operated 3/4/5 Port Solenoid Valves" loading="eager">
+                <img src="<?= e(assetUrl('images/Directional-control-valve/Direct-operated-port/VT307-img1.webp')); ?>" alt="Direct Operated 3/4/5 Port Solenoid Valves" loading="eager">
             </div>
         </section>
 

@@ -13,11 +13,12 @@ $airGripperProducts = [
         'image' => 'Air-gripper/images/Linear-Guide-Parallel-Type-Air-Gripper-MHZ2.jpg',
         'description' => 'SMC\'s parallel-type air grippers are precision devices designed for gripping workpieces with synchronized jaw motion...',
         'slug' => 'parallel-type-air-gripper',
-        'detailTitle' => 'Linear Guide Parallel Type Air Gripper...',
-        'detailImage' => 'Air-cylinders/Parallel-Type-Air Grippers.webp',
+        'detailTitle' => 'Linear Guide Parallel Type Air Gripper MHZ2',
+        'detailUrl' => '/product-detail.php?product=linear-guide-parallel-type-air-gripper-mhz2',
+        'detailImage' => 'Air-cylinders/Air-gripper/Parallel-Type-Air Grippers-img1.jpg',
         'detailDescription' => 'The MHZ Series features a compact, high-rigidity design with an integrated linear guide secured by dual dowel pins to prevent...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/linear-guide-parallel-type-air-gripper-mhz2.pdf')],
             ['label' => 'Enquiry', 'icon' => 'circle-help'],
         ],
     ],
@@ -29,6 +30,7 @@ foreach ($airGripperProducts as $product) {
     $airGripperProductDetails[$product['slug']] = [
         'title' => $product['detailTitle'],
         'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
+        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
         'description' => $product['detailDescription'],
         'actions' => $product['detailActions'],
     ];

@@ -53,7 +53,7 @@ $fittingsTubingProducts = [
                 <p>These components support fast installation, secure sealing, flexible piping layouts, and reliable maintenance for industrial compressed air networks.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Fittings-tube/Fitting-KQ2.webp')); ?>" alt="SMC fittings and tubing" loading="eager">
+                <img src="<?= e(assetUrl('images/Fittings-tube/Fittings-Tubings.jpg')); ?>" alt="SMC fittings and tubing" loading="eager">
             </div>
         </section>
 

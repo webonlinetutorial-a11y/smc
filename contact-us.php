@@ -23,6 +23,12 @@ renderView('contact', array_merge($inquiryData, [
     'pageEyebrow' => 'Contact',
     'pageHeading' => 'Contact Us',
     'pageIntro' => 'Contact Nepack for industrial automation products and support.',
+    'form' => array_merge(
+        [
+            'message' => trim((string) ($_GET['message'] ?? '')),
+        ],
+        $inquiryData['form'] ?? []
+    ),
     'productContext' => $productContext,
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
