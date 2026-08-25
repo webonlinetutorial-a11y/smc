@@ -29,7 +29,8 @@ class ContactInquiryService extends BaseService
         $pincode = sanitizeString($input['pincode'] ?? '');
         $locationParts = array_filter([$address, $city, $state, $pincode], static fn (string $part): bool => $part !== '');
         $location = sanitizeString($input['location'] ?? implode(', ', $locationParts));
-        $message = sanitizeString($input['message'] ?? '');
+        $rawMessage = sanitizeString($input['message'] ?? '');
+        $message = $rawMessage;
 
         if ($productName !== '') {
             $message = trim('Product: ' . $productName . "\n" . $message);
@@ -58,7 +59,7 @@ class ContactInquiryService extends BaseService
             $this->addError('A valid email is required.');
         }
 
-        if (!hasMinLength($data['message'], 10)) {
+        if (!hasMinLength($rawMessage, 10)) {
             $this->addError('Message must be at least 10 characters.');
         }
 
