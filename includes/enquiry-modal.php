@@ -46,18 +46,9 @@
                 <span class="sr-only">State</span>
                 <select name="state" required>
                     <option value="">Select State</option>
-                    <option>Assam</option>
-                    <option>Arunachal Pradesh</option>
-                    <option>Meghalaya</option>
-                    <option>Nagaland</option>
-                    <option>Manipur</option>
-                    <option>Mizoram</option>
-                    <option>Tripura</option>
-                    <option>West Bengal</option>
-                    <option>Bihar</option>
-                    <option>Jharkhand</option>
-                    <option>Odisha</option>
-                    <option>Other</option>
+                    <?php foreach (indianStateList() as $state): ?>
+                        <option value="<?= e($state); ?>"><?= e($state); ?></option>
+                    <?php endforeach; ?>
                 </select>
             </label>
 
