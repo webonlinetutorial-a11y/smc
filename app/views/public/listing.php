@@ -11,6 +11,11 @@
                 <div class="cms-listing-grid">
                     <?php foreach ($items as $item): ?>
                         <article class="cms-listing-card">
+                            <?php if (!empty($logoField) && !empty($item[$logoField])): ?>
+                                <div class="cms-listing-card__logo">
+                                    <img src="<?= e(assetUrl($item[$logoField])); ?>" alt="<?= e($item[$titleField] ?? ''); ?> logo" loading="lazy">
+                                </div>
+                            <?php endif; ?>
                             <h3><?= e($item[$titleField] ?? 'Untitled'); ?></h3>
                             <?php if (($item[$descriptionField] ?? '') !== ''): ?>
                                 <p><?= e(mb_strimwidth((string) $item[$descriptionField], 0, 180, '...')); ?></p>
