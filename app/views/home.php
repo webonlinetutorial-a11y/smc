@@ -128,9 +128,9 @@
                 <img src="<?= e(assetUrl('images/about-nepack.webp')); ?>" alt="Nepack industrial automation team" loading="lazy">
             </div>
             <div>
-                <h2>About Nepack</h2>
+                <h2>About Bharat Mill</h2>
                 <h3>Your Trusted Partner in Industrial Automation</h3>
-                <p>Nepack is a leading distributor and solution provider of industrial automation and pneumatic components, serving diverse industries with high-quality products and expert technical support.</p>
+                <p>Bharat Mill is a leading distributor and solution provider of industrial automation and pneumatic components, serving diverse industries with high-quality products and expert technical support.</p>
                 <div class="about-preview__stats">
                     <span><?= lucideIcon('award'); ?><strong>30+</strong> Years of Experience</span>
                     <span><?= lucideIcon('boxes'); ?><strong>10,000+</strong> Products Offered</span>
@@ -145,7 +145,7 @@
         <div class="container testimonial-carousel">
             <div class="testimonial-carousel__track" data-testimonial-carousel>
                 <article class="testimonial-card">
-                    <blockquote>Nepack has been our trusted partner for years. Their product quality, technical support and timely delivery make them stand out in the industry.</blockquote>
+                    <blockquote>Bharat Mill has been our trusted partner for years. Their product quality, technical support and timely delivery make them stand out in the industry.</blockquote>
                     <div class="testimonial-card__meta">
                         <strong>Tata Motors</strong>
                         <span>Procurement Head</span>
@@ -183,7 +183,7 @@
                 <p>We are here to help you with your automation needs.</p>
                 <ul>
                     <li><?= lucideIcon('phone'); ?>+91 22 4008 8000</li>
-                    <li><?= lucideIcon('mail'); ?>info@nepack.com</li>
+                    <li><?= lucideIcon('mail'); ?>info@bharatmill.com</li>
                     <li><?= lucideIcon('clock'); ?>Mon - Sat, 9:00 AM - 6:00 PM</li>
                 </ul>
             </div>

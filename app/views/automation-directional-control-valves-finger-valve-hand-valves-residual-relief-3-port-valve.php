@@ -12,7 +12,7 @@ $fingerValveProducts = [
         'detailImage' => 'Directional-control-valve/Finger-valve/Finger-valve-intro-img1.webp',
         'detailDescription' => 'The VHK-A Series offers compact, user-friendly manual valves with a clear open/close indication via knob direction (counter-...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VHK-A'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
@@ -26,7 +26,7 @@ $fingerValveProducts = [
         'detailImage' => 'Directional-control-valve/Finger-valve/VHS-img1.jpg',
         'detailDescription' => 'Panel mount specificat... Improved flow rate cha... Energy saving: Zero blo... OSHA (Occupational S... Safety measure: Can pr...',
         'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VHS-D'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],

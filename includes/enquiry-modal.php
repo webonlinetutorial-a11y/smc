@@ -24,10 +24,11 @@
             </label>
 
             <div class="enquiry-modal__phone-row">
-                <label>
+                <label class="enquiry-modal__code">
                     <span class="sr-only">Country Code</span>
+                    <img class="flag-icon" src="<?= e(assetUrl('images/in.svg')); ?>" alt="" aria-hidden="true">
                     <select name="country_code" aria-label="Country code">
-                        <option value="+91" selected>🇮🇳 +91</option>
+                        <option value="+91" selected>+91</option>
                     </select>
                 </label>
                 <label>

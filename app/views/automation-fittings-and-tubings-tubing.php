@@ -10,7 +10,7 @@ $tubingProducts = [
         'url' => appUrl('/product-detail.php?product=polyurethane-tubing-tu-series'),
         'detailActions' => [
             ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=polyurethane-tubing-tu-series#part-numbers'), 'sameTab' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/TU.pdf'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],

@@ -214,16 +214,82 @@
         line-height: 1.45;
     }
 
-    .site-nav__search {
+    .site-nav__search-toggle {
         justify-content: center;
+        width: 100%;
+    }
+
+    .site-search__panel {
+        position: static;
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        margin-top: 8px;
     }
 
     .feature-grid,
     .site-footer__grid,
     .product-line-intro,
     .about-preview,
+    .about-who-we-are,
     .contact-band__grid {
         grid-template-columns: 1fr;
+    }
+
+    .about-who-we-are {
+        gap: 24px;
+    }
+
+    .about-who-we-are h2 {
+        font-size: 28px;
+    }
+
+    .about-strengths {
+        padding: 22px;
+    }
+
+    .about-strengths h2 {
+        font-size: 28px;
+    }
+
+    .about-strengths-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .about-cta__actions {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .about-cta__actions .button {
+        flex: 1 1 auto;
+    }
+
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-request-form__two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-quick-links {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-quick-links a {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-line);
+    }
+
+    .contact-quick-links a:last-child {
+        border-bottom: 0;
     }
 
     .stats-strip__grid,
@@ -264,6 +330,30 @@
 
     .automation-intro__image {
         flex-basis: 300px;
+    }
+
+    .page-banner--split {
+        padding: 26px 0;
+    }
+
+    .page-banner--split .page-banner__inner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 18px;
+    }
+
+    .page-banner--split .page-banner__content {
+        flex: 0 1 auto;
+        max-width: 100%;
+    }
+
+    .page-banner__media {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 7;
+        max-height: 280px;
     }
 
     .automation-categories__layout {
@@ -383,6 +473,30 @@
 
     .product-detail-part__enquiry {
         width: 100%;
+    }
+    .about-who-we-are {
+        text-align: center;
+    }
+    .about-who-we-are__image {
+        overflow: hidden;
+        border-radius: var(--radius);
+        box-shadow: none;
+    }
+    .about-who-we-are__image img {
+        display: block;
+        max-width: 365px;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+
+    .about-who-we-are__text {
+        margin: 0 auto 20px auto;
+    }
+    .about-who-we-are > .button--primary {
+        margin: 0px auto;
     }
 }
 
@@ -692,6 +806,19 @@
 
     .page-banner h1 {
         font-size: 32px;
+    }
+
+    .page-banner__media {
+        aspect-ratio: 16 / 9;
+        max-height: 220px;
+    }
+
+    .page-banner__shape {
+        display: none;
+    }
+
+    .page-banner__media img {
+        clip-path: none;
     }
 
     .icon-card-grid,

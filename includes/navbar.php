@@ -84,6 +84,29 @@ $automationCategoryRoutes = automationCategoryRoutes();
             </a>
         <?php endif; ?>
     <?php endforeach; ?>
-    <a class="site-nav__search" href="<?= e(appUrl('/search.php')); ?>" aria-label="Search"><?= lucideIcon('search'); ?><span>Search</span></a>
+    <div class="site-nav__search" data-site-search data-search-endpoint="<?= e(appUrl('/search-suggest.php')); ?>">
+        <button type="button" class="site-nav__search-toggle" data-site-search-toggle aria-label="Search" aria-expanded="false" aria-controls="site-search-panel">
+            <?= lucideIcon('search'); ?>
+            <span>Search</span>
+        </button>
+        <div class="site-search__panel" id="site-search-panel" data-site-search-panel hidden>
+            <div class="site-search__field">
+                <?= lucideIcon('search', 'site-search__field-icon'); ?>
+                <input
+                    type="search"
+                    class="site-search__input"
+                    data-site-search-input
+                    placeholder="Search products…"
+                    aria-label="Search products"
+                    autocomplete="off"
+                    role="combobox"
+                    aria-expanded="false"
+                    aria-controls="site-search-results"
+                    aria-autocomplete="list"
+                >
+            </div>
+            <div class="site-search__results" id="site-search-results" data-site-search-results role="listbox" hidden></div>
+        </div>
+    </div>
     <a class="site-nav__quote" href="<?= e(appUrl('/contact-us.php')); ?>" data-enquiry-trigger data-enquiry-product="General Quotation">Request Quotation <?= lucideIcon('send'); ?></a>
 </nav>

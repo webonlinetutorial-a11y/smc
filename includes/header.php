@@ -2,13 +2,13 @@
     <div class="top-strip">
         <div class="container top-strip__inner">
             <span>Industrial automation products and support</span>
-            <a class="top-strip__contact" href="<?= e(appUrl('/contact-us.php')); ?>">Contact Nepack</a>
+            <a class="top-strip__contact" href="<?= e(appUrl('/contact-us.php')); ?>">Contact Bharat Mill</a>
         </div>
     </div>
     <div class="container site-header__inner">
         <a class="site-logo" href="<?= e(appUrl('/')); ?>" aria-label="<?= e(configValue('app.name', 'Nepack Website')); ?> home">
-            <strong>N</strong>
-            <span>Nepack</span>
+            <strong>B</strong>
+            <span>Bharat Mill</span>
             <small>Industrial Automation</small>
         </a>
         <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'navbar.php'; ?>

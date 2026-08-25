@@ -11,7 +11,7 @@ $blowGunProducts = [
         'detailDescription' => "SMC's VMG Series blow gun is engineered for energy efficiency and powerful performance. With significantly lower pressur...",
         'detailActions' => [
             ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=blow-gun-vmg-series#part-numbers'), 'sameTab' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/VMG.pdf'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],

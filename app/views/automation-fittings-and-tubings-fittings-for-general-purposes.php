@@ -11,7 +11,7 @@ $fittingProducts = [
         'detailDescription' => 'Expanded product vari... Lightweight and comp... Consistent height for s... Available in two surfac...',
         'detailActions' => [
             ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=one-touch-fittings-kq2-series#part-numbers'), 'sameTab' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/KQ2.pdf'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],

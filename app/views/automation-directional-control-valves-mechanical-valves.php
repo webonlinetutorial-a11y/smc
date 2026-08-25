@@ -14,7 +14,7 @@ $mechanicalValveProducts = [
                 'description' => 'A wide variety of valve... Small mounting space ... Compact design for mi... Poppet-style, normally ... Operating pressure: 0.5...',
                 'url' => appUrl('/product-detail.php?product=mechanical-valve-vm100-200-400-800-series'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VM-VZM-VFM-E'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
                 ],
             ],
@@ -24,7 +24,7 @@ $mechanicalValveProducts = [
                 'description' => 'Built-in One-touch fittin... Space saving Approx. 35% reduction ... Lightweight 80% reduction (48 g lig...',
                 'url' => appUrl('/product-detail.php?product=mechanical-valve-with-one-touch-fitting-vm100f'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://www.smcworld.com/webcatalog/api/en-sg/guide/?id=VM-VZM-VFM-E'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
                 ],
             ],
