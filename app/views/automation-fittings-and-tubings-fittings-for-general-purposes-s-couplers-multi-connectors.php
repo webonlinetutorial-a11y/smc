@@ -10,7 +10,7 @@ $couplerProducts = [
         'url' => appUrl('/product-detail.php?product=s-couplers-kk-kkh-series'),
         'detailActions' => [
             ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=s-couplers-kk-kkh-series#part-numbers'), 'sameTab' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Fittings-and-Tubings/KK-KKH_en.pdf'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],

@@ -41,9 +41,29 @@ function automationPublicPathAliases(): array
     ];
 }
 
+function automationCategoryPathAliases(): array
+{
+    return [
+        'automation.php' => 'products/automation',
+        'automation-air-cylinders.php' => 'products/automation/automation-air-cylinders',
+        'automation-air-preparation-equipment.php' => 'products/automation/automation-air-preparation-equipment',
+        'automation-directional-control-valves.php' => 'products/automation/automation-directional-control-valves',
+        // Segment intentionally differs from the filename: item URLs use "-and-tubings".
+        'automation-fittings-tubings.php' => 'products/automation/automation-fittings-and-tubings',
+        'automation-flow-control-equipment-speed-controllers.php' => 'products/automation/automation-flow-control-equipment-speed-controllers',
+        'automation-pressure-control-equipment.php' => 'products/automation/automation-pressure-control-equipment',
+        // Segment intentionally differs: item URLs strip the dots and the trailing dash.
+        'automation-modular-f.r.l.-units-.php' => 'products/automation/automation-modular-frl-units',
+        'automation-vacuum-equipment-vacuum-ejectors-.php' => 'products/automation/automation-vacuum-equipment-vacuum-ejectors',
+        'automation-switches-sensors-controller-.php' => 'products/automation/automation-switches-sensors-controller',
+        'automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => 'products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges',
+        'automation-process-valves.php' => 'products/automation/automation-process-valves',
+    ];
+}
+
 function publicPathAliases(): array
 {
-    return automationPublicPathAliases();
+    return automationCategoryPathAliases() + automationPublicPathAliases();
 }
 
 function automationItemRoutes(): array
@@ -101,6 +121,65 @@ function automationContextItemRoutes(): array
         ],
         '/automation-process-valves.php' => [
             '2/3 Port Solenoid Valves/Air Operated Valves' => '/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php',
+        ],
+    ];
+}
+
+function automationItemIntroImages(): array
+{
+    return [
+        '/automation-air-cylinders.php' => [
+            'Standard Air Cylinders (Square Cover)' => 'Standard Air Cylinders (Square Cover)/standard-air-cyldr-intro.webp',
+            'Compact Air Cylinders' => 'Compact-air-cylinders/Compact-Cylinder-CQ2-CDQ2-intro.jpg',
+            'ISO Cylinders' => 'ISO-Cylinder/CP96-CP96SD-intro.jpg',
+            'Air Gripper' => 'Air-gripper/Parallel Type Air Grippers-intro.jpg',
+            'Auto Switch' => 'Auto-switch/Solid-State-Auto-Switch-D-M9-intro.jpg',
+        ],
+        '/automation-air-preparation-equipment.php' => [
+            'Air Preparation Filters' => 'Air-Preparation-Equipment/Air-preparation-filter/AMG.webp',
+            'Air Dryer' => 'Air-Preparation-Equipment/Air-dryer/IDFA.webp',
+            'Auto Drains' => 'Air-Preparation-Equipment/Auto-Drain/AD402-A.webp',
+        ],
+        '/automation-directional-control-valves.php' => [
+            'Pilot Operated 4/5 Port Solenoid Valves' => 'Directional-control-valve/Pilot-operated-ports/SY3000-9000.webp',
+            'Direct Operated 3/4/5 Port Solenoid Valves' => 'Directional-control-valve/Direct-operated-port/VT307-img1.webp',
+            'Mechanical Valves' => 'Directional-control-valve/Mechanical-valve/Mechanical-Valves-intro.webp',
+            'Finger Valve/Hand Valves/Residual Relief 3 Port Valve' => 'Directional-control-valve/Finger-valve/Finger-valve-intro.webp',
+            'Blow Guns' => 'Directional-control-valve/Blow-guns/vmg-img1.webp',
+        ],
+        '/automation-fittings-tubings.php' => [
+            'Fittings For General Purposes' => 'Fittings-tube/Fittings-Generals-compressed/Fitting-KQ2-img1.webp',
+            'Fittings For General Purposes(S Couplers/Multi-Connectors)' => 'Fittings-tube/Fittings-General-Purpose-Coupler-compressed/KK-KKH-intro.webp',
+            'Tubing' => 'Fittings-tube/Tubing-compressed/tubing-intro.webp',
+            'Related Products' => 'Fittings-tube/Related-Product-compressed/TK-intro.webp',
+        ],
+        '/automation-flow-control-equipment-speed-controllers.php' => [
+            'Speed Controllers For General Purposes' => 'Flow-Control-Equipment/Speed-Controllers/Speed-Controllers-for-General-Purposes -intro.webp',
+        ],
+        '/automation-pressure-control-equipment.php' => [
+            'Electro-Pneumatic Regulators' => 'Pressure-Control-Equipment/Electro-Pneumatic/ITV.webp',
+            'Regulators' => 'Pressure-Control-Equipment/Regulator/IR.webp',
+            'Booster Regulators' => 'Pressure-Control-Equipment/Booster-Regulator/VBA.webp',
+        ],
+        '/automation-modular-f.r.l.-units-.php' => [
+            'Modular F.R.L. Units/Air Combination' => 'Modular-FRL-Unit/Modular-FRL-Unit-Combination/AC-D.webp',
+            'Filter Regulators' => 'Modular-FRL-Unit/Filter-Regulator/AW-D.webp',
+            'Air Filters' => 'Modular-FRL-Unit/Air-Filters/AF-D.webp',
+            'Regulators' => 'Modular-FRL-Unit/Regulators/AR-D.webp',
+        ],
+        '/automation-vacuum-equipment-vacuum-ejectors-.php' => [
+            'Vacuum Ejector' => 'Vaccum-Equipment-Ejectors/Vaccum-Equipment-Ejectors-compressed/Vaccum-Ejector/Vacuum-Ejector-intro.webp',
+            'Vacuum Pad' => 'Vaccum-Equipment-Ejectors/Vaccum-Equipment-Ejectors-compressed/Vacuum Pad/vacuum-pad-intro.webp',
+        ],
+        '/automation-switches-sensors-controller-.php' => [
+            'Flow Switch' => 'Switches-Sensors/Flow-Switch/PFMB.webp',
+            'Digital Pressure Switch' => 'Switches-Sensors/Digital-Pressure-Switch/ISE20.webp',
+        ],
+        '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => [
+            'Silencers' => 'Silencer-Exhaust-Cleaner/Silencers/AN.webp',
+        ],
+        '/automation-process-valves.php' => [
+            '2/3 Port Solenoid Valves/Air Operated Valves' => 'Process-Valve/Port-Solenoid-Valve/23 Port Solenoid ValvesAir Operated Valves.webp',
         ],
     ];
 }

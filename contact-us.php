@@ -30,6 +30,10 @@ renderView('contact', array_merge($inquiryData, [
         $inquiryData['form'] ?? []
     ),
     'productContext' => $productContext,
+    'contactPersonName' => 'Ashok Mishra',
+    'contactPhone' => '+91-9936503386',
+    'contactEmail' => 'abc@rediffmail.com',
+    'contactAddress' => "Bharat Mill, Novelty Talkies Complex, Latouche Road,\nKanpur-208001, Uttar Pradesh",
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Contact Us'],

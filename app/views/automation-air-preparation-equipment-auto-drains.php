@@ -19,7 +19,7 @@ $autoDrainProducts = [
                 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad600'),
                 'actions' => [
                     ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad600#part-numbers'), 'sameTab' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -29,7 +29,7 @@ $autoDrainProducts = [
                 'description' => 'The AD402-A offering improved durability, performance and Improved foreign matter resistance',
                 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-a'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=-HSngKnit5M'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
@@ -41,7 +41,7 @@ $autoDrainProducts = [
                 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-series'),
                 'actions' => [
                     ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=auto-drain-valve-ad402-series#part-numbers'), 'sameTab' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Air-Preperation-Equipment/AD400-600.pdf'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],

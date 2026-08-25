@@ -746,6 +746,151 @@ document.addEventListener('DOMContentLoaded', function () {
         search.addEventListener('input', updatePartNumberRows);
     });
 
+    var siteSearch = document.querySelector('[data-site-search]');
+    var siteSearchToggle = siteSearch ? siteSearch.querySelector('[data-site-search-toggle]') : null;
+    var siteSearchPanel = siteSearch ? siteSearch.querySelector('[data-site-search-panel]') : null;
+    var siteSearchInput = siteSearch ? siteSearch.querySelector('[data-site-search-input]') : null;
+    var siteSearchResults = siteSearch ? siteSearch.querySelector('[data-site-search-results]') : null;
+
+    if (siteSearch && siteSearchToggle && siteSearchPanel && siteSearchInput && siteSearchResults) {
+        var searchDebounceTimer = null;
+        var searchAbortController = null;
+        var searchRequestSeq = 0;
+
+        function openSiteSearch() {
+            siteSearchPanel.hidden = false;
+            siteSearchToggle.setAttribute('aria-expanded', 'true');
+            siteSearch.classList.add('is-open');
+            window.setTimeout(function () {
+                siteSearchInput.focus();
+            }, 0);
+        }
+
+        function closeSiteSearch() {
+            siteSearchPanel.hidden = true;
+            siteSearchToggle.setAttribute('aria-expanded', 'false');
+            siteSearchInput.setAttribute('aria-expanded', 'false');
+            siteSearch.classList.remove('is-open');
+            siteSearchResults.hidden = true;
+            siteSearchResults.innerHTML = '';
+        }
+
+        function renderSiteSearchResults(payload) {
+            var results = (payload && payload.results) || [];
+
+            siteSearchResults.innerHTML = '';
+
+            if (!payload || payload.query === '') {
+                siteSearchResults.hidden = true;
+                siteSearchInput.setAttribute('aria-expanded', 'false');
+                return;
+            }
+
+            if (!results.length) {
+                var empty = document.createElement('p');
+                empty.className = 'site-search__empty';
+                empty.textContent = 'No products found for "' + payload.query + '".';
+                siteSearchResults.appendChild(empty);
+                siteSearchResults.hidden = false;
+                siteSearchInput.setAttribute('aria-expanded', 'true');
+                return;
+            }
+
+            results.forEach(function (item) {
+                var link = document.createElement('a');
+                link.className = 'site-search__result';
+                link.href = item.url;
+                link.setAttribute('role', 'option');
+
+                var thumbHtml = item.image
+                    ? '<img class="site-search__result-thumb" src="' + escapeHtml(item.image) + '" alt="" loading="lazy">'
+                    : '<span class="site-search__result-thumb site-search__result-thumb--empty"></span>';
+
+                link.innerHTML = thumbHtml +
+                    '<span class="site-search__result-text">' +
+                        '<span class="site-search__result-title">' + escapeHtml(item.title) + '</span>' +
+                        (item.category ? '<span class="site-search__result-category">' + escapeHtml(item.category) + '</span>' : '') +
+                    '</span>';
+
+                siteSearchResults.appendChild(link);
+            });
+
+            siteSearchResults.hidden = false;
+            siteSearchInput.setAttribute('aria-expanded', 'true');
+        }
+
+        function fetchSiteSearchResults(query) {
+            var requestId = ++searchRequestSeq;
+            var endpoint = siteSearch.getAttribute('data-search-endpoint') || '/search-suggest.php';
+
+            if (searchAbortController) {
+                searchAbortController.abort();
+            }
+            searchAbortController = typeof AbortController === 'function' ? new AbortController() : null;
+
+            fetch(endpoint + '?q=' + encodeURIComponent(query), {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                signal: searchAbortController ? searchAbortController.signal : undefined
+            })
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error('Search request failed');
+                    }
+                    return response.json();
+                })
+                .then(function (payload) {
+                    if (requestId !== searchRequestSeq) {
+                        return;
+                    }
+                    renderSiteSearchResults(payload);
+                })
+                .catch(function (error) {
+                    if (error && error.name === 'AbortError') {
+                        return;
+                    }
+                    siteSearchResults.innerHTML = '';
+                    siteSearchResults.hidden = true;
+                });
+        }
+
+        siteSearchToggle.addEventListener('click', function () {
+            if (siteSearch.classList.contains('is-open')) {
+                closeSiteSearch();
+            } else {
+                openSiteSearch();
+            }
+        });
+
+        siteSearchInput.addEventListener('input', function () {
+            var query = siteSearchInput.value.trim();
+
+            window.clearTimeout(searchDebounceTimer);
+
+            if (query.length < 2) {
+                renderSiteSearchResults({ query: '', results: [] });
+                return;
+            }
+
+            searchDebounceTimer = window.setTimeout(function () {
+                fetchSiteSearchResults(query);
+            }, 250);
+        });
+
+        document.addEventListener('click', function (event) {
+            if (siteSearch.contains(event.target)) {
+                return;
+            }
+            closeSiteSearch();
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && siteSearch.classList.contains('is-open')) {
+                closeSiteSearch();
+                siteSearchToggle.focus();
+            }
+        });
+    }
+
     if (backToTop) {
         window.addEventListener('scroll', function () {
             backToTop.classList.toggle('is-visible', window.scrollY > 480);

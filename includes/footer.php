@@ -2,8 +2,8 @@
     <div class="container site-footer__grid">
         <div class="site-footer__brand">
             <a class="site-logo site-logo--footer" href="<?= e(appUrl('/')); ?>">
-                <strong>N</strong>
-                <span>Nepack</span>
+                <strong>B</strong>
+                <span>Bharat Mill</span>
                 <small>Industrial Automation</small>
             </a>
             <p>Leading provider of industrial automation and pneumatic solutions, delivering reliable products and expert support across diverse industries.</p>
@@ -33,15 +33,15 @@
         </nav>
         <div class="site-footer__contact">
             <h2>Contact Info</h2>
-            <p><?= lucideIcon('settings'); ?>Nepack Industrial Automation</p>
+            <p><?= lucideIcon('settings'); ?>Bharat Mill Industrial Automation</p>
             <p><?= lucideIcon('phone'); ?>+91 22 4008 8000</p>
-            <p><?= lucideIcon('mail'); ?>info@nepack.com</p>
+            <p><?= lucideIcon('mail'); ?>info@bharatmill.com</p>
             <p><?= lucideIcon('clock'); ?>Mon - Sat, 9:00 AM - 6:00 PM</p>
             <p><?= lucideIcon('map-pin'); ?>Mumbai, India</p>
         </div>
     </div>
     <div class="container site-footer__bottom">
-        <small>&copy; <?= e(date('Y')); ?> <?= e(configValue('app.name', 'Nepack Website')); ?>. All rights reserved.</small>
+        <small>&copy; <?= e(date('Y')); ?> <?= e(configValue('app.name', 'Bharat Mill Website')); ?>. All rights reserved.</small>
         <nav aria-label="Legal links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Use</a>

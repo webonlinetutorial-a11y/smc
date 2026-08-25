@@ -17,7 +17,7 @@ $pilotOperatedValveProducts = [
                 'url' => appUrl('/product-detail.php?product=solenoid-valve-sy3000-5000-7000-9000-series'),
                 'actions' => [
                     ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=solenoid-valve-sy3000-5000-7000-9000-series#part-numbers'), 'sameTab' => true],
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/SY3000-9000.pdf'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Enquiry', 'icon' => 'circle-help'],
                 ],
             ],
@@ -27,7 +27,7 @@ $pilotOperatedValveProducts = [
                 'description' => 'Body-ported or base-mounted styles, SY valves can operate individually or manifold-mounted. A new back pressure check valve...',
                 'url' => appUrl('/product-detail.php?product=solenoid-valve-plugin-type-sy3000-5000-7000-series'),
                 'actions' => [
-                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/SY3000-7000.pdf'],
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
                     ['label' => 'Video', 'icon' => 'circle-play', 'videoUrl' => 'https://www.youtube.com/watch?v=23JRXvTBd44'],
                     ['label' => 'Enquiry', 'icon' => 'circle-help', 'url' => '/contact-us.php'],
                 ],

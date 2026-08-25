@@ -12,7 +12,7 @@ $directOperatedValveProducts = [
         'detailDescription' => 'The VT307 Series is a space-saving, direct-operated 3-port solenoid valve that delivers high flow with low power usage. Its...',
         'detailActions' => [
             ['label' => 'Part Numbers', 'icon' => 'list', 'wide' => true, 'url' => appUrl('/product-detail.php?product=poppet-type-solenoid-valve-vt307-series#part-numbers'), 'sameTab' => true],
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => 'https://smc.incraftiv.com/smcCatalog/service/downloads/smc_media/Directional-Control-Valves/VT307.pdf'],
+            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true],
             ['label' => 'Enquiry', 'icon' => 'circle-help', 'enquiry' => true],
         ],
     ],
