@@ -45,7 +45,7 @@
         <nav aria-label="Legal links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Use</a>
-            <a href="#">Sitemap</a>
+            <a href="<?= e(appUrl('/sitemap.php')); ?>">Sitemap</a>
         </nav>
     </div>
 </footer>
