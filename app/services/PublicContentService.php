@@ -88,6 +88,51 @@ class PublicContentService extends BaseService
         return null;
     }
 
+    public function productDetailPayload(array $product): array
+    {
+        $images = $this->activeProductImages((int) $product['id']);
+        $primaryImage = $images[0]['image_path'] ?? '';
+
+        $actions = [];
+
+        if (trim((string) ($product['part_numbers'] ?? '')) !== '') {
+            $actions[] = [
+                'label' => 'Part Numbers',
+                'icon' => 'list',
+                'wide' => true,
+                'url' => appUrl('/product.php?slug=' . $product['slug'] . '#part-numbers'),
+                'sameTab' => true,
+            ];
+        }
+
+        if (trim((string) ($product['catalog_url'] ?? '')) !== '') {
+            $actions[] = [
+                'label' => 'Catalog',
+                'icon' => 'file-text',
+                'primary' => true,
+                'url' => $product['catalog_url'],
+            ];
+        }
+
+        if (trim((string) ($product['video_url'] ?? '')) !== '') {
+            $actions[] = [
+                'label' => 'Video',
+                'icon' => 'circle-play',
+                'videoUrl' => $product['video_url'],
+            ];
+        }
+
+        $actions[] = ['label' => 'Enquiry', 'icon' => 'circle-help'];
+
+        return [
+            'title' => $product['name'],
+            'image' => $primaryImage !== '' ? assetUrl($primaryImage) : '',
+            'description' => (string) ($product['short_description'] ?? ''),
+            'url' => appUrl('/product.php?slug=' . $product['slug']),
+            'actions' => $actions,
+        ];
+    }
+
     public function activeProductImages(int $productId): array
     {
         $images = array_values(array_filter(

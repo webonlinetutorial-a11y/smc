@@ -31,8 +31,8 @@
                 <div class="automation-categories__layout">
                     <?php renderAutomationCategorySidebar($categorySidebar, 'category-panel'); ?>
 
-                    <div class="automation-category-grid">
-                        <?php if (($childCategories ?? []) !== []): ?>
+                    <?php if (($childCategories ?? []) !== []): ?>
+                        <div class="automation-category-grid">
                             <?php foreach ($childCategories as $childCategory): ?>
                                 <a class="automation-category-card" href="<?= e(appUrl('/category.php?category=' . $childCategory['slug'])); ?>">
                                     <span class="automation-category-card__media">
@@ -47,25 +47,39 @@
                                     </span>
                                 </a>
                             <?php endforeach; ?>
-                        <?php elseif (($products ?? []) !== []): ?>
-                            <?php foreach ($products as $product): ?>
-                                <a class="automation-category-card" href="<?= e(appUrl('/product.php?slug=' . $product['slug'])); ?>">
-                                    <span class="automation-category-card__media">
-                                        <?php if (($product['imagePath'] ?? '') !== ''): ?>
-                                            <img src="<?= e(assetUrl($product['imagePath'])); ?>" alt="<?= e($product['name']); ?>" loading="lazy">
-                                        <?php endif; ?>
-                                    </span>
-                                    <span class="automation-category-card__body">
-                                        <strong><?= e($product['name']); ?></strong>
-                                        <span><?= e(mb_strimwidth((string) ($product['short_description'] ?? ''), 0, 180, '...')); ?></span>
-                                        <small>Explore <?= lucideIcon('arrow-right'); ?></small>
-                                    </span>
-                                </a>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <p class="automation-category-grid__empty">No published products are available in this category yet.</p>
-                        <?php endif; ?>
-                    </div>
+                        </div>
+                    <?php elseif (($products ?? []) !== []): ?>
+                        <div class="automation-product-selection" data-product-detail-shell>
+                            <div class="automation-category-grid">
+                                <?php foreach ($products as $product): ?>
+                                    <a
+                                        class="automation-category-card"
+                                        href="#category-product-detail"
+                                        data-product-detail-trigger
+                                        data-product-id="<?= e($product['slug']); ?>"
+                                        aria-controls="category-product-detail"
+                                        aria-expanded="false"
+                                    >
+                                        <span class="automation-category-card__media">
+                                            <?php if (($product['imagePath'] ?? '') !== ''): ?>
+                                                <img src="<?= e(assetUrl($product['imagePath'])); ?>" alt="<?= e($product['name']); ?>" loading="lazy">
+                                            <?php endif; ?>
+                                        </span>
+                                        <span class="automation-category-card__body">
+                                            <strong><?= e($product['name']); ?></strong>
+                                            <span><?= e(mb_strimwidth((string) ($product['short_description'] ?? ''), 0, 180, '...')); ?></span>
+                                            <small>Explore <?= lucideIcon('arrow-right'); ?></small>
+                                        </span>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <section class="automation-selected-product" id="category-product-detail" data-product-detail-panel hidden aria-live="polite"></section>
+                            <script type="application/json" data-product-detail-data><?= json_encode($productDetails ?? [], JSON_UNESCAPED_SLASHES); ?></script>
+                        </div>
+                    <?php else: ?>
+                        <p class="automation-category-grid__empty">No published products are available in this category yet.</p>
+                    <?php endif; ?>
                 </div>
             </section>
         <?php endif; ?>
