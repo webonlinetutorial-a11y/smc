@@ -1,56 +1,73 @@
-<main>
-    <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'page-banner.php'; ?>
-    <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'breadcrumb.php'; ?>
+<?php $categorySidebar = automationSidebarCategories($activeCategorySlug ?? null); ?>
 
-    <section class="section">
-        <div class="container content-shell product-category-shell">
-            <?php if (($category ?? null) === null): ?>
-                <div class="section-heading section-heading--tight">
-                    <h2>Category Not Found</h2>
+<main class="automation-page">
+    <div class="container">
+        <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'breadcrumb.php'; ?>
+
+        <?php if (($category ?? null) === null): ?>
+            <section class="automation-intro" aria-labelledby="category-title">
+                <div class="automation-intro__content">
+                    <h1 id="category-title">Category Not Found</h1>
+                    <p>The requested product category could not be found.</p>
+                    <a class="button button--primary" href="<?= e(appUrl('/products.php')); ?>">Browse Products</a>
                 </div>
-                <p>The requested product category could not be found.</p>
-                <a class="button button--primary" href="<?= e(appUrl('/products.php')); ?>">Browse Products</a>
-            <?php elseif (($childCategories ?? []) !== []): ?>
-                <div class="section-heading section-heading--tight">
-                    <h2><?= e($category['name']); ?> Categories</h2>
+            </section>
+        <?php else: ?>
+            <section class="automation-intro" aria-labelledby="category-title">
+                <div class="automation-intro__content">
+                    <h1 id="category-title"><?= e($category['name']); ?></h1>
+                    <?php if (($category['description'] ?? '') !== ''): ?>
+                        <p><?= e($category['description']); ?></p>
+                    <?php endif; ?>
                 </div>
-                <div class="product-category-list" aria-label="Sub categories">
-                    <?php foreach ($childCategories as $childCategory): ?>
-                        <a class="product-category-card" href="<?= e(appUrl('/category.php?category=' . $childCategory['slug'])); ?>">
-                            <span class="product-category-card__image">
-                                <?php if (($childCategory['image_path'] ?? '') !== ''): ?>
-                                    <img src="<?= e(assetUrl($childCategory['image_path'])); ?>" alt="<?= e($childCategory['name']); ?>" loading="lazy">
-                                <?php endif; ?>
-                            </span>
-                            <span class="product-category-card__body">
-                                <strong><?= e($childCategory['name']); ?></strong>
-                                <span><?= e(mb_strimwidth((string) ($childCategory['description'] ?? ''), 0, 120, '...')); ?></span>
-                                <small>Explore <?= lucideIcon('arrow-right'); ?></small>
-                            </span>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <div class="section-heading section-heading--tight">
-                    <h2><?= e($category['name']); ?> Products</h2>
-                </div>
-                <?php if (($products ?? []) === []): ?>
-                    <p>No published products are available in this category yet.</p>
-                <?php else: ?>
-                    <div class="cms-listing-grid">
-                        <?php foreach ($products as $product): ?>
-                            <article class="cms-listing-card">
-                                <h3><?= e($product['name']); ?></h3>
-                                <?php if (($product['short_description'] ?? '') !== ''): ?>
-                                    <p><?= e(mb_strimwidth((string) $product['short_description'], 0, 180, '...')); ?></p>
-                                <?php endif; ?>
-                                <a class="button button--primary" href="<?= e(appUrl('/product.php?slug=' . $product['slug'])); ?>">View Detail</a>
-                                <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product['name']); ?>">Send Query</a>
-                            </article>
-                        <?php endforeach; ?>
+                <?php if (($category['image_path'] ?? '') !== ''): ?>
+                    <div class="automation-intro__image">
+                        <img src="<?= e(assetUrl($category['image_path'])); ?>" alt="<?= e($category['name']); ?>" loading="eager">
                     </div>
                 <?php endif; ?>
-            <?php endif; ?>
-        </div>
-    </section>
+            </section>
+
+            <section class="automation-categories" aria-label="<?= e($category['name']); ?> items">
+                <div class="automation-categories__layout">
+                    <?php renderAutomationCategorySidebar($categorySidebar, 'category-panel'); ?>
+
+                    <div class="automation-category-grid">
+                        <?php if (($childCategories ?? []) !== []): ?>
+                            <?php foreach ($childCategories as $childCategory): ?>
+                                <a class="automation-category-card" href="<?= e(appUrl('/category.php?category=' . $childCategory['slug'])); ?>">
+                                    <span class="automation-category-card__media">
+                                        <?php if (($childCategory['image_path'] ?? '') !== ''): ?>
+                                            <img src="<?= e(assetUrl($childCategory['image_path'])); ?>" alt="<?= e($childCategory['name']); ?>" loading="lazy">
+                                        <?php endif; ?>
+                                    </span>
+                                    <span class="automation-category-card__body">
+                                        <strong><?= e($childCategory['name']); ?></strong>
+                                        <span><?= e(mb_strimwidth((string) ($childCategory['description'] ?? ''), 0, 180, '...')); ?></span>
+                                        <small>Explore <?= lucideIcon('arrow-right'); ?></small>
+                                    </span>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php elseif (($products ?? []) !== []): ?>
+                            <?php foreach ($products as $product): ?>
+                                <a class="automation-category-card" href="<?= e(appUrl('/product.php?slug=' . $product['slug'])); ?>">
+                                    <span class="automation-category-card__media">
+                                        <?php if (($product['imagePath'] ?? '') !== ''): ?>
+                                            <img src="<?= e(assetUrl($product['imagePath'])); ?>" alt="<?= e($product['name']); ?>" loading="lazy">
+                                        <?php endif; ?>
+                                    </span>
+                                    <span class="automation-category-card__body">
+                                        <strong><?= e($product['name']); ?></strong>
+                                        <span><?= e(mb_strimwidth((string) ($product['short_description'] ?? ''), 0, 180, '...')); ?></span>
+                                        <small>Explore <?= lucideIcon('arrow-right'); ?></small>
+                                    </span>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p class="automation-category-grid__empty">No published products are available in this category yet.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+        <?php endif; ?>
+    </div>
 </main>
