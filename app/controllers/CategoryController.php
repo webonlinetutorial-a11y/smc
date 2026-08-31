@@ -46,6 +46,9 @@ class CategoryController extends BaseController
         if ($action === 'archive' && $categoryId > 0) {
             $success = $this->categoryService->archive($categoryId, currentAdminUserId());
             $successMessage = 'Category archived successfully.';
+        } elseif ($action === 'delete' && $categoryId > 0) {
+            $success = $this->categoryService->delete($categoryId);
+            $successMessage = 'Category deleted successfully.';
         } elseif ($action === 'update' && $categoryId > 0) {
             $success = $this->categoryService->update($categoryId, $_POST, currentAdminUserId());
             $successMessage = 'Category updated successfully.';

@@ -239,6 +239,10 @@ body.admin-shell {
     text-decoration: none;
 }
 
+.admin-table-actions button.admin-button-danger {
+    color: #c0392b;
+}
+
 .admin-inline-form {
     display: flex;
     gap: 8px;

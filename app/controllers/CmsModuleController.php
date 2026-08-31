@@ -39,6 +39,9 @@ class CmsModuleController extends BaseController
         if ($action === 'archive' && $recordId > 0) {
             $success = $this->service->archive($this->config, $recordId, currentAdminUserId());
             $successMessage = $this->config['singular'] . ' archived successfully.';
+        } elseif ($action === 'delete' && $recordId > 0) {
+            $success = $this->service->delete($this->config, $recordId);
+            $successMessage = $this->config['singular'] . ' deleted successfully.';
         } else {
             $id = $action === 'update' && $recordId > 0 ? $recordId : null;
             $success = $this->service->save($this->config, $_POST, $id, currentAdminUserId());
