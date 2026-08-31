@@ -1,5 +1,25 @@
 <?php
 $automationCategories = automationCategoryDefinitions();
+
+$cmsContent = new PublicContentService();
+foreach ($cmsContent->topLevelCategories() as $cmsCategory) {
+    $childItems = array_map(
+        static fn (array $childCategory): array => [
+            'label' => $childCategory['name'],
+            'url' => '/category.php?category=' . $childCategory['slug'],
+        ],
+        $cmsContent->childCategoriesOf((int) $cmsCategory['id'])
+    );
+
+    $automationCategories[] = [
+        'title' => $cmsCategory['name'],
+        'slug' => $cmsCategory['slug'],
+        'url' => '/category.php?category=' . $cmsCategory['slug'],
+        'image' => preg_replace('#^images/#', '', ltrim(str_replace('\\', '/', (string) ($cmsCategory['image_path'] ?? '')), '/')),
+        'description' => (string) ($cmsCategory['description'] ?? ''),
+        'items' => $childItems,
+    ];
+}
 ?>
 
 <main class="automation-page">
@@ -32,7 +52,9 @@ $automationCategories = automationCategoryDefinitions();
                     <?php foreach ($automationCategories as $category): ?>
                         <a class="automation-category-card" href="<?= e(appUrl($category['url'] ?? '/products.php?category=' . $category['slug'])); ?>">
                             <span class="automation-category-card__media">
-                                <img src="<?= e(assetUrl('images/' . $category['image'])); ?>" alt="<?= e($category['title']); ?>" loading="lazy">
+                                <?php if (($category['image'] ?? '') !== ''): ?>
+                                    <img src="<?= e(assetUrl('images/' . $category['image'])); ?>" alt="<?= e($category['title']); ?>" loading="lazy">
+                                <?php endif; ?>
                             </span>
                             <span class="automation-category-card__body">
                                 <strong><?= e($category['title']); ?></strong>
