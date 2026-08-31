@@ -94,6 +94,37 @@ class CategoryService extends BaseService
         return true;
     }
 
+    public function delete(int $id): bool
+    {
+        $this->errors = [];
+
+        if ($this->categoryModel->find($id) === null) {
+            $this->addError('Category was not found.');
+            return false;
+        }
+
+        if ($this->categoryModel->hasChildren($id)) {
+            $this->addError('Category cannot be deleted because it still has sub-categories under it. Delete or reassign those first.');
+            return false;
+        }
+
+        try {
+            $this->categoryModel->delete($id);
+        } catch (Throwable $exception) {
+            error_log($exception);
+
+            if ($exception instanceof PDOException && $exception->getCode() === '23000') {
+                $this->addError('Category cannot be deleted because products are still linked to it. Archive it instead, or move/delete those products first.');
+            } else {
+                $this->addError('Category could not be deleted. Please try again.');
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
     private function prepare(array $input, ?int $categoryId, ?int $userId): array
     {
         $name = sanitizeString($input['name'] ?? '');

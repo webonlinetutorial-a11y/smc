@@ -115,6 +115,12 @@
                                             <button type="submit">Archive</button>
                                         </form>
                                     <?php endif; ?>
+                                    <form method="post" action="<?= e(appUrl('/admin/categories.php')); ?>" onsubmit="return confirm('Permanently delete this category? This cannot be undone.');">
+                                        <?= csrfField(); ?>
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="category_id" value="<?= e($category['id']); ?>">
+                                        <button type="submit" class="admin-button-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

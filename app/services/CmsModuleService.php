@@ -64,6 +64,32 @@ class CmsModuleService extends BaseService
         return true;
     }
 
+    public function delete(array $config, int $id): bool
+    {
+        $this->errors = [];
+
+        if ($this->cmsModuleModel->find($config['table'], $id) === null) {
+            $this->addError($config['singular'] . ' was not found.');
+            return false;
+        }
+
+        try {
+            $this->cmsModuleModel->delete($config['table'], $id);
+        } catch (Throwable $exception) {
+            error_log($exception);
+
+            if ($exception instanceof PDOException && $exception->getCode() === '23000') {
+                $this->addError($config['singular'] . ' cannot be deleted because other records still reference it. Archive it instead, or remove those records first.');
+            } else {
+                $this->addError($config['singular'] . ' could not be deleted. Please try again.');
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
     private function prepareData(array $config, array $input, ?int $id, ?int $userId): array
     {
         $data = [];

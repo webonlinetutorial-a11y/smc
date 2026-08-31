@@ -53,4 +53,9 @@ class CmsModule extends BaseModel
             ['id' => $id, 'status' => 'archived', 'updated_by' => $userId]
         );
     }
+
+    public function delete(string $table, int $id): void
+    {
+        $this->execute('DELETE FROM ' . $table . ' WHERE id = :id', ['id' => $id]);
+    }
 }

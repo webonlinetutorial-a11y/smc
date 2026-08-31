@@ -107,6 +107,12 @@
                                             <button type="submit">Archive</button>
                                         </form>
                                     <?php endif; ?>
+                                    <form method="post" action="<?= e(appUrl($config['path'])); ?>" onsubmit="return confirm('Permanently delete this <?= e(strtolower($config['singular'])); ?>? This cannot be undone.');">
+                                        <?= csrfField(); ?>
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="record_id" value="<?= e($record['id']); ?>">
+                                        <button type="submit" class="admin-button-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

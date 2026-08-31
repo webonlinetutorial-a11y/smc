@@ -114,4 +114,14 @@ class Category extends BaseModel
             ['id' => $id, 'updated_by' => $userId]
         );
     }
+
+    public function hasChildren(int $id): bool
+    {
+        return $this->fetchOne('SELECT id FROM categories WHERE parent_id = :id LIMIT 1', ['id' => $id]) !== null;
+    }
+
+    public function delete(int $id): void
+    {
+        $this->execute('DELETE FROM categories WHERE id = :id', ['id' => $id]);
+    }
 }
