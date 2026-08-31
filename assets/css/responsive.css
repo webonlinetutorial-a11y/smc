@@ -563,7 +563,7 @@
     }
 
     .top-strip__inner {
-        display: grid;
+        display: flex;
         gap: 2px;
         padding: 8px 0;
     }

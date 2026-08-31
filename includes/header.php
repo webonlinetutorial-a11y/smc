@@ -2,7 +2,7 @@
     <div class="top-strip">
         <div class="container top-strip__inner">
             <span>Industrial automation products and support</span>
-            <a class="top-strip__contact" href="<?= e(appUrl('/contact-us.php')); ?>">Contact Bharat Mill</a>
+            <a class="top-strip__contact" href="<?= e(appUrl('/contact-us.php')); ?>">Enquire</a>
         </div>
     </div>
     <div class="container site-header__inner">

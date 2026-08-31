@@ -82,7 +82,12 @@
                 </div>
 
                 <div class="product-detail-hero__content">
-                    <h1 id="product-detail-title"><?= e($productDetail['title']); ?></h1>
+                    <div class="product-detail-title-row">
+                        <h1 id="product-detail-title"><?= e($productDetail['title']); ?></h1>
+                        <?php if (!empty($productDetail['isNew'])): ?>
+                            <span class="product-detail-badge-new">New</span>
+                        <?php endif; ?>
+                    </div>
                     <?php if (($productDetail['summary'] ?? '') !== ''): ?>
                         <p class="product-detail-hero__summary"><?= e($productDetail['summary']); ?></p>
                     <?php endif; ?>
@@ -90,7 +95,16 @@
                     <?php if (($productDetail['features'] ?? []) !== []): ?>
                         <ul class="product-detail-feature-list">
                             <?php foreach ($productDetail['features'] as $feature): ?>
-                                <li><?= e($feature); ?></li>
+                                <?php
+                                $featureText = is_array($feature) ? ($feature['text'] ?? '') : $feature;
+                                $featureIsNew = is_array($feature) && !empty($feature['isNew']);
+                                ?>
+                                <li>
+                                    <?= e($featureText); ?>
+                                    <?php if ($featureIsNew): ?>
+                                        <span class="product-detail-feature-list__badge">[New]</span>
+                                    <?php endif; ?>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

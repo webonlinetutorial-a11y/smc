@@ -1,5 +1,6 @@
 <?php
 $speedControllersUrl = '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php';
+$remoteControlValveUrl = '/automation-flow-control-equipment-speed-controllers-remote-control-valve.php';
 
 $categorySidebar = automationSidebarCategories('flow-control-equipment');
 
@@ -11,6 +12,14 @@ $flowControlProducts = [
         'description' => 'SMC speed controllers regulate airflow to pneumatic actuators for smooth, repeatable cylinder speed adjustment in automated systems.',
         'slug' => 'speed-controllers-for-general-purposes',
         'url' => $speedControllersUrl,
+    ],
+    [
+        'title' => 'PFES Series, Remote Control Valve (Electric Speed Controller)',
+        'series' => 'PFES-A-P07-2',
+        'image' => 'Flow-Control-Equipment/Remote control valve/PFES-A-P07-2.webp',
+        'description' => 'The speed controller is equipped',
+        'slug' => 'remote-control-valve',
+        'url' => $remoteControlValveUrl,
     ],
 ];
 ?>

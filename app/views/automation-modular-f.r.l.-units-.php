@@ -3,6 +3,7 @@ $modularFrlAirCombinationUrl = '/automation-modular-f.r.l.-units-modular-f.r.l.-
 $filterRegulatorsUrl = '/automation-modular-f.r.l.-units-filter-regulators.php';
 $airFiltersUrl = '/automation-modular-f.r.l.-units-air-filters.php';
 $modularRegulatorsUrl = '/automation-modular-f.r.l.-units-regulators.php';
+$residualPressureReleaseValveUrl = '/automation-modular-f.r.l.-units-ac-d.php';
 
 $categorySidebar = automationSidebarCategories('modular-frl-units');
 
@@ -39,6 +40,15 @@ $modularFrlProducts = [
         'slug' => 'modular-regulators',
         'url' => $modularRegulatorsUrl,
     ],
+    [
+        'title' => 'Modular F.R.L. Units AC D',
+        'image' => 'Modular-FRL-Unit/Residual-Pressure -Release-Valve/Modular-P-C1-14.webp',
+        'descriptionItems' => [
+            'Residual Pressure Release Valve : VP346E/VP546E/746E...',
+        ],
+        'slug' => 'residual-pressure-release-valve',
+        'url' => $residualPressureReleaseValveUrl,
+    ],
 ];
 ?>
 
@@ -69,8 +79,20 @@ $modularFrlProducts = [
                             </span>
                             <span class="automation-category-card__body">
                                 <strong><?= e($product['title']); ?></strong>
-                                <em><?= e($product['series']); ?></em>
-                                <span><?= e($product['description']); ?></span>
+                                <?php if (!empty($product['series'])): ?>
+                                    <em><?= e($product['series']); ?></em>
+                                <?php endif; ?>
+                                <?php if (!empty($product['descriptionItems'])): ?>
+                                    <span>
+                                        <ul class="automation-category-card__points">
+                                            <?php foreach ($product['descriptionItems'] as $point): ?>
+                                                <li><?= e($point); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </span>
+                                <?php elseif (!empty($product['description'])): ?>
+                                    <span><?= e($product['description']); ?></span>
+                                <?php endif; ?>
                                 <small>Explore <?= lucideIcon('arrow-right'); ?></small>
                             </span>
                         </a>

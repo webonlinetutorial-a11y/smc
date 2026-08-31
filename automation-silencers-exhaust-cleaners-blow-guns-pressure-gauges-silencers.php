@@ -9,7 +9,7 @@ renderView('automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-sile
     'breadcrumbs' => [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Silencers/Exhaust Cleaners/Pressure Gauges', 'path' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
+        ['label' => 'Silencers/Exhaust Cleaners/Pressure Gauges/Blow Guns', 'path' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
         ['label' => 'Silencers'],
     ],
 ]);

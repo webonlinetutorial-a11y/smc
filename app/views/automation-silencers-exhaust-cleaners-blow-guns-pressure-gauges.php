@@ -1,5 +1,6 @@
 <?php
 $silencersUrl = '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php';
+$blowGunsUrl = '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php';
 
 $categorySidebar = automationSidebarCategories('silencers-exhaust');
 
@@ -12,6 +13,13 @@ $silencerProducts = [
         'slug' => 'silencers',
         'url' => $silencersUrl,
     ],
+    [
+        'title' => 'Blow Guns /Blowing Equipments',
+        'image' => 'Silencer-Exhaust-Cleaner/Blow-Guns/blow-gun.webp',
+        'description' => 'Blow guns have a large effective area without a nozzle. Piping direction is optional from the top or bottom.',
+        'slug' => 'air-blowing-equipment',
+        'url' => $blowGunsUrl,
+    ],
 ];
 ?>
 
@@ -21,7 +29,7 @@ $silencerProducts = [
 
         <section class="automation-intro silencers-exhaust-intro" aria-labelledby="silencers-exhaust-title">
             <div class="automation-intro__content">
-                <h1 id="silencers-exhaust-title">Silencers/Exhaust Cleaners/Pressure Gauges</h1>
+                <h1 id="silencers-exhaust-title">Silencers/Exhaust Cleaners/Pressure Gauges/Blow Guns</h1>
                 <p>SMC Silencers, Exhaust Cleaners, Blow Guns, and Pressure Gauges support safer and cleaner pneumatic operation. Silencers help reduce exhaust noise from pneumatic systems while maintaining dependable airflow performance.</p>
                 <p>These accessories support machine maintenance, air exhaust management, and operating visibility across industrial automation and compressed air networks.</p>
             </div>
@@ -42,7 +50,9 @@ $silencerProducts = [
                             </span>
                             <span class="automation-category-card__body">
                                 <strong><?= e($product['title']); ?></strong>
-                                <em><?= e($product['series']); ?></em>
+                                <?php if (!empty($product['series'])): ?>
+                                    <em><?= e($product['series']); ?></em>
+                                <?php endif; ?>
                                 <span><?= e($product['description']); ?></span>
                                 <small>Explore <?= lucideIcon('arrow-right'); ?></small>
                             </span>
