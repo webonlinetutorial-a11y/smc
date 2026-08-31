@@ -13,12 +13,10 @@ if ($category === null) {
         'title' => 'Category Not Found | ' . configValue('app.name', 'Bharat Mill Website'),
         'metaDescription' => 'The requested product category could not be found.',
         'canonicalUrl' => appUrl('/category.php'),
-        'pageEyebrow' => 'Product Category',
-        'pageHeading' => 'Category Not Found',
-        'pageIntro' => '',
         'category' => null,
         'childCategories' => [],
         'products' => [],
+        'activeCategorySlug' => null,
         'breadcrumbs' => [
             ['label' => 'Home', 'path' => '/'],
             ['label' => 'Products', 'path' => '/products.php'],
@@ -36,15 +34,25 @@ if ($childCategories === []) {
         $content->publishedProducts(),
         static fn (array $product): bool => (int) ($product['category_id'] ?? 0) === (int) $category['id']
     ));
+
+    $categoryProducts = array_map(
+        function (array $product) use ($content): array {
+            $images = $content->activeProductImages((int) $product['id']);
+            $product['imagePath'] = $images[0]['image_path'] ?? '';
+
+            return $product;
+        },
+        $categoryProducts
+    );
 }
+
+$breadcrumbChain = $content->categoryBreadcrumbChain($category);
+$lastIndex = array_key_last($breadcrumbChain);
 
 $breadcrumbs = [
     ['label' => 'Home', 'path' => '/'],
     ['label' => 'Automation', 'path' => '/automation.php'],
 ];
-
-$breadcrumbChain = $content->categoryBreadcrumbChain($category);
-$lastIndex = array_key_last($breadcrumbChain);
 
 foreach ($breadcrumbChain as $index => $chainCategory) {
     $breadcrumbs[] = $index === $lastIndex
@@ -56,11 +64,9 @@ renderView('public/category', [
     'title' => $category['name'] . ' | ' . configValue('app.name', 'Bharat Mill Website'),
     'metaDescription' => $category['description'] ?: ('Explore ' . $category['name'] . ' products from Bharat Mill.'),
     'canonicalUrl' => appUrl('/category.php?category=' . $category['slug']),
-    'pageEyebrow' => 'Product Category',
-    'pageHeading' => $category['name'],
-    'pageIntro' => $category['description'] ?? '',
     'category' => $category,
     'childCategories' => $childCategories,
     'products' => $categoryProducts,
+    'activeCategorySlug' => $breadcrumbChain[0]['slug'] ?? $category['slug'],
     'breadcrumbs' => $breadcrumbs,
 ]);
