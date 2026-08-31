@@ -1,25 +1,5 @@
 <?php
-$automationCategories = automationCategoryDefinitions();
-
-$cmsContent = new PublicContentService();
-foreach ($cmsContent->topLevelCategories() as $cmsCategory) {
-    $childItems = array_map(
-        static fn (array $childCategory): array => [
-            'label' => $childCategory['name'],
-            'url' => '/category.php?category=' . $childCategory['slug'],
-        ],
-        $cmsContent->childCategoriesOf((int) $cmsCategory['id'])
-    );
-
-    $automationCategories[] = [
-        'title' => $cmsCategory['name'],
-        'slug' => $cmsCategory['slug'],
-        'url' => '/category.php?category=' . $cmsCategory['slug'],
-        'image' => preg_replace('#^images/#', '', ltrim(str_replace('\\', '/', (string) ($cmsCategory['image_path'] ?? '')), '/')),
-        'description' => (string) ($cmsCategory['description'] ?? ''),
-        'items' => $childItems,
-    ];
-}
+$automationCategories = array_merge(automationCategoryDefinitions(), cmsAutomationCategoryDefinitions());
 ?>
 
 <main class="automation-page">
