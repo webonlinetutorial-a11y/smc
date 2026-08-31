@@ -23,16 +23,23 @@ if ($productDetail === null) {
     return;
 }
 
+$productBreadcrumbs = [
+    ['label' => 'Home', 'path' => '/'],
+    ['label' => 'Automation', 'path' => '/automation.php'],
+    ['label' => $productDetail['categoryLabel'] ?? 'Air Cylinders', 'path' => $productDetail['categoryPath'] ?? '/automation-air-cylinders.php'],
+];
+
+foreach ($productDetail['extraCrumbs'] ?? [] as $extraCrumb) {
+    $productBreadcrumbs[] = $extraCrumb;
+}
+
+$productBreadcrumbs[] = ['label' => $productDetail['parentLabel'], 'path' => $productDetail['parentPath']];
+$productBreadcrumbs[] = ['label' => $productDetail['breadcrumbLabel'] ?? $productDetail['title']];
+
 renderView('public/product-detail', [
     'title' => $productDetail['title'] . ' | ' . $siteName,
     'metaDescription' => $productDetail['metaDescription'],
     'canonicalUrl' => productDetailUrl($productDetail['slug']),
     'productDetail' => $productDetail,
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => $productDetail['categoryLabel'] ?? 'Air Cylinders', 'path' => $productDetail['categoryPath'] ?? '/automation-air-cylinders.php'],
-        ['label' => $productDetail['parentLabel'], 'path' => $productDetail['parentPath']],
-        ['label' => $productDetail['title']],
-    ],
+    'breadcrumbs' => $productBreadcrumbs,
 ]);

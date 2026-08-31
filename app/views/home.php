@@ -115,7 +115,7 @@
             <div class="section-heading">
                 <h2>Authorized Brand</h2>
             </div>
-            <div class="brand-strip">
+            <div class="brand-strip" data-brand-strip-carousel>
                 <article><img src="<?= e(assetUrl('images/brand-anest-iwata.webp')); ?>" alt="ANEST IWATA brand logo" loading="lazy"></article>
                 <article><img src="<?= e(assetUrl('images/brand-smc.webp')); ?>" alt="SMC brand logo" loading="lazy"></article>
             </div>

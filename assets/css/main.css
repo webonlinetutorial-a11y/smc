@@ -5,9 +5,8 @@
     --color-soft: #f3f6f8;
     --color-line: #d9e1ea;
     --color-primary: #1261a6;
-    /* --color-primary: #0b57cf; */
     --color-primary-dark: #0d4d86;
-    /* --color-primary-dark: #0b57cf; */
+
     --color-accent: #2f855a;
     --font-base: "Montserrat", Arial, Helvetica, sans-serif;
     --font-heading: "Cormorant", Georgia, "Times New Roman", serif;
@@ -28,6 +27,7 @@ html {
 
 body {
     margin: 0;
+    overflow-x: hidden;
     color: var(--color-ink);
     background: var(--color-surface);
     font-family: var(--font-base);
@@ -172,6 +172,8 @@ img {
     color: #ffffff;
     background: #08417a;
     font-size: 14px;
+    position: relative;
+    z-index: 2;
 }
 
 .top-strip__inner,
@@ -205,12 +207,51 @@ img {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #ffffff;
-    border-bottom: 1px solid var(--color-line);
+    background: transparent;
 }
 
 .site-header__inner {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
     min-height: 76px;
+    transition:
+        transform 540ms ease,
+        margin-bottom 540ms ease;
+}
+
+.site-header__inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: -1;
+    width: 100vw;
+    margin-left: -50vw;
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-line);
+    pointer-events: none;
+}
+
+.site-header__inner.is-hidden {
+    margin-bottom: calc(-1 * var(--site-header-inner-height, 76px));
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+body.site-nav-open .site-header__inner,
+body.products-menu-open .site-header__inner,
+.site-header__inner:focus-within {
+    margin-bottom: 0;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-header__inner {
+        transition: none;
+    }
 }
 
 .site-logo {
@@ -275,7 +316,7 @@ img {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 11px;
+    padding: 8px 11px;
     color: var(--color-ink);
     text-decoration: none;
     border-radius: 999px;
@@ -964,13 +1005,20 @@ img {
 .hero-carousel .slick-next {
     position: absolute;
     top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 500;
-    width: 36px;
-    height: 36px;
-    color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid var(--color-line);
+    width: 25px;
+    height: 25px;
+    color: #ffffff;
+    background-color: var(--color-primary);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 11px 11px;
+    border: none;
     border-radius: 50%;
+    box-shadow: 0 6px 16px rgba(15, 35, 52, 0.22);
     cursor: pointer;
     z-index: 2;
     font-size: 0;
@@ -978,17 +1026,20 @@ img {
     pointer-events: none;
     transition:
         opacity 0.25s ease,
-        transform 0.25s ease;
+        transform 0.25s ease,
+        background-color 0.2s ease;
 }
 
 .hero-carousel .slick-prev {
     left: 18px;
     transform: translate(-14px, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='15 6 9 12 15 18'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
 .hero-carousel .slick-next {
     right: 18px;
     transform: translate(14px, -50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
 .hero-carousel:hover .slick-prev,
@@ -1000,19 +1051,9 @@ img {
     transform: translate(0, -50%);
 }
 
-.hero-carousel .slick-prev::before,
-.hero-carousel .slick-next::before {
-    color: var(--color-primary);
-    font-size: 18px;
-    line-height: 1;
-}
-
-.hero-carousel .slick-prev::before {
-    content: "<";
-}
-
-.hero-carousel .slick-next::before {
-    content: ">";
+.hero-carousel .slick-prev:hover,
+.hero-carousel .slick-next:hover {
+    background-color: var(--color-primary-dark, var(--color-primary));
 }
 
 .products-page {
@@ -1601,7 +1642,7 @@ img {
     cursor: pointer;
     font-family: var(--font-base);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.35;
     text-align: left;
     text-decoration: none;
@@ -1716,6 +1757,41 @@ img {
     background: #ffffff;
 }
 
+.electric-actuator-lea-series-product-card,
+.electric-actuator-product-card,
+.electric-actuator-eqfsh-product-card,
+.residual-pressure-release-valve-product-card,
+.membrane-nitrogen-generator-product-card,
+.remote-control-valve-product-card,
+.air-blowing-equipment-product-card {
+    position: relative;
+}
+
+.automation-category-card__ribbon {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    z-index: 2;
+    padding: 1px 12px 1px 6px;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    clip-path: polygon(0 0, 100% 0, 82% 50%, 100% 100%, 0 100%);
+}
+
+.automation-category-card__ribbon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid var(--color-primary-dark);
+    border-left: 6px solid transparent;
+}
+
 .automation-category-card__media img {
     display: block;
     width: 118%;
@@ -1735,8 +1811,9 @@ img {
     margin-top: 10px;
     color: var(--color-primary);
     font-size: 14px;
-    /* font-weight: 800; */
+    font-weight: 600;
     line-height: 1.22;
+    word-break: break-word;
 }
 
 .automation-category-card__body em {
@@ -1756,6 +1833,15 @@ img {
     line-height: 1.45;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
+}
+
+.automation-category-card__points {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.automation-category-card__points li {
+    margin-bottom: 2px;
 }
 
 .automation-category-card__body small {
@@ -1849,6 +1935,7 @@ img {
 }
 
 .automation-selected-product-card {
+    position: relative;
     display: flex;
     width: 208.712px;
     min-height: 274px;
@@ -1905,6 +1992,15 @@ img {
     line-height: 1.22;
     overflow-wrap: anywhere;
     word-break: break-word;
+}
+
+.automation-selected-product-card__body em {
+    margin: -6px 0 8px;
+    color: #334155;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.35;
 }
 
 .automation-selected-product-card__body
@@ -2072,20 +2168,43 @@ body.is-enquiry-modal-open {
     overflow-y: auto;
     padding: 16px 16px;
     background: rgba(15, 23, 42, 0.46);
+    opacity: 0;
+    transition: opacity 0.28s ease;
 }
 
 .enquiry-modal[hidden] {
     display: none;
 }
 
+.enquiry-modal.is-open {
+    opacity: 1;
+}
+
 .enquiry-modal__dialog {
     position: relative;
     width: min(452px, 100%);
     padding: 20px 20px 20px;
+    transform: translateY(-24px) scale(0.96);
+    opacity: 0;
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.24s ease;
     background: #ffffff;
     border: 1px solid rgba(15, 23, 42, 0.12);
     border-radius: 6px;
     box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+}
+
+.enquiry-modal.is-open .enquiry-modal__dialog {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .enquiry-modal,
+    .enquiry-modal__dialog {
+        transition: none;
+    }
 }
 
 .enquiry-modal__dialog h2 {
@@ -2250,7 +2369,7 @@ body.is-enquiry-modal-open {
 
 .product-detail-hero__inner {
     display: grid;
-    grid-template-columns: minmax(260px, 420px) minmax(320px, 620px);
+    grid-template-columns: minmax(260px, 420px) minmax(320px, 695px);
     gap: 48px;
     align-items: start;
     /* justify-content: center; */
@@ -2312,13 +2431,42 @@ body.is-enquiry-modal-open {
 }
 
 .product-detail-hero__content h1 {
-    margin: 0 0 14px;
+    margin: 0;
     /* color: #0074c8; */
     color: var(--color-primary);
     font-family: var(--font-body);
     font-size: 24px;
     line-height: 1.22;
     font-weight: 600;
+}
+
+.product-detail-title-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: start;
+    gap: 12px;
+    margin: 0 0 14px;
+}
+
+.product-detail-feature-list__badge {
+    display: inline-block;
+    margin-left: 6px;
+    color: #dc2626;
+    font-weight: 800;
+}
+
+.product-detail-badge-new {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .product-detail-hero__summary {
@@ -2656,6 +2804,12 @@ body.is-enquiry-modal-open {
     );
     pointer-events: none;
     z-index: 2;
+}
+
+.industry-section__more {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
 }
 
 .industry-slider__title,
@@ -3033,36 +3187,59 @@ body.is-enquiry-modal-open {
 
 .product-card h3 {
     margin: 0;
-    padding: 12px;
+    padding: 8px;
     color: #ffffff;
     background: var(--color-primary);
     text-align: center;
 }
 
 .brand-strip {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 36px;
-    padding: 18px 42px;
+    padding: 10px 20px;
     background: #eef8ff;
     border: 1px solid var(--color-line);
     border-radius: 8px;
 }
 
+.brand-strip .slick-list {
+    overflow: hidden;
+}
+
+.brand-strip .slick-slide {
+    padding: 10px 12px;
+}
+
 .brand-strip article {
     display: grid;
-    min-height: 82px;
+    min-height: 160px;
     place-items: center;
     color: var(--color-primary);
     background: #ffffff;
     border-radius: 8px;
     font-size: 34px;
     font-weight: 800;
+    opacity: 0.55;
+    transform: scale(0.8);
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+/* Slick's own CSS sets ".slick-initialized .slick-slide { display: block }"
+   which is more specific than the rule above and breaks the grid centering
+   above, since slick applies its "slick-slide" class directly onto the
+   <article>. This rule wins the specificity fight and restores it. */
+.brand-strip article.slick-slide {
+    display: grid;
+}
+
+.brand-strip article.slick-center {
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 .brand-strip img {
-    max-width: 78%;
-    max-height: 64px;
+    max-width: 60%;
+    max-height: 118px;
 }
 
 .about-preview {

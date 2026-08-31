@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     var navToggle = document.querySelector('[data-site-menu-toggle]');
     var siteHeader = document.querySelector('.site-header');
+    var siteHeaderInner = document.querySelector('.site-header__inner');
+    var topStrip = document.querySelector('.top-strip');
     var productsNavItem = document.querySelector('.site-nav__item--products');
     var productsMenuToggle = document.querySelector('[data-products-menu-toggle]');
     var productsLineTrigger = document.querySelector('[data-products-line-trigger]');
@@ -51,6 +53,14 @@ document.addEventListener('DOMContentLoaded', function () {
         enquiryModal.hidden = false;
         document.body.classList.add('is-enquiry-modal-open');
 
+        // Force layout so the browser registers the pre-open state before the
+        // "is-open" class flips in, letting the CSS transition actually run.
+        void enquiryModal.offsetWidth;
+
+        window.requestAnimationFrame(function () {
+            enquiryModal.classList.add('is-open');
+        });
+
         var firstInput = enquiryForm.querySelector('input:not([type="hidden"]):not([readonly]), textarea, select');
 
         if (firstInput) {
@@ -63,8 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        enquiryModal.hidden = true;
+        enquiryModal.classList.remove('is-open');
         document.body.classList.remove('is-enquiry-modal-open');
+
+        window.setTimeout(function () {
+            enquiryModal.hidden = true;
+        }, 280);
     }
 
     var videoModal = document.createElement('div');
@@ -237,14 +251,125 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        document.documentElement.style.setProperty('--site-header-height', siteHeader.offsetHeight + 'px');
+        var topStripHeight = topStrip ? topStrip.offsetHeight : 0;
+        var headerInnerHeight = siteHeaderInner ? siteHeaderInner.offsetHeight : 0;
+        var headerHeight = topStripHeight + headerInnerHeight || siteHeader.offsetHeight;
+
+        document.documentElement.style.setProperty('--site-header-height', headerHeight + 'px');
+
+        if (siteHeaderInner) {
+            document.documentElement.style.setProperty('--site-header-inner-height', headerInnerHeight + 'px');
+        }
+
+        if (topStrip) {
+            document.documentElement.style.setProperty('--top-strip-height', topStripHeight + 'px');
+        }
     }
 
     syncHeaderHeight();
     window.addEventListener('resize', syncHeaderHeight);
 
+    function showSiteHeader() {
+        if (!siteHeaderInner) {
+            return;
+        }
+
+        siteHeaderInner.classList.remove('is-hidden');
+    }
+
+    if (siteHeader && siteHeaderInner) {
+        var lastHeaderScrollY = Math.max(window.pageYOffset || document.documentElement.scrollTop || 0, 0);
+        var headerDirectionStartY = lastHeaderScrollY;
+        var headerLastDirection = 0;
+        var headerScrollTicking = false;
+        var headerTransitionLocked = false;
+        var headerTransitionTimer = null;
+        var headerScrollNoise = 4;
+        var headerScrollThreshold = 44;
+        var headerTopOffset = 24;
+        var headerTransitionDuration = 580;
+
+        function setSiteHeaderHidden(isHidden, currentScrollY) {
+            if (siteHeaderInner.classList.contains('is-hidden') === isHidden) {
+                return;
+            }
+
+            siteHeaderInner.classList.toggle('is-hidden', isHidden);
+            headerTransitionLocked = true;
+            window.clearTimeout(headerTransitionTimer);
+            headerTransitionTimer = window.setTimeout(function () {
+                var latestScrollY = Math.max(window.pageYOffset || document.documentElement.scrollTop || 0, 0);
+
+                headerTransitionLocked = false;
+                lastHeaderScrollY = latestScrollY;
+                headerDirectionStartY = latestScrollY;
+                headerLastDirection = 0;
+                syncHeaderHeight();
+            }, headerTransitionDuration);
+
+            lastHeaderScrollY = currentScrollY;
+            headerDirectionStartY = currentScrollY;
+            headerLastDirection = 0;
+        }
+
+        function shouldKeepSiteHeaderVisible(currentScrollY) {
+            return currentScrollY <= headerTopOffset ||
+                document.body.classList.contains('site-nav-open') ||
+                document.body.classList.contains('products-menu-open') ||
+                siteHeaderInner.contains(document.activeElement);
+        }
+
+        function updateSiteHeaderVisibility() {
+            var currentScrollY = Math.max(window.pageYOffset || document.documentElement.scrollTop || 0, 0);
+            var scrollDelta = currentScrollY - lastHeaderScrollY;
+
+            if (shouldKeepSiteHeaderVisible(currentScrollY)) {
+                showSiteHeader();
+                lastHeaderScrollY = currentScrollY;
+                headerDirectionStartY = currentScrollY;
+                headerLastDirection = 0;
+                return;
+            }
+
+            if (headerTransitionLocked || Math.abs(scrollDelta) < headerScrollNoise) {
+                lastHeaderScrollY = currentScrollY;
+                return;
+            }
+
+            var scrollDirection = scrollDelta > 0 ? 1 : -1;
+
+            if (scrollDirection !== headerLastDirection) {
+                headerDirectionStartY = lastHeaderScrollY;
+                headerLastDirection = scrollDirection;
+            }
+
+            if (Math.abs(currentScrollY - headerDirectionStartY) < headerScrollThreshold) {
+                lastHeaderScrollY = currentScrollY;
+                return;
+            }
+
+            setSiteHeaderHidden(scrollDirection > 0, currentScrollY);
+            lastHeaderScrollY = currentScrollY;
+        }
+
+        window.addEventListener('scroll', function () {
+            if (headerScrollTicking) {
+                return;
+            }
+
+            headerScrollTicking = true;
+            window.requestAnimationFrame(function () {
+                updateSiteHeaderVisibility();
+                headerScrollTicking = false;
+            });
+        }, {passive: true});
+
+        siteHeaderInner.addEventListener('focusin', showSiteHeader);
+    }
+
     if (navToggle) {
         navToggle.addEventListener('click', function () {
+            showSiteHeader();
             syncHeaderHeight();
             var isOpen = document.body.classList.toggle('site-nav-open');
             navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -283,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (productsNavItem && productsMenuToggle) {
         productsMenuToggle.addEventListener('click', function (event) {
             event.preventDefault();
+            showSiteHeader();
             syncHeaderHeight();
 
             if (!mobileMenuQuery.matches) {
@@ -547,14 +673,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 ? ' data-product-detail-url="' + escapeHtml(detailUrl) + '" role="link" tabindex="0"'
                 : '';
             var linkClass = detailUrl ? ' automation-selected-product-card--link' : '';
+            var ribbonMarkup = product.isNew
+                ? '<span class="automation-category-card__ribbon">New</span>'
+                : '';
+            var seriesMarkup = product.series
+                ? '<em>' + escapeHtml(product.series) + '</em>'
+                : '';
 
             return (
                 '<article class="automation-selected-product-card' + linkClass + '"' + linkAttributes + '>' +
+                    ribbonMarkup +
                     '<span class="automation-selected-product-card__media">' +
                         '<img src="' + escapeHtml(product.image) + '" alt="' + escapeHtml(product.title) + '">' +
                     '</span>' +
                     '<span class="automation-selected-product-card__body">' +
                         '<strong>' + escapeHtml(product.title) + '</strong>' +
+                        seriesMarkup +
                         renderProductDescription(product) +
                         '<span class="automation-selected-product-card__actions">' +
                             renderProductActions(product.actions, product.title) +
@@ -938,6 +1072,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             ]
+        });
+
+        window.jQuery('[data-brand-strip-carousel]').slick({
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: false,
+            dots: false,
+            infinite: true,
+            centerMode: true,
+            centerPadding: '0',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            speed: 400,
+            pauseOnHover: true
         });
     }
 

@@ -26,6 +26,8 @@
                     ['Air Preparation Equipment', 'Clean, dry and regulated air supply', 'air-preparation-equipment.webp', '/automation-air-preparation-equipment.php'],
                     ['Silencers / Exhaust', 'Noise reduction for quiet operation', 'Silencer-Exhaust.webp', '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
                     ['Fittings & Tubings', 'Secure connections and flexible routing', 'Fittings-Tubings.webp', '/automation-fittings-tubings.php'],
+                    ['Electric Actuators', 'SMC Electric Actuator Manufacturer in India – Advanced Automation Solutions. As a leading electri...', 'Electric-Actuators.jpg', '/automation-electric-actuators.php'],
+                    ['Gas Generator', 'Generate 99.9%+ high-purity nitrogen on-site with the Membrane Nitrogen Generator (NMG) using only compressed air....', 'Gas-Generator/Gas-generator-245.webp', '/automation-gas-generator.php'],
                 ] as $category): ?>
                     <a class="product-category-card" href="<?= e(appUrl($category[3])); ?>">
                         <span class="product-category-card__image">
@@ -50,12 +52,12 @@
 
             <div class="new-products-list" aria-label="New products">
                 <?php foreach ([
-                    ['Mounting Kit for Multi-Axis System - LCA Series', 'Compatible actuator for X, Y axis', 'Mounting-Kit-400-removebg-preview.webp', 'mounting-kit-for-multi-axis-system-lca-series'],
-                    ['Residual Pressure Release Valve', 'Can be connected to F.R.L. units (LAC O series). Allows for precise early and...', 'Residual-Pressure-VP346-400.webp', 'residual-pressure-release-valve'],
-                    ['Pulse Blow Unit PU Series', 'Intermittent pulse blow improves removal efficiency of dust and particles.', 'Pulse-Blow-Unit-PU-Series.webp', 'pulse-blow-unit-pu-series'],
-                    ['Membrane Nitrogen Generator', 'Nitrogen enriched air purification is easily possible with only a compressed air supply.', 'Membrane-Nitrogen-Generator.webp', 'membrane-nitrogen-generator'],
-                    ['Slider Type/Rod Type/Guide Rod Type EQF Series', 'Easy to set up, built to outperform. Simplified operation.', 'Slider-Type-Guide-Rod.webp', 'slider-type-rod-type-guide-rod-type-eqf-series'],
-                    ['Remote Control Valve (Electric Speed Controller)', 'Speed controlled regulation of turntable control for "scientific control".', 'Remote-Control-Valve.webp', 'remote-control-valve-electric-speed-controller'],
+                    ['Mounting Kit for Multi-Axis System - LCA Series', 'Compatible actuator for X, Y axis', 'Mounting-Kit-400-removebg-preview.webp', 'mounting-kit-for-multi-axis-system-lca-series', '/product-detail.php?product=mounting-kit-for-multi-axis-system-lea-series'],
+                    ['Residual Pressure Release Valve', 'Can be connected to F.R.L. units (LAC O series). Allows for precise early and...', 'Residual-Pressure-VP346-400.webp', 'residual-pressure-release-valve', '/product-detail.php?product=residual-pressure-release-valve'],
+                    ['Pulse Blow Unit PU Series', 'Intermittent pulse blow improves removal efficiency of dust and particles.', 'Pulse-Blow-Unit-PU-Series.webp', 'pulse-blow-unit-pu-series', '/product-detail.php?product=air-blowing-equipment'],
+                    ['Membrane Nitrogen Generator', 'Nitrogen enriched air purification is easily possible with only a compressed air supply.', 'Membrane-Nitrogen-Generator.webp', 'membrane-nitrogen-generator', '/product-detail.php?product=membrane-nitrogen-generator'],
+                    ['Slider Type/Rod Type/Guide Rod Type EQF Series', 'Easy to set up, built to outperform. Simplified operation.', 'Slider-Type-Guide-Rod.webp', 'slider-type-rod-type-guide-rod-type-eqf-series', '/product-detail.php?product=slider-type-rod-type-guide-rod-type-eqfsh-series'],
+                    ['Remote Control Valve (Electric Speed Controller)', 'Speed controlled regulation of turntable control for "scientific control".', 'Remote-Control-Valve.webp', 'remote-control-valve-electric-speed-controller', '/product-detail.php?product=remote-control-valve'],
                 ] as $product): ?>
                     <article class="new-product-card">
                         <div class="new-product-card__media">
@@ -65,7 +67,7 @@
                             <h3><?= e($product[0]); ?></h3>
                             <p><?= e($product[1]); ?></p>
                             <div class="new-product-card__actions">
-                                <a class="button button--secondary" href="<?= e(appUrl('/products.php?product=' . $product[3])); ?>">View Details</a>
+                                <a class="button button--secondary" href="<?= e(appUrl($product[4] ?? ('/products.php?product=' . $product[3]))); ?>">View Details</a>
                                 <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product[3])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product[0]); ?>">Send Enquiry</a>
                             </div>
                         </div>
@@ -178,6 +180,10 @@
 
                 <h3 class="industry-slider__title" data-industry-title><?= e($industries[2][0]); ?></h3>
                 <p class="industry-slider__text" data-industry-text><?= e($industries[2][1]); ?></p>
+            </div>
+
+            <div class="industry-section__more">
+                <a class="button button--primary" href="#">View More</a>
             </div>
         </div>
     </section>

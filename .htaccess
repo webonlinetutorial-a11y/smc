@@ -71,6 +71,9 @@ DirectoryIndex index.php
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes\.php[\s?] [NC]
     RewriteRule ^automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes\.php$ %{ENV:BASE}products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes [R=301,L]
 
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-flow-control-equipment-speed-controllers-remote-control-valve\.php[\s?] [NC]
+    RewriteRule ^automation-flow-control-equipment-speed-controllers-remote-control-valve\.php$ %{ENV:BASE}products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-remote-control-valve [R=301,L]
+
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-pressure-control-equipment-electro-automatic-regulators\.php[\s?] [NC]
     RewriteRule ^automation-pressure-control-equipment-electro-automatic-regulators\.php$ %{ENV:BASE}products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-electro-automatic-regulators [R=301,L]
 
@@ -107,8 +110,26 @@ DirectoryIndex index.php
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers\.php[\s?] [NC]
     RewriteRule ^automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers\.php$ %{ENV:BASE}products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers [R=301,L]
 
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns\.php[\s?] [NC]
+    RewriteRule ^automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns\.php$ %{ENV:BASE}products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment\.php[\s?] [NC]
+    RewriteRule ^automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment\.php$ %{ENV:BASE}products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment [R=301,L]
+
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-process-valves-2-3-port-solenoid-valves-air-operated-valves\.php[\s?] [NC]
     RewriteRule ^automation-process-valves-2-3-port-solenoid-valves-air-operated-valves\.php$ %{ENV:BASE}products/automation/automation-process-valves/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series\.php[\s?] [NC]
+    RewriteRule ^automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series\.php$ %{ENV:BASE}products/automation/automation-electric-actuators/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller\.php[\s?] [NC]
+    RewriteRule ^automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller\.php$ %{ENV:BASE}products/automation/automation-electric-actuators/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-gas-generator-membrane-nitrogen-generator\.php[\s?] [NC]
+    RewriteRule ^automation-gas-generator-membrane-nitrogen-generator\.php$ %{ENV:BASE}products/automation/automation-gas-generator/automation-gas-generator-membrane-nitrogen-generator [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-modular-f\.r\.l\.-units-ac-d\.php[\s?] [NC]
+    RewriteRule ^automation-modular-f\.r\.l\.-units-ac-d\.php$ %{ENV:BASE}products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-ac-d [R=301,L]
 
     # Category hub pages -> nested URLs, mirroring the item hierarchy above.
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation\.php[\s?] [NC]
@@ -149,6 +170,12 @@ DirectoryIndex index.php
     RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-process-valves\.php[\s?] [NC]
     RewriteRule ^automation-process-valves\.php$ %{ENV:BASE}products/automation/automation-process-valves [R=301,L]
 
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-electric-actuators\.php[\s?] [NC]
+    RewriteRule ^automation-electric-actuators\.php$ %{ENV:BASE}products/automation/automation-electric-actuators [R=301,L]
+
+    RewriteCond %{THE_REQUEST} \s/+(.*/)?automation-gas-generator\.php[\s?] [NC]
+    RewriteRule ^automation-gas-generator\.php$ %{ENV:BASE}products/automation/automation-gas-generator [R=301,L]
+
     RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-standard-air-cylinders--square-cover/?$ automation-air-cylinders-standard-air-cylinders-square-cover.php [L]
     RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-compact-air-cylinders/?$ automation-air-cylinders-compact-air-cylinders.php [L]
     RewriteRule ^products/automation/automation-air-cylinders/automation-air-cylinders-iso-cylinders/?$ automation-air-cylinders-iso-cylinders.php [L]
@@ -170,6 +197,7 @@ DirectoryIndex index.php
     RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-tubing/?$ automation-fittings-and-tubings-tubing.php [L]
     RewriteRule ^products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-related-products/?$ automation-fittings-and-tubings-related-products.php [L]
     RewriteRule ^products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes/?$ automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php [L]
+    RewriteRule ^products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-remote-control-valve/?$ automation-flow-control-equipment-speed-controllers-remote-control-valve.php [L]
     RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-electro-automatic-regulators/?$ automation-pressure-control-equipment-electro-automatic-regulators.php [L]
     RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-regulators/?$ automation-pressure-control-equipment-regulators.php [L]
     RewriteRule ^products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-booster-regulators/?$ automation-pressure-control-equipment-booster-regulators.php [L]
@@ -182,7 +210,13 @@ DirectoryIndex index.php
     RewriteRule ^products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-flow-switch/?$ automation-switches-sensors-controller-flow-switch.php [L]
     RewriteRule ^products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-digital-pressure-switch/?$ automation-switches-sensors-controller-digital-pressure-switch.php [L]
     RewriteRule ^products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers/?$ automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php [L]
+    RewriteRule ^products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns/?$ automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php [L]
+    RewriteRule ^products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment/?$ automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment.php [L]
     RewriteRule ^products/automation/automation-process-valves/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves/?$ automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php [L]
+    RewriteRule ^products/automation/automation-electric-actuators/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series/?$ automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php [L]
+    RewriteRule ^products/automation/automation-electric-actuators/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller/?$ automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller.php [L]
+    RewriteRule ^products/automation/automation-gas-generator/automation-gas-generator-membrane-nitrogen-generator/?$ automation-gas-generator-membrane-nitrogen-generator.php [L]
+    RewriteRule ^products/automation/automation-modular-frl-units/automation-modular-f\.r\.l\.-units-ac-d/?$ automation-modular-f.r.l.-units-ac-d.php [L]
 
     # Category hubs. Kept after every item rule and ordered longest-prefix-first so a
     # future edit that loosens one of these patterns cannot shadow the item pages.
@@ -197,6 +231,8 @@ DirectoryIndex index.php
     RewriteRule ^products/automation/automation-switches-sensors-controller/?$ automation-switches-sensors-controller-.php [L]
     RewriteRule ^products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/?$ automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php [L]
     RewriteRule ^products/automation/automation-process-valves/?$ automation-process-valves.php [L]
+    RewriteRule ^products/automation/automation-electric-actuators/?$ automation-electric-actuators.php [L]
+    RewriteRule ^products/automation/automation-gas-generator/?$ automation-gas-generator.php [L]
 
     # Hub last -- broadest pattern in the block.
     RewriteRule ^products/automation/?$ automation.php [L]

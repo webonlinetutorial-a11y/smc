@@ -25,6 +25,7 @@ function automationPublicPathAliases(): array
         'automation-fittings-and-tubings-tubing.php' => 'products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-tubing',
         'automation-fittings-and-tubings-related-products.php' => 'products/automation/automation-fittings-and-tubings/automation-fittings-and-tubings-related-products',
         'automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php' => 'products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes',
+        'automation-flow-control-equipment-speed-controllers-remote-control-valve.php' => 'products/automation/automation-flow-control-equipment-speed-controllers/automation-flow-control-equipment-speed-controllers-remote-control-valve',
         'automation-pressure-control-equipment-electro-automatic-regulators.php' => 'products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-electro-automatic-regulators',
         'automation-pressure-control-equipment-regulators.php' => 'products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-regulators',
         'automation-pressure-control-equipment-booster-regulators.php' => 'products/automation/automation-pressure-control-equipment/automation-pressure-control-equipment-booster-regulators',
@@ -32,12 +33,18 @@ function automationPublicPathAliases(): array
         'automation-modular-f.r.l.-units-filter-regulators.php' => 'products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-filter-regulators',
         'automation-modular-f.r.l.-units-air-filters.php' => 'products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-air-filters',
         'automation-modular-f.r.l.-units-regulators.php' => 'products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-regulators',
+        'automation-modular-f.r.l.-units-ac-d.php' => 'products/automation/automation-modular-frl-units/automation-modular-f.r.l.-units-ac-d',
         'automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector.php' => 'products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector',
         'automation-vacuum-equipment-vacuum-ejectors-vacuum-pad.php' => 'products/automation/automation-vacuum-equipment-vacuum-ejectors/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad',
         'automation-switches-sensors-controller-flow-switch.php' => 'products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-flow-switch',
         'automation-switches-sensors-controller-digital-pressure-switch.php' => 'products/automation/automation-switches-sensors-controller/automation-switches-sensors-controller-digital-pressure-switch',
         'automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php' => 'products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers',
+        'automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php' => 'products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns',
+        'automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment.php' => 'products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns-air-blowing-equipment',
         'automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php' => 'products/automation/automation-process-valves/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves',
+        'automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php' => 'products/automation/automation-electric-actuators/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series',
+        'automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller.php' => 'products/automation/automation-electric-actuators/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller',
+        'automation-gas-generator-membrane-nitrogen-generator.php' => 'products/automation/automation-gas-generator/automation-gas-generator-membrane-nitrogen-generator',
     ];
 }
 
@@ -58,6 +65,8 @@ function automationCategoryPathAliases(): array
         'automation-switches-sensors-controller-.php' => 'products/automation/automation-switches-sensors-controller',
         'automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => 'products/automation/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges',
         'automation-process-valves.php' => 'products/automation/automation-process-valves',
+        'automation-electric-actuators.php' => 'products/automation/automation-electric-actuators',
+        'automation-gas-generator.php' => 'products/automation/automation-gas-generator',
     ];
 }
 
@@ -89,8 +98,12 @@ function automationItemRoutes(): array
         'Related Products' => '/automation-fittings-and-tubings-related-products.php',
         'Speed Controllers For General Purposes' => '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php',
         'Speed Controllers for General Purposes' => '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php',
+        'Remote Control Valve' => '/automation-flow-control-equipment-speed-controllers-remote-control-valve.php',
         'Electro-Pneumatic Regulators' => '/automation-pressure-control-equipment-electro-automatic-regulators.php',
         'Electro Pneumatic Regulatoers' => '/automation-pressure-control-equipment-electro-automatic-regulators.php',
+        'Mounting Kit for Multi-Axis System' => '/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php',
+        'e-Actuator Easy to Operate Integrated Controller' => '/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller.php',
+        'Nitrogen Gas Generator' => '/automation-gas-generator-membrane-nitrogen-generator.php',
     ];
 }
 
@@ -106,6 +119,7 @@ function automationContextItemRoutes(): array
             'Filter Regulators' => '/automation-modular-f.r.l.-units-filter-regulators.php',
             'Air Filters' => '/automation-modular-f.r.l.-units-air-filters.php',
             'Regulators' => '/automation-modular-f.r.l.-units-regulators.php',
+            'Modular F.R.L. Units AC D' => '/automation-modular-f.r.l.-units-ac-d.php',
         ],
         '/automation-vacuum-equipment-vacuum-ejectors-.php' => [
             'Vacuum Ejector' => '/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector.php',
@@ -118,6 +132,7 @@ function automationContextItemRoutes(): array
         ],
         '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => [
             'Silencers' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php',
+            'Blow Guns *Blowing Equipments' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php',
         ],
         '/automation-process-valves.php' => [
             '2/3 Port Solenoid Valves/Air Operated Valves' => '/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php',
@@ -155,6 +170,7 @@ function automationItemIntroImages(): array
         ],
         '/automation-flow-control-equipment-speed-controllers.php' => [
             'Speed Controllers For General Purposes' => 'Flow-Control-Equipment/Speed-Controllers/Speed-Controllers-for-General-Purposes -intro.webp',
+            'Remote Control Valve' => 'Flow-Control-Equipment/Remote control valve/PFES-A-P07-2.webp',
         ],
         '/automation-pressure-control-equipment.php' => [
             'Electro-Pneumatic Regulators' => 'Pressure-Control-Equipment/Electro-Pneumatic/ITV.webp',
@@ -177,9 +193,17 @@ function automationItemIntroImages(): array
         ],
         '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => [
             'Silencers' => 'Silencer-Exhaust-Cleaner/Silencers/AN.webp',
+            'Blow Guns *Blowing Equipments' => 'Silencer-Exhaust-Cleaner/Blow-Guns/blow-gun.webp',
         ],
         '/automation-process-valves.php' => [
             '2/3 Port Solenoid Valves/Air Operated Valves' => 'Process-Valve/Port-Solenoid-Valve/23 Port Solenoid ValvesAir Operated Valves.webp',
+        ],
+        '/automation-electric-actuators.php' => [
+            'Mounting Kit for Multi-Axis System' => 'Electric-Actuators.jpg',
+            'e-Actuator Easy to Operate Integrated Controller' => 'Electric-Actuators/e-Actuator Easy to Operate Integrated Controller/EQFSHEQYH-C-C1-4.webp',
+        ],
+        '/automation-gas-generator.php' => [
+            'Nitrogen Gas Generator' => 'Membrane-Nitrogen-Generator.webp',
         ],
     ];
 }
@@ -236,7 +260,7 @@ function automationCategoryDefinitions(): array
             'url' => '/automation-flow-control-equipment-speed-controllers.php',
             'image' => 'flow-control-equipment.webp',
             'description' => 'Fine-tune actuator speed with SMC Speed Controllers and Flow Control Valves for precise airflow adjustment.',
-            'items' => ['Speed Controllers For General Purposes'],
+            'items' => ['Speed Controllers For General Purposes', 'Remote Control Valve'],
         ],
         [
             'title' => 'Pressure Control Equipment',
@@ -257,6 +281,7 @@ function automationCategoryDefinitions(): array
                 'Filter Regulators',
                 'Air Filters',
                 'Regulators',
+                'Modular F.R.L. Units AC D',
             ],
         ],
         [
@@ -276,12 +301,12 @@ function automationCategoryDefinitions(): array
             'items' => ['Flow Switch', 'Digital Pressure Switch'],
         ],
         [
-            'title' => 'Silencers/Exhaust Cleaners/Pressure Gauges',
+            'title' => 'Silencers/Exhaust Cleaners/Pressure Gauges/Blow Guns',
             'slug' => 'silencers-exhaust',
             'url' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php',
             'image' => 'Silencer-Exhaust.webp',
             'description' => 'Complete your pneumatic system with SMC accessories including silencers, exhaust cleaners, air blow guns and pressure gauges.',
-            'items' => ['Silencers'],
+            'items' => ['Silencers', 'Blow Guns *Blowing Equipments'],
         ],
         [
             'title' => 'Process Valves',
@@ -290,6 +315,22 @@ function automationCategoryDefinitions(): array
             'image' => 'Process-Valves.webp',
             'description' => 'Handle demanding applications with SMC Process Valves, suitable for controlling air, water, chemicals and steam.',
             'items' => ['2/3 Port Solenoid Valves/Air Operated Valves'],
+        ],
+        [
+            'title' => 'Electric Actuators',
+            'slug' => 'electric-actuators',
+            'url' => '/automation-electric-actuators.php',
+            'image' => 'Electric-Actuators.jpg',
+            'description' => 'SMC Electric Actuator Manufacturer in India – Advanced Automation Solutions. As a leading electri...',
+            'items' => ['Mounting Kit for Multi-Axis System', 'e-Actuator Easy to Operate Integrated Controller'],
+        ],
+        [
+            'title' => 'Gas Generator',
+            'slug' => 'gas-generator',
+            'url' => '/automation-gas-generator.php',
+            'image' => 'Gas-Generator/Gas-generator-245.webp',
+            'description' => 'Generate 99.9%+ high-purity nitrogen on-site with the Membrane Nitrogen Generator (NMG) using only compressed air....',
+            'items' => ['Nitrogen Gas Generator'],
         ],
     ];
 }
