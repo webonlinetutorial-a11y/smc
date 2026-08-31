@@ -19,6 +19,11 @@ class PublicContentService extends BaseService
         return array_values(array_filter($this->cmsModule->all('products', 'display_order ASC, name ASC'), static fn (array $row): bool => $row['status'] === 'published'));
     }
 
+    public function activeCategories(): array
+    {
+        return array_values(array_filter((new Category())->all(), static fn (array $row): bool => $row['status'] === 'active'));
+    }
+
     public function activeDownloads(): array
     {
         return array_values(array_filter($this->cmsModule->all('product_pdfs', 'created_at DESC, id DESC'), static fn (array $row): bool => $row['status'] === 'active'));

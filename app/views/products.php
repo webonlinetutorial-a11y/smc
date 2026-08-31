@@ -40,6 +40,21 @@
                         </span>
                     </a>
                 <?php endforeach; ?>
+
+                <?php foreach ($cmsCategories ?? [] as $cmsCategory): ?>
+                    <a class="product-category-card" href="<?= e(appUrl('/category.php?category=' . $cmsCategory['slug'])); ?>">
+                        <span class="product-category-card__image">
+                            <?php if (($cmsCategory['image_path'] ?? '') !== ''): ?>
+                                <img src="<?= e(assetUrl($cmsCategory['image_path'])); ?>" alt="<?= e($cmsCategory['name']); ?>" loading="lazy">
+                            <?php endif; ?>
+                        </span>
+                        <span class="product-category-card__body">
+                            <strong><?= e($cmsCategory['name']); ?></strong>
+                            <span><?= e(mb_strimwidth((string) ($cmsCategory['description'] ?? ''), 0, 120, '...')); ?></span>
+                            <small>Explore <?= lucideIcon('arrow-right'); ?></small>
+                        </span>
+                    </a>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>

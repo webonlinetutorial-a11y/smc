@@ -30,4 +30,5 @@ renderView('products', [
         ['label' => 'Products'],
     ],
     'cmsProducts' => $content->publishedProducts(),
+    'cmsCategories' => $content->activeCategories(),
 ]);
