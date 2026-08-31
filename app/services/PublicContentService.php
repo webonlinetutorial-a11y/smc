@@ -24,6 +24,74 @@ class PublicContentService extends BaseService
         return array_values(array_filter((new Category())->all(), static fn (array $row): bool => $row['status'] === 'active'));
     }
 
+    public function categoryBySlug(string $slug): ?array
+    {
+        foreach ($this->activeCategories() as $category) {
+            if ($category['slug'] === $slug) {
+                return $category;
+            }
+        }
+
+        return null;
+    }
+
+    public function childCategoriesOf(int $parentId): array
+    {
+        return array_values(array_filter(
+            $this->activeCategories(),
+            static fn (array $category): bool => (int) ($category['parent_id'] ?? 0) === $parentId
+        ));
+    }
+
+    public function categoryBreadcrumbChain(array $category): array
+    {
+        $categoriesById = [];
+        foreach ($this->activeCategories() as $candidate) {
+            $categoriesById[(int) $candidate['id']] = $candidate;
+        }
+
+        $chain = [$category];
+        $current = $category;
+        $guard = 0;
+
+        while (!empty($current['parent_id']) && $guard < 10) {
+            $parentId = (int) $current['parent_id'];
+
+            if (!isset($categoriesById[$parentId])) {
+                break;
+            }
+
+            $current = $categoriesById[$parentId];
+            array_unshift($chain, $current);
+            $guard++;
+        }
+
+        return $chain;
+    }
+
+    public function publishedProductBySlug(string $slug): ?array
+    {
+        foreach ($this->publishedProducts() as $product) {
+            if ($product['slug'] === $slug) {
+                return $product;
+            }
+        }
+
+        return null;
+    }
+
+    public function activeProductImages(int $productId): array
+    {
+        $images = array_values(array_filter(
+            $this->cmsModule->all('product_images', 'display_order ASC, id ASC'),
+            static fn (array $row): bool => $row['status'] === 'active' && (int) $row['product_id'] === $productId
+        ));
+
+        usort($images, static fn (array $a, array $b): int => ((int) $b['is_primary']) <=> ((int) $a['is_primary']));
+
+        return $images;
+    }
+
     public function activeDownloads(): array
     {
         return array_values(array_filter($this->cmsModule->all('product_pdfs', 'created_at DESC, id DESC'), static fn (array $row): bool => $row['status'] === 'active'));
