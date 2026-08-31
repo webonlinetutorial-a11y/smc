@@ -24,6 +24,14 @@ class PublicContentService extends BaseService
         return array_values(array_filter((new Category())->all(), static fn (array $row): bool => $row['status'] === 'active'));
     }
 
+    public function topLevelCategories(): array
+    {
+        return array_values(array_filter(
+            $this->activeCategories(),
+            static fn (array $category): bool => empty($category['parent_id'])
+        ));
+    }
+
     public function categoryBySlug(string $slug): ?array
     {
         foreach ($this->activeCategories() as $category) {
