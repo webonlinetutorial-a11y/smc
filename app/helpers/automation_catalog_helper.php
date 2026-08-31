@@ -411,8 +411,16 @@ function renderAutomationCategorySidebar(array $categories, string $panelPrefix 
                     </button>
                     <div class="automation-category-accordion__panel" id="<?= e($panelId); ?>">
                         <?php foreach ($category['items'] as $item): ?>
-                            <?php $itemUrl = automationSidebarItemUrl($item, $categoryUrl); ?>
-                            <a href="<?= e(appUrl($itemUrl)); ?>"><?= e($item); ?></a>
+                            <?php
+                            if (is_array($item)) {
+                                $itemLabel = $item['label'] ?? '';
+                                $itemUrl = $item['url'] ?? $categoryUrl;
+                            } else {
+                                $itemLabel = $item;
+                                $itemUrl = automationSidebarItemUrl($item, $categoryUrl);
+                            }
+                            ?>
+                            <a href="<?= e(appUrl($itemUrl)); ?>"><?= e($itemLabel); ?></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
