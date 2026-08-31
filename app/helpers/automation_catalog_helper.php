@@ -359,13 +359,42 @@ function automationSidebarItemUrl(string $item, string $fallbackUrl): string
     return $routes[$item] ?? $fallbackUrl;
 }
 
+function cmsAutomationCategoryDefinitions(): array
+{
+    $content = new PublicContentService();
+    $definitions = [];
+
+    foreach ($content->topLevelCategories() as $cmsCategory) {
+        $childItems = array_map(
+            static fn (array $childCategory): array => [
+                'label' => $childCategory['name'],
+                'url' => '/category.php?category=' . $childCategory['slug'],
+            ],
+            $content->childCategoriesOf((int) $cmsCategory['id'])
+        );
+
+        $definitions[] = [
+            'title' => $cmsCategory['name'],
+            'slug' => $cmsCategory['slug'],
+            'url' => '/category.php?category=' . $cmsCategory['slug'],
+            'image' => preg_replace('#^images/#', '', ltrim(str_replace('\\', '/', (string) ($cmsCategory['image_path'] ?? '')), '/')),
+            'description' => (string) ($cmsCategory['description'] ?? ''),
+            'items' => $childItems,
+        ];
+    }
+
+    return $definitions;
+}
+
 function automationSidebarCategories(?string $activeSlug = null): array
 {
+    $categories = array_merge(automationCategoryDefinitions(), cmsAutomationCategoryDefinitions());
+
     return array_map(static function (array $category) use ($activeSlug): array {
         $category['active'] = $activeSlug !== null && $category['slug'] === $activeSlug;
 
         return $category;
-    }, automationCategoryDefinitions());
+    }, $categories);
 }
 
 function automationSitemapPaths(): array
