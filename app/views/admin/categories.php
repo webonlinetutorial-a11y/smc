@@ -66,6 +66,7 @@
                 <label class="admin-form-field-wide">
                     <span>Description</span>
                     <textarea name="description" rows="4"><?= e($form['description'] ?? ''); ?></textarea>
+                    <small class="admin-field-hint">Type one point per line to show it as a bullet list on the category page. A single line shows as a plain paragraph instead.</small>
                 </label>
             </div>
         </section>
