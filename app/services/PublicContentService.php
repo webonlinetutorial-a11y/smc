@@ -88,10 +88,20 @@ class PublicContentService extends BaseService
         return null;
     }
 
+    public function productPrimaryImagePath(array $product): string
+    {
+        if (trim((string) ($product['image_path'] ?? '')) !== '') {
+            return (string) $product['image_path'];
+        }
+
+        $images = $this->activeProductImages((int) $product['id']);
+
+        return $images[0]['image_path'] ?? '';
+    }
+
     public function productDetailPayload(array $product): array
     {
-        $images = $this->activeProductImages((int) $product['id']);
-        $primaryImage = $images[0]['image_path'] ?? '';
+        $primaryImage = $this->productPrimaryImagePath($product);
 
         $actions = [];
 

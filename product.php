@@ -48,11 +48,20 @@ if ($category !== null) {
 
 $breadcrumbs[] = ['label' => $product['name']];
 
+$images = $content->activeProductImages((int) $product['id']);
+
+if (trim((string) ($product['image_path'] ?? '')) !== '') {
+    array_unshift($images, [
+        'image_path' => $product['image_path'],
+        'alt_text' => $product['name'],
+    ]);
+}
+
 renderView('public/cms-product-detail', [
     'title' => $product['name'] . ' | ' . configValue('app.name', 'Bharat Mill Website'),
     'metaDescription' => $product['short_description'] ?: ('Explore ' . $product['name'] . ' from Bharat Mill.'),
     'canonicalUrl' => appUrl('/product.php?slug=' . $product['slug']),
     'product' => $product,
-    'images' => $content->activeProductImages((int) $product['id']),
+    'images' => $images,
     'breadcrumbs' => $breadcrumbs,
 ]);
