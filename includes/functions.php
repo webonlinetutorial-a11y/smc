@@ -73,8 +73,16 @@ function assetUrl(string $path): string
     $encodedPath = implode('/', array_map(static function (string $segment): string {
         return rawurlencode(rawurldecode($segment));
     }, explode('/', $normalizedPath)));
-    $url = appUrl('assets/' . $encodedPath);
-    $filePath = ASSETS_PATH . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, rawurldecode($normalizedPath));
+
+    // Media Library uploads live in /uploads (sibling of /assets), not under it,
+    // so a stored path already starting with "uploads/" is resolved from the
+    // project root instead of getting an "assets/" prefix.
+    $isUploadPath = str_starts_with($normalizedPath, 'uploads/');
+    $basePath = $isUploadPath ? ROOT_PATH : ASSETS_PATH;
+    $urlPrefix = $isUploadPath ? '' : 'assets/';
+
+    $url = appUrl($urlPrefix . $encodedPath);
+    $filePath = $basePath . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, rawurldecode($normalizedPath));
 
     if (is_file($filePath)) {
         $url .= '?v=' . filemtime($filePath);

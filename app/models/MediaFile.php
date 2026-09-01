@@ -9,6 +9,18 @@ class MediaFile extends BaseModel
         return $this->fetchAll('SELECT * FROM media_files ORDER BY created_at DESC, id DESC LIMIT ' . $limit);
     }
 
+    public function find(int $id): ?array
+    {
+        return $this->fetchOne('SELECT * FROM media_files WHERE id = :id LIMIT 1', ['id' => $id]);
+    }
+
+    public function allImages(): array
+    {
+        return $this->fetchAll(
+            "SELECT * FROM media_files WHERE file_type = 'image' ORDER BY category ASC, created_at DESC, id DESC"
+        );
+    }
+
     public function create(array $data): void
     {
         $this->execute(

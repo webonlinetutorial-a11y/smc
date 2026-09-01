@@ -123,6 +123,19 @@ class CmsModuleService extends BaseService
             $data[$field] = sanitizeString($value);
         }
 
+        if (
+            array_key_exists('media_file_id', $data)
+            && (int) $data['media_file_id'] > 0
+            && array_key_exists('image_path', $data)
+            && trim((string) $data['image_path']) === ''
+        ) {
+            $mediaFile = (new MediaFile())->find((int) $data['media_file_id']);
+
+            if ($mediaFile !== null) {
+                $data['image_path'] = $mediaFile['relative_path'];
+            }
+        }
+
         foreach ($config['required'] ?? [] as $requiredField) {
             if (!isRequired($data[$requiredField] ?? '')) {
                 $this->addError(($config['labels'][$requiredField] ?? ucfirst($requiredField)) . ' is required.');
