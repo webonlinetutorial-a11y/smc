@@ -69,6 +69,20 @@
                     <?php endif; ?>
 
                     <div class="product-detail-actions" aria-label="Product actions">
+                        <?php if (($product['catalog_url'] ?? '') !== ''): ?>
+                            <a class="product-detail-action" href="<?= e($product['catalog_url']); ?>" target="_blank" rel="noopener">
+                                <span>Catalog</span>
+                                <?= lucideIcon('file-text'); ?>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (($product['video_url'] ?? '') !== ''): ?>
+                            <a class="product-detail-action" href="<?= e($product['video_url']); ?>" data-product-video-url="<?= e($product['video_url']); ?>">
+                                <span>Video</span>
+                                <?= lucideIcon('circle-play'); ?>
+                            </a>
+                        <?php endif; ?>
+
                         <a
                             class="product-detail-action"
                             href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>"
