@@ -123,23 +123,41 @@ class PublicContentService extends BaseService
                 continue;
             }
 
+            $description = $segments[0] ?? '';
             $row = [
                 'partNumber' => $partNumber,
-                'description' => (string) ($product['short_description'] ?? ''),
+                'description' => $description !== '' ? $description : (string) ($product['short_description'] ?? ''),
             ];
 
-            if (($segments[0] ?? '') !== '') {
-                $row['bore'] = $segments[0];
+            if (($segments[1] ?? '') !== '') {
+                $row['spec1'] = $segments[1];
             }
 
-            if (($segments[1] ?? '') !== '') {
-                $row['stroke'] = $segments[1];
+            if (($segments[2] ?? '') !== '') {
+                $row['spec2'] = $segments[2];
             }
 
             $rows[] = $row;
         }
 
         return $rows;
+    }
+
+    public function productPartNumberSpecDefinitions(array $product): array
+    {
+        $definitions = [];
+
+        $spec1Label = trim((string) ($product['part_number_spec1_label'] ?? ''));
+        if ($spec1Label !== '') {
+            $definitions['spec1'] = ['label' => $spec1Label, 'dataKey' => 'spec1'];
+        }
+
+        $spec2Label = trim((string) ($product['part_number_spec2_label'] ?? ''));
+        if ($spec2Label !== '') {
+            $definitions['spec2'] = ['label' => $spec2Label, 'dataKey' => 'spec2'];
+        }
+
+        return $definitions;
     }
 
     public function productDetailPayload(array $product): array

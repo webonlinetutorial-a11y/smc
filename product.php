@@ -64,5 +64,6 @@ renderView('public/cms-product-detail', [
     'product' => $product,
     'images' => $images,
     'partNumberRows' => $content->productPartNumberRows($product),
+    'partNumberSpecDefinitions' => $content->productPartNumberSpecDefinitions($product),
     'breadcrumbs' => $breadcrumbs,
 ]);
