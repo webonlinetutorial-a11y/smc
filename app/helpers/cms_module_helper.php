@@ -45,6 +45,19 @@ function cmsProductOptions(): array
     return $options;
 }
 
+function cmsMediaFileOptions(): array
+{
+    $rows = (new MediaFile())->allImages();
+    $options = ['' => 'None (or set Image Path manually below)'];
+
+    foreach ($rows as $row) {
+        $label = '[' . $row['category'] . '] ' . ($row['title'] !== '' ? $row['title'] : $row['original_name']);
+        $options[(string) $row['id']] = $label;
+    }
+
+    return $options;
+}
+
 function cmsGalleryAlbumOptions(): array
 {
     $rows = (new CmsModule())->all('gallery_albums', 'display_order ASC, name ASC');
