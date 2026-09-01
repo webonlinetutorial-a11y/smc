@@ -296,6 +296,12 @@ body.admin-shell {
     gap: 16px;
 }
 
+.admin-field-hint {
+    margin-top: 4px;
+    color: #6b7686;
+    font-weight: 400;
+}
+
 .admin-form label {
     display: grid;
     gap: 7px;

@@ -99,6 +99,49 @@ class PublicContentService extends BaseService
         return $images[0]['image_path'] ?? '';
     }
 
+    public function productPartNumberRows(array $product): array
+    {
+        $raw = trim((string) ($product['part_numbers'] ?? ''));
+
+        if ($raw === '') {
+            return [];
+        }
+
+        $rows = [];
+
+        foreach (preg_split('/\r\n|\r|\n/', $raw) as $line) {
+            $line = trim($line);
+
+            if ($line === '') {
+                continue;
+            }
+
+            $segments = array_map('trim', explode('|', $line));
+            $partNumber = array_shift($segments) ?? '';
+
+            if ($partNumber === '') {
+                continue;
+            }
+
+            $row = [
+                'partNumber' => $partNumber,
+                'description' => (string) ($product['short_description'] ?? ''),
+            ];
+
+            if (($segments[0] ?? '') !== '') {
+                $row['bore'] = $segments[0];
+            }
+
+            if (($segments[1] ?? '') !== '') {
+                $row['stroke'] = $segments[1];
+            }
+
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
+
     public function productDetailPayload(array $product): array
     {
         $primaryImage = $this->productPrimaryImagePath($product);

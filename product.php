@@ -63,5 +63,6 @@ renderView('public/cms-product-detail', [
     'canonicalUrl' => appUrl('/product.php?slug=' . $product['slug']),
     'product' => $product,
     'images' => $images,
+    'partNumberRows' => $content->productPartNumberRows($product),
     'breadcrumbs' => $breadcrumbs,
 ]);

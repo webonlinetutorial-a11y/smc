@@ -75,7 +75,7 @@ function cmsModuleConfig(string $module): array
                 'short_description' => ['type' => 'textarea'],
                 'image_path' => ['type' => 'text'],
                 'features' => ['type' => 'longtext'],
-                'part_numbers' => ['type' => 'textarea'],
+                'part_numbers' => ['type' => 'textarea', 'hint' => 'One per line: Part Number | Bore | Stroke (e.g. CP96SDB32-25C | 32 | 25). Bore and Stroke are optional.'],
                 'catalog_url' => ['type' => 'text'],
                 'video_url' => ['type' => 'text'],
                 'status' => ['type' => 'select', 'options' => cmsStatusOptions(['draft', 'published', 'archived']), 'default' => 'draft'],
