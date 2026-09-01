@@ -38,8 +38,7 @@ if ($childCategories === []) {
 
     $categoryProducts = array_map(
         function (array $product) use ($content): array {
-            $images = $content->activeProductImages((int) $product['id']);
-            $product['imagePath'] = $images[0]['image_path'] ?? '';
+            $product['imagePath'] = $content->productPrimaryImagePath($product);
 
             return $product;
         },
