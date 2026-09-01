@@ -42,6 +42,11 @@
                 <?php endforeach; ?>
 
                 <?php foreach ($cmsCategories ?? [] as $cmsCategory): ?>
+                    <?php
+                    $cmsCategoryDescLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($cmsCategory['description'] ?? '')))));
+                    $cmsCategoryDescPreview = array_slice($cmsCategoryDescLines, 0, 3);
+                    $cmsCategoryHasMoreLines = count($cmsCategoryDescLines) > 3;
+                    ?>
                     <a class="product-category-card" href="<?= e(appUrl('/category.php?category=' . $cmsCategory['slug'])); ?>">
                         <span class="product-category-card__image">
                             <?php if (($cmsCategory['image_path'] ?? '') !== ''): ?>
@@ -50,7 +55,21 @@
                         </span>
                         <span class="product-category-card__body">
                             <strong><?= e($cmsCategory['name']); ?></strong>
-                            <span><?= e(mb_strimwidth((string) ($cmsCategory['description'] ?? ''), 0, 120, '...')); ?></span>
+                            <?php if ($cmsCategoryDescPreview !== []): ?>
+                                <ul class="product-category-card__bullets">
+                                    <?php foreach ($cmsCategoryDescPreview as $previewIndex => $descriptionLine): ?>
+                                        <?php
+                                        $isLastPreviewLine = $previewIndex === count($cmsCategoryDescPreview) - 1;
+                                        $lineWasTruncated = mb_strlen($descriptionLine) > 70;
+                                        $lineText = mb_strimwidth($descriptionLine, 0, 70, '...');
+                                        if ($isLastPreviewLine && $cmsCategoryHasMoreLines && !$lineWasTruncated) {
+                                            $lineText .= '…';
+                                        }
+                                        ?>
+                                        <li><?= e($lineText); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                             <small>Explore <?= lucideIcon('arrow-right'); ?></small>
                         </span>
                     </a>

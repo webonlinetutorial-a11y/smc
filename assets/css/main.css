@@ -1176,6 +1176,31 @@ body.products-menu-open .site-header__inner,
     line-height: 1.45;
 }
 
+.product-category-card__bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--color-muted);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.product-category-card__bullets li {
+    position: relative;
+    padding-left: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-category-card__bullets li::before {
+    content: '\2022';
+    position: absolute;
+    left: 2px;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
 .product-category-card__body small {
     display: inline-flex;
     align-items: center;
