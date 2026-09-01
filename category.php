@@ -31,23 +31,14 @@ $childCategories = $content->childCategoriesOf((int) $category['id']);
 $categoryProducts = [];
 $categoryProductDetails = [];
 if ($childCategories === []) {
-    $categoryProducts = array_values(array_filter(
+    $publishedCategoryProducts = array_values(array_filter(
         $content->publishedProducts(),
         static fn (array $product): bool => (int) ($product['category_id'] ?? 0) === (int) $category['id']
     ));
 
-    $categoryProducts = array_map(
-        function (array $product) use ($content): array {
-            $product['imagePath'] = $content->productPrimaryImagePath($product);
-
-            return $product;
-        },
-        $categoryProducts
-    );
-
-    foreach ($categoryProducts as $product) {
-        $categoryProductDetails[$product['slug']] = $content->productDetailPayload($product);
-    }
+    $productCards = $content->categoryProductCards($publishedCategoryProducts);
+    $categoryProducts = $productCards['cards'];
+    $categoryProductDetails = $productCards['details'];
 }
 
 $breadcrumbChain = $content->categoryBreadcrumbChain($category);

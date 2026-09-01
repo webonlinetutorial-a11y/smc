@@ -45,6 +45,20 @@ function cmsProductOptions(): array
     return $options;
 }
 
+function cmsProductGroupOptions(): array
+{
+    $rows = (new CmsModule())->all('product_groups', 'display_order ASC, name ASC');
+    $options = ['' => 'None (standalone product)'];
+
+    foreach ($rows as $row) {
+        if (($row['status'] ?? '') !== 'archived') {
+            $options[(string) $row['id']] = (string) $row['name'];
+        }
+    }
+
+    return $options;
+}
+
 function cmsMediaFileOptions(): array
 {
     $rows = (new MediaFile())->allImages();

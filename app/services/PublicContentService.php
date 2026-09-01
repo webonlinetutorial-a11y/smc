@@ -19,6 +19,11 @@ class PublicContentService extends BaseService
         return array_values(array_filter($this->cmsModule->all('products', 'display_order ASC, name ASC'), static fn (array $row): bool => $row['status'] === 'published'));
     }
 
+    public function activeProductGroups(): array
+    {
+        return array_values(array_filter($this->cmsModule->all('product_groups', 'display_order ASC, name ASC'), static fn (array $row): bool => $row['status'] === 'active'));
+    }
+
     public function activeCategories(): array
     {
         return array_values(array_filter((new Category())->all(), static fn (array $row): bool => $row['status'] === 'active'));
@@ -201,6 +206,108 @@ class PublicContentService extends BaseService
             'description' => (string) ($product['short_description'] ?? ''),
             'url' => appUrl('/product.php?slug=' . $product['slug']),
             'actions' => $actions,
+        ];
+    }
+
+    /**
+     * Builds the top-level product cards for a category page, combining standalone
+     * products with grouped ones. Products sharing the same Product Group render as
+     * ONE top-level card (using the group's own name/image/description); opening it
+     * reveals every product in that group as its own bottom detail card, each with
+     * its own image and its own final product page. Ungrouped products keep the
+     * normal one-card-per-product behavior.
+     *
+     * @param array<int, array<string, mixed>> $categoryProducts Published products already filtered to one category.
+     * @return array{cards: array<int, array<string, mixed>>, details: array<string, array<string, mixed>>}
+     */
+    public function categoryProductCards(array $categoryProducts): array
+    {
+        $ungroupedProducts = [];
+        $productsByGroupId = [];
+
+        foreach ($categoryProducts as $product) {
+            $groupId = (int) ($product['group_id'] ?? 0);
+
+            if ($groupId > 0) {
+                $productsByGroupId[$groupId][] = $product;
+            } else {
+                $ungroupedProducts[] = $product;
+            }
+        }
+
+        $cardEntries = [];
+        $details = [];
+
+        foreach ($ungroupedProducts as $product) {
+            $cardEntries[] = [
+                'sortOrder' => (int) ($product['display_order'] ?? 0),
+                'card' => [
+                    'slug' => $product['slug'],
+                    'name' => $product['name'],
+                    'short_description' => (string) ($product['short_description'] ?? ''),
+                    'imagePath' => $this->productPrimaryImagePath($product),
+                ],
+            ];
+            $details[$product['slug']] = $this->productDetailPayload($product);
+        }
+
+        if ($productsByGroupId !== []) {
+            $activeGroups = $this->activeProductGroups();
+
+            foreach ($productsByGroupId as $groupId => $groupProducts) {
+                $group = null;
+
+                foreach ($activeGroups as $candidateGroup) {
+                    if ((int) $candidateGroup['id'] === $groupId) {
+                        $group = $candidateGroup;
+                        break;
+                    }
+                }
+
+                // Group missing or inactive: fall back to showing its products standalone
+                // rather than silently hiding them.
+                if ($group === null) {
+                    foreach ($groupProducts as $product) {
+                        $cardEntries[] = [
+                            'sortOrder' => (int) ($product['display_order'] ?? 0),
+                            'card' => [
+                                'slug' => $product['slug'],
+                                'name' => $product['name'],
+                                'short_description' => (string) ($product['short_description'] ?? ''),
+                                'imagePath' => $this->productPrimaryImagePath($product),
+                            ],
+                        ];
+                        $details[$product['slug']] = $this->productDetailPayload($product);
+                    }
+
+                    continue;
+                }
+
+                $groupCardSlug = 'group-' . $group['slug'];
+                $cardEntries[] = [
+                    'sortOrder' => (int) ($group['display_order'] ?? 0),
+                    'card' => [
+                        'slug' => $groupCardSlug,
+                        'name' => $group['name'],
+                        'short_description' => (string) ($group['description'] ?? ''),
+                        'imagePath' => (string) ($group['image_path'] ?? ''),
+                    ],
+                ];
+
+                $details[$groupCardSlug] = [
+                    'items' => array_map(
+                        fn (array $product): array => $this->productDetailPayload($product),
+                        $groupProducts
+                    ),
+                ];
+            }
+        }
+
+        usort($cardEntries, static fn (array $a, array $b): int => $a['sortOrder'] <=> $b['sortOrder']);
+
+        return [
+            'cards' => array_map(static fn (array $entry): array => $entry['card'], $cardEntries),
+            'details' => $details,
         ];
     }
 
