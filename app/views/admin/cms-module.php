@@ -55,6 +55,9 @@
                                 <?= in_array($field, $config['required'] ?? [], true) ? 'required' : ''; ?>
                             >
                         <?php endif; ?>
+                        <?php if (($fieldConfig['hint'] ?? '') !== ''): ?>
+                            <small class="admin-field-hint"><?= e($fieldConfig['hint']); ?></small>
+                        <?php endif; ?>
                     </label>
                 <?php endforeach; ?>
             </div>

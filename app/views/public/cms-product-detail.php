@@ -14,7 +14,22 @@
         $galleryImages = $images ?? [];
         $primaryImage = $galleryImages[0] ?? null;
         $featureLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($product['features'] ?? '')))));
-        $partNumberLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($product['part_numbers'] ?? '')))));
+        $partNumberRows = $partNumberRows ?? [];
+
+        $partSpecDefinitions = [
+            'bore' => ['label' => 'Bore (mm)', 'dataKey' => 'bore'],
+            'stroke' => ['label' => 'Stroke (mm)', 'dataKey' => 'stroke'],
+        ];
+        $availablePartSpecs = [];
+
+        foreach ($partSpecDefinitions as $specKey => $specDefinition) {
+            foreach ($partNumberRows as $part) {
+                if (($part[$specKey] ?? '') !== '') {
+                    $availablePartSpecs[$specKey] = $specDefinition;
+                    break;
+                }
+            }
+        }
         ?>
         <section class="product-detail-hero" aria-labelledby="product-detail-title">
             <div class="container product-detail-hero__inner">
@@ -97,15 +112,91 @@
             </div>
         </section>
 
-        <?php if ($partNumberLines !== []): ?>
-            <section class="section" id="part-numbers">
-                <div class="container content-shell">
-                    <h2>Part Numbers</h2>
-                    <ul>
-                        <?php foreach ($partNumberLines as $partNumberLine): ?>
-                            <li><?= e($partNumberLine); ?></li>
+        <?php if ($partNumberRows !== []): ?>
+            <section class="product-detail-parts" id="part-numbers" aria-labelledby="product-detail-parts-title" data-part-number-section>
+                <div class="container">
+                    <div class="product-detail-parts__header">
+                        <h2 id="product-detail-parts-title">Part Numbers</h2>
+                        <div class="product-detail-parts__tools" aria-label="Part number search">
+                            <label class="screen-reader-text" for="part-number-filter">Select Search by</label>
+                            <select id="part-number-filter" data-part-number-filter>
+                                <option value="all">Select Search by</option>
+                                <option value="part">Part Number</option>
+                                <?php foreach ($availablePartSpecs as $specDefinition): ?>
+                                    <option value="<?= e($specDefinition['dataKey']); ?>"><?= e($specDefinition['label']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <label class="screen-reader-text" for="part-number-search">Search part numbers</label>
+                            <div class="product-detail-parts__search">
+                                <input id="part-number-search" type="search" placeholder="Search" data-part-number-search>
+                                <?= lucideIcon('search'); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-parts__list">
+                        <?php foreach ($partNumberRows as $part): ?>
+                            <?php
+                            $partNumber = $part['partNumber'];
+                            $partDescription = $part['description'] !== '' ? $part['description'] : $product['name'];
+                            $partEnquiry = 'Inquiry for ' . $partNumber . ' - ' . $product['name'];
+                            $partSearchValues = [$partNumber, $partDescription];
+                            $partDataAttributes = [
+                                'data-field-part="' . e(strtolower($partNumber)) . '"',
+                            ];
+
+                            foreach ($availablePartSpecs as $specKey => $specDefinition) {
+                                $specValue = (string) ($part[$specKey] ?? '');
+                                if ($specValue !== '') {
+                                    $partSearchValues[] = $specValue;
+                                    $partDataAttributes[] = 'data-field-' . $specDefinition['dataKey'] . '="' . e(strtolower($specValue)) . '"';
+                                }
+                            }
+
+                            $partDataAttributes[] = 'data-field-all="' . e(strtolower(implode(' ', $partSearchValues))) . '"';
+                            $partSpecs = [];
+                            foreach ($availablePartSpecs as $specKey => $specDefinition) {
+                                $specValue = (string) ($part[$specKey] ?? '');
+                                if ($specValue !== '') {
+                                    $partSpecs[] = [
+                                        'label' => $specDefinition['label'],
+                                        'value' => $specValue,
+                                    ];
+                                }
+                            }
+                            ?>
+                            <article
+                                class="product-detail-part"
+                                data-part-number-row
+                                <?= implode(' ', $partDataAttributes); ?>
+                            >
+                                <div class="product-detail-part__summary">
+                                    <h3><?= e($partNumber); ?></h3>
+                                    <p><?= e($partDescription); ?></p>
+                                </div>
+                                <?php if ($partSpecs !== []): ?>
+                                    <dl class="product-detail-part__specs">
+                                    <?php foreach ($partSpecs as $partSpec): ?>
+                                        <div>
+                                            <dt><?= e($partSpec['label']); ?></dt>
+                                            <dd><?= e($partSpec['value']); ?></dd>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    </dl>
+                                <?php endif; ?>
+                                <a
+                                    class="product-detail-part__enquiry"
+                                    href="<?= e(appUrl('/contact-us.php?message=' . rawurlencode($partEnquiry))); ?>"
+                                    data-enquiry-trigger
+                                    data-enquiry-product="<?= e($partNumber . ' - ' . $product['name']); ?>"
+                                >
+                                    Enquire Now !
+                                </a>
+                            </article>
                         <?php endforeach; ?>
-                    </ul>
+                    </div>
+
+                    <p class="product-detail-parts__empty" data-part-number-empty hidden>No matching part numbers found.</p>
                 </div>
             </section>
         <?php endif; ?>
