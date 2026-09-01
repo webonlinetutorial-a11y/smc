@@ -29,7 +29,6 @@ if ($category === null) {
 $childCategories = $content->childCategoriesOf((int) $category['id']);
 
 $categoryProducts = [];
-$categoryProductDetails = [];
 if ($childCategories === []) {
     $categoryProducts = array_values(array_filter(
         $content->publishedProducts(),
@@ -44,10 +43,6 @@ if ($childCategories === []) {
         },
         $categoryProducts
     );
-
-    foreach ($categoryProducts as $product) {
-        $categoryProductDetails[$product['slug']] = $content->productDetailPayload($product);
-    }
 }
 
 $breadcrumbChain = $content->categoryBreadcrumbChain($category);
@@ -71,7 +66,6 @@ renderView('public/category', [
     'category' => $category,
     'childCategories' => $childCategories,
     'products' => $categoryProducts,
-    'productDetails' => $categoryProductDetails,
     'activeCategorySlug' => $breadcrumbChain[0]['slug'] ?? $category['slug'],
     'breadcrumbs' => $breadcrumbs,
 ]);
