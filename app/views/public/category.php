@@ -16,8 +16,17 @@
             <section class="automation-intro" aria-labelledby="category-title">
                 <div class="automation-intro__content">
                     <h1 id="category-title"><?= e($category['name']); ?></h1>
-                    <?php if (($category['description'] ?? '') !== ''): ?>
-                        <p><?= e($category['description']); ?></p>
+                    <?php
+                    $categoryDescriptionLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($category['description'] ?? '')))));
+                    ?>
+                    <?php if (count($categoryDescriptionLines) > 1): ?>
+                        <ul class="automation-intro__bullets">
+                            <?php foreach ($categoryDescriptionLines as $descriptionLine): ?>
+                                <li><?= e($descriptionLine); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php elseif ($categoryDescriptionLines !== []): ?>
+                        <p><?= e($categoryDescriptionLines[0]); ?></p>
                     <?php endif; ?>
                 </div>
                 <?php if (($category['image_path'] ?? '') !== ''): ?>

@@ -1549,6 +1549,19 @@ body.products-menu-open .site-header__inner,
     line-height: 1.58;
 }
 
+.automation-intro__bullets {
+    max-width: 760px;
+    margin: 0 0 10px;
+    padding-left: 20px;
+    color: #334155;
+    font-size: 15px;
+    line-height: 1.58;
+}
+
+.automation-intro__bullets li {
+    margin-bottom: 4px;
+}
+
 .automation-intro__image {
     flex: 0 0 360px;
     display: flex;
