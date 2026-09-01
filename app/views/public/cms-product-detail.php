@@ -16,10 +16,7 @@
         $featureLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($product['features'] ?? '')))));
         $partNumberRows = $partNumberRows ?? [];
 
-        $partSpecDefinitions = [
-            'bore' => ['label' => 'Bore (mm)', 'dataKey' => 'bore'],
-            'stroke' => ['label' => 'Stroke (mm)', 'dataKey' => 'stroke'],
-        ];
+        $partSpecDefinitions = $partNumberSpecDefinitions ?? [];
         $availablePartSpecs = [];
 
         foreach ($partSpecDefinitions as $specKey => $specDefinition) {
