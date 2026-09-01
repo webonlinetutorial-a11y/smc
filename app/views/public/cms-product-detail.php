@@ -83,24 +83,6 @@
             </div>
         </section>
 
-        <?php if (($product['detailed_description'] ?? '') !== ''): ?>
-            <section class="section">
-                <div class="container content-shell">
-                    <h2>Description</h2>
-                    <p><?= nl2br(e($product['detailed_description'])); ?></p>
-                </div>
-            </section>
-        <?php endif; ?>
-
-        <?php if (($product['specifications_summary'] ?? '') !== ''): ?>
-            <section class="section">
-                <div class="container content-shell">
-                    <h2>Specifications</h2>
-                    <p><?= nl2br(e($product['specifications_summary'])); ?></p>
-                </div>
-            </section>
-        <?php endif; ?>
-
         <?php if ($partNumberLines !== []): ?>
             <section class="section" id="part-numbers">
                 <div class="container content-shell">
