@@ -2410,30 +2410,10 @@ function productDetailDefinitions(): array
                 ['label' => 'Product Enquiry', 'icon' => 'circle-help', 'url' => '/contact-us.php'],
             ],
         ],
-        'mounting-kit-for-multi-axis-system-lea-series' => [
-            'title' => 'Mounting Kit for Multi-Axis System : LEA Series',
-            'isNew' => true,
-            'categoryLabel' => 'Electric Actuators',
-            'categoryPath' => '/automation-electric-actuators.php',
-            'categoryTitle' => 'Mounting Kit for Multi-Axis System',
-            'image' => 'Electric-Actuators/Mounting Kit for Multi-Axis System/Mounting-Kit-400-removebg-preview - img1.webp',
-            'gallery' => [
-                'Electric-Actuators/Mounting Kit for Multi-Axis System/Mounting-Kit-400-removebg-preview - img1.webp',
-            ],
-            'features' => [
-                'Creation of an XYZ unit',
-                'Easy system construction using the model selection software',
-                'Compatible actuators: X-Y-axis: LEFS series, LEFB series, LEKFS series, Z-axis: LEYG series',
-                'Compatible controllers/drivers (For single axis): JXC51/61 series, JXC91/E1/P1/D1/L1/M1 series, LECS□-T/LECY□ series',
-            ],
-            'metaDescription' => 'Explore the SMC LEA Series mounting kit for building multi-axis electric actuator systems, compatible with LEFS, LEFB, LEKFS and LEYG series actuators.',
-            'parentPath' => '/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php',
-            'parentLabel' => 'Mounting Kit for Multi-Axis System',
-            'actions' => [
-                ['label' => 'Series Catalogue', 'icon' => 'file-text', 'url' => '/catalogs/mounting-kit-for-multi-axis-system-lea-series.pdf'],
-                ['label' => 'Product Enquiry', 'icon' => 'circle-help', 'url' => '/contact-us.php'],
-            ],
-        ],
+        // 'mounting-kit-for-multi-axis-system-lea-series' is intentionally removed here:
+        // it's now a real CMS product (see product.php?slug=mounting-kit-for-multi-axis-system-lea-series),
+        // and product-detail.php 301-redirects that old URL to the CMS page for anyone
+        // who still has it bookmarked.
         'slider-type-rod-type-guide-rod-type-eqfsh-series' => [
             'title' => 'Slider Type/Rod Type/Guide Rod Type : EQFS□H Series',
             'isNew' => true,

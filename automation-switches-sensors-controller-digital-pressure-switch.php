@@ -2,14 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-switches-sensors-controller-digital-pressure-switch', [
-    'title' => 'Digital Pressure Switch | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC digital pressure switches for high-precision pressure monitoring and control.',
-    'canonicalUrl' => appUrl('/automation-switches-sensors-controller-digital-pressure-switch.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Switches and Sensors', 'path' => '/automation-switches-sensors-controller-.php'],
-        ['label' => 'Digital Pressure Switch'],
-    ],
-]);
+// This category is now CMS-backed (slug "switches-sensors-controller-digital-pressure-switch"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'switches-sensors-controller-digital-pressure-switch';
+require __DIR__ . '/category.php';

@@ -69,6 +69,9 @@
                                         aria-controls="category-product-detail"
                                         aria-expanded="false"
                                     >
+                                        <?php if (($product['isNew'] ?? false) === true): ?>
+                                            <span class="automation-category-card__ribbon">New</span>
+                                        <?php endif; ?>
                                         <span class="automation-category-card__media">
                                             <?php if (($product['imagePath'] ?? '') !== ''): ?>
                                                 <img src="<?= e(assetUrl($product['imagePath'])); ?>" alt="<?= e($product['name']); ?>" loading="lazy">

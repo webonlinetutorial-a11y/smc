@@ -2,13 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-fittings-tubings', [
-    'title' => 'Fittings and Tubings | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC fittings and tubing including general purpose fittings, couplers, tubing, and related pneumatic accessories.',
-    'canonicalUrl' => appUrl('/automation-fittings-tubings.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Fittings and Tubings'],
-    ],
-]);
+// This category is now CMS-backed (slug "fittings-tubings"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'fittings-tubings';
+require __DIR__ . '/category.php';

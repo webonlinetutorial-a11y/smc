@@ -2,14 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-air-preparation-equipment-auto-drains', [
-    'title' => 'Auto Drains | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC auto drains for automatic condensate discharge in pneumatic systems.',
-    'canonicalUrl' => appUrl('/automation-air-preparation-equipment-auto-drains.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Air Preparation Equipment', 'path' => '/automation-air-preparation-equipment.php'],
-        ['label' => 'Auto Drains'],
-    ],
-]);
+// This category is now CMS-backed (slug "air-preparation-equipment-auto-drains"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'air-preparation-equipment-auto-drains';
+require __DIR__ . '/category.php';

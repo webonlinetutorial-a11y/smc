@@ -1,6 +1,6 @@
 <?php
-$vacuumEjectorUrl = '/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector.php';
-$vacuumPadUrl = '/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad.php';
+$vacuumEjectorUrl = '/category.php?category=vacuum-equipment-vacuum-ejectors-vacuum-ejector';
+$vacuumPadUrl = '/category.php?category=vacuum-equipment-vacuum-ejectors-vacuum-pad';
 
 $categorySidebar = automationSidebarCategories('vacuum-equipment');
 
@@ -35,7 +35,7 @@ $vacuumProducts = [
                 <p>These products provide dependable vacuum generation and gripping performance for a wide range of materials, shapes, and production environments.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Vaccum-Equipment-Ejectors/Vacuum-Ejector.webp')); ?>" alt="SMC vacuum equipment and ejectors" loading="eager">
+                <img src="<?= e(assetUrl('images/Vaccum-Equipment-Ejectors/Vacuum-Equipment-intro.webp')); ?>" alt="SMC vacuum equipment and ejectors" loading="eager">
             </div>
         </section>
 

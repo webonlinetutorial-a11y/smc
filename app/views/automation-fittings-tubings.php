@@ -1,8 +1,8 @@
 <?php
-$fittingsGeneralPurposeUrl = '/automation-fittings-and-tubings-fittings-for-general-purposes.php';
-$fittingsCouplersUrl = '/automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors.php';
-$tubingUrl = '/automation-fittings-and-tubings-tubing.php';
-$relatedProductsUrl = '/automation-fittings-and-tubings-related-products.php';
+$fittingsGeneralPurposeUrl = '/category.php?category=fittings-and-tubings-fittings-for-general-purposes';
+$fittingsCouplersUrl = '/category.php?category=fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors';
+$tubingUrl = '/category.php?category=fittings-and-tubings-tubing';
+$relatedProductsUrl = '/category.php?category=fittings-and-tubings-related-products';
 
 $categorySidebar = automationSidebarCategories('fittings-tubings');
 

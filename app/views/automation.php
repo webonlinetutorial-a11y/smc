@@ -33,7 +33,7 @@ $automationCategories = array_merge(automationCategoryDefinitions(), cmsAutomati
                         <a class="automation-category-card" href="<?= e(appUrl($category['url'] ?? '/products.php?category=' . $category['slug'])); ?>">
                             <span class="automation-category-card__media">
                                 <?php if (($category['image'] ?? '') !== ''): ?>
-                                    <img src="<?= e(assetUrl('images/' . $category['image'])); ?>" alt="<?= e($category['title']); ?>" loading="lazy">
+                                    <img src="<?= e(automationImageUrl($category['image'])); ?>" alt="<?= e($category['title']); ?>" loading="lazy">
                                 <?php endif; ?>
                             </span>
                             <span class="automation-category-card__body">

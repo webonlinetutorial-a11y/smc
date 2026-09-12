@@ -4,14 +4,14 @@ require_once __DIR__ . '/includes/bootstrap.php';
 
 $content = new PublicContentService();
 $brandSlug = sanitizeSlug($_GET['brand'] ?? '');
-$dynamicTitle = 'Brands | ' . configValue('app.name', 'Bharat Mill Website');
-$dynamicDescription = 'Browse brands represented by Bharat Mill.';
+$dynamicTitle = 'Brands | ' . configValue('app.name', 'Indian Mill Stores Website');
+$dynamicDescription = 'Browse brands represented by Indian Mill Stores.';
 $canonicalUrl = appUrl('/brands.php');
 
 if ($brandSlug !== '') {
     foreach ($content->activeBrands() as $brand) {
         if ($brand['slug'] === $brandSlug) {
-            $dynamicTitle = $brand['name'] . ' | ' . configValue('app.name', 'Bharat Mill Website');
+            $dynamicTitle = $brand['name'] . ' | ' . configValue('app.name', 'Indian Mill Stores Website');
             $dynamicDescription = $brand['overview'] ?: $dynamicDescription;
             $canonicalUrl = appUrl('/brands.php?brand=' . $brand['slug']);
             break;
@@ -25,7 +25,7 @@ renderView('public/listing', [
     'canonicalUrl' => $canonicalUrl,
     'pageEyebrow' => 'Partners',
     'pageHeading' => 'Brands',
-    'pageIntro' => 'Browse active brands represented by Bharat Mill.',
+    'pageIntro' => 'Browse active brands represented by Indian Mill Stores.',
     'contentHeading' => 'Active Brands',
     'items' => $content->activeBrands(),
     'titleField' => 'name',

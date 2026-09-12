@@ -21,7 +21,20 @@
                                 <p><?= e(mb_strimwidth((string) $item[$descriptionField], 0, 180, '...')); ?></p>
                             <?php endif; ?>
                             <?php if (($item[$linkField] ?? '') !== ''): ?>
-                                <a class="button button--secondary" href="<?= e(appUrl($item[$linkField])); ?>">Open</a>
+                                <?php
+                                $linkValue = (string) $item[$linkField];
+                                $isPdfLink = str_ends_with(strtolower(parse_url($linkValue, PHP_URL_PATH) ?? ''), '.pdf');
+                                $resolvedLink = isExternalUrl($linkValue) ? $linkValue : appUrl($linkValue);
+
+                                // View in-browser instead of force-downloading (GitHub Releases
+                                // always send the file as an attachment regardless of our link's
+                                // target/rel attributes; other hosts like jsDelivr don't have
+                                // this problem and are left to open natively).
+                                if ($isPdfLink && forcesPdfDownload($resolvedLink)) {
+                                    $resolvedLink = pdfPreviewUrl($resolvedLink);
+                                }
+                                ?>
+                                <a class="button button--secondary" href="<?= e($resolvedLink); ?>" <?= $isPdfLink ? 'target="_blank" rel="noopener"' : ''; ?>>Open</a>
                             <?php endif; ?>
                         </article>
                     <?php endforeach; ?>

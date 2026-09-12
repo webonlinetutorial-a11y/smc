@@ -1,9 +1,9 @@
 <?php
-$standardAirCylinderUrl = '/automation-air-cylinders-standard-air-cylinders-square-cover.php';
-$compactAirCylinderUrl = '/automation-air-cylinders-compact-air-cylinders.php';
-$isoCylinderUrl = '/automation-air-cylinders-iso-cylinders.php';
-$airGripperUrl = '/automation-air-cylinders-air-gripper.php';
-$autoSwitchUrl = '/automation-air-cylinders-auto-switch.php';
+$standardAirCylinderUrl = '/category.php?category=standard-air-cylinders-square-cover';
+$compactAirCylinderUrl = '/category.php?category=compact-air-cylinders';
+$isoCylinderUrl = '/category.php?category=iso-cylinders';
+$airGripperUrl = '/category.php?category=air-gripper';
+$autoSwitchUrl = '/category.php?category=auto-switch';
 
 $categorySidebar = automationSidebarCategories('air-cylinders');
 

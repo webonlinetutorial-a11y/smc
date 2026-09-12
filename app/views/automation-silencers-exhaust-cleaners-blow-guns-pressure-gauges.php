@@ -1,6 +1,6 @@
 <?php
-$silencersUrl = '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php';
-$blowGunsUrl = '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php';
+$silencersUrl = '/category.php?category=silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers';
+$blowGunsUrl = '/category.php?category=silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns';
 
 $categorySidebar = automationSidebarCategories('silencers-exhaust');
 

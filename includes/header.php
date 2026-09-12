@@ -7,9 +7,7 @@
     </div>
     <div class="container site-header__inner">
         <a class="site-logo" href="<?= e(appUrl('/')); ?>" aria-label="<?= e(configValue('app.name', 'Nepack Website')); ?> home">
-            <strong>B</strong>
-            <span>Bharat Mill</span>
-            <small>Industrial Automation</small>
+            <img src="<?= e(assetUrl('images/logo.png')); ?>" alt="<?= e(configValue('app.name', 'Nepack Website')); ?>">
         </a>
         <?php require INCLUDES_PATH . DIRECTORY_SEPARATOR . 'navbar.php'; ?>
     </div>

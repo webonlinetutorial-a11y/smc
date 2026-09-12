@@ -28,7 +28,7 @@
             'thread' => ['label' => 'Thread', 'dataKey' => 'thread'],
             'threadType' => ['label' => 'Thread Type', 'dataKey' => 'thread-type'],
             'tubeOd' => ['label' => 'Tube OD (mm)', 'dataKey' => 'tube-od'],
-            'tubeOdSecondary' => ['label' => 'Tube OD (mm)', 'dataKey' => 'tube-od-secondary'],
+            'tubeOdSecondary' => ['label' => 'Tube OD 2 (mm)', 'dataKey' => 'tube-od-secondary'],
             'voltage' => ['label' => 'Voltage', 'dataKey' => 'voltage'],
             'ratedVoltage' => ['label' => 'Rated Voltage', 'dataKey' => 'rated-voltage'],
             'noOfStations' => ['label' => 'No. of Stations', 'dataKey' => 'no-of-stations'],
@@ -119,12 +119,22 @@
                                 $actionUrl .= '?message=' . rawurlencode($enquiryMessage);
                             }
 
-                            $isAbsoluteUrl = (bool) preg_match('/^https?:\/\//i', $actionUrl);
-                            $opensInNewTab = str_ends_with(strtolower(parse_url($actionUrl, PHP_URL_PATH) ?? ''), '.pdf');
+                            $isAbsoluteUrl = isExternalUrl($actionUrl);
+                            $isPdfAction = str_ends_with(strtolower(parse_url($actionUrl, PHP_URL_PATH) ?? ''), '.pdf');
+                            $opensInNewTab = $isPdfAction;
+                            $resolvedActionUrl = ($isVideoAction || $isAbsoluteUrl) ? $actionUrl : appUrl($actionUrl);
+
+                            // View in-browser instead of force-downloading (GitHub Releases
+                            // always send the file as an attachment regardless of our link's
+                            // target/rel attributes; other hosts like jsDelivr don't have
+                            // this problem and are left to open natively).
+                            if ($isPdfAction && forcesPdfDownload($resolvedActionUrl)) {
+                                $resolvedActionUrl = pdfPreviewUrl($resolvedActionUrl);
+                            }
                             ?>
                             <a
                                 class="product-detail-action"
-                                href="<?= e(($isVideoAction || $isAbsoluteUrl) ? $actionUrl : appUrl($actionUrl)); ?>"
+                                href="<?= e($resolvedActionUrl); ?>"
                                 <?= $opensInNewTab ? 'target="_blank" rel="noopener"' : ''; ?>
                                 <?= $isVideoAction ? 'data-product-video-url="' . e($action['videoUrl']) . '"' : ''; ?>
                                 <?= $action['label'] === 'Product Enquiry' ? 'data-enquiry-trigger data-enquiry-product="' . e($productDetail['title']) . '"' : ''; ?>

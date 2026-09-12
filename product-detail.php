@@ -7,6 +7,16 @@ $productDetail = findProductDetail($productSlug);
 $siteName = (string) configValue('app.name', 'Nepack Website');
 
 if ($productDetail === null) {
+    // Not (or no longer) in the static catalogue — if it's a real CMS product, send
+    // old bookmarks/search results to its CMS-backed page instead of 404ing, the same
+    // way legacy static category URLs redirect to category.php.
+    $cmsProduct = (new PublicContentService())->publishedProductBySlug($productSlug);
+
+    if ($cmsProduct !== null) {
+        header('Location: ' . appUrl('/product.php?slug=' . rawurlencode($cmsProduct['slug'])), true, 301);
+        exit;
+    }
+
     http_response_code(404);
 
     renderView('public/product-detail', [

@@ -22,8 +22,10 @@ if ($query !== '' && mb_strlen($query) >= 2) {
         ];
     }
 
-    // Tier 1 & 2: categories and their items
-    foreach (automationCategoryDefinitions() as $category) {
+    // Tier 1 & 2: categories and their items. Merges the static automation-*.php
+    // categories with CMS-backed ones (e.g. Electric Actuators) so a category/product
+    // added purely through the admin CMS still shows up in search.
+    foreach (array_merge(automationCategoryDefinitions(), cmsAutomationCategoryDefinitions()) as $category) {
         $categoryTitle = $category['title'] ?? '';
         $categoryUrl = $category['url'] ?? '';
 
@@ -32,24 +34,26 @@ if ($query !== '' && mb_strlen($query) >= 2) {
                 'tier' => 1,
                 'title' => $categoryTitle,
                 'category' => 'Automation',
-                'image' => isset($category['image']) ? assetUrl('images/' . $category['image']) : '',
+                'image' => isset($category['image']) ? automationImageUrl($category['image']) : '',
                 'url' => appUrl($categoryUrl),
             ];
         }
 
         foreach ($category['items'] ?? [] as $item) {
-            if (mb_strpos(mb_strtolower($item), $needle) === false) {
+            [$itemLabel, $itemUrl] = automationMenuItemParts($item, $categoryUrl);
+
+            if ($itemLabel === '' || mb_strpos(mb_strtolower($itemLabel), $needle) === false) {
                 continue;
             }
 
-            $itemImage = automationItemIntroImages()[$categoryUrl][$item] ?? $category['image'] ?? null;
+            $itemImage = automationItemIntroImages()[$categoryUrl][$itemLabel] ?? $category['image'] ?? null;
 
             $candidates[] = [
                 'tier' => 2,
-                'title' => $item,
+                'title' => $itemLabel,
                 'category' => $categoryTitle,
-                'image' => $itemImage !== null ? assetUrl('images/' . $itemImage) : '',
-                'url' => appUrl(automationSidebarItemUrl($item, $categoryUrl)),
+                'image' => $itemImage !== null ? automationImageUrl($itemImage) : '',
+                'url' => appUrl($itemUrl),
             ];
         }
     }

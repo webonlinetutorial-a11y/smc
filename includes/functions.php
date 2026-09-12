@@ -67,6 +67,32 @@ function configValue(string $key, mixed $default = null): mixed
     return $value;
 }
 
+function isExternalUrl(string $path): bool
+{
+    return (bool) preg_match('/^https?:\/\//i', $path);
+}
+
+// GitHub Release assets are always served with a server-side
+// Content-Disposition: attachment (and Content-Type: application/octet-stream)
+// baked into the signed download URL, which forces a download no matter what
+// target/rel attributes our link uses. Files linked via jsDelivr's GitHub CDN
+// (or most other plain file hosts) don't have this problem and should open
+// natively, so this only flags the specific hosts known to force a download.
+function forcesPdfDownload(string $url): bool
+{
+    $host = parse_url($url, PHP_URL_HOST) ?: '';
+
+    return $host === 'github.com' && str_contains($url, '/releases/download/');
+}
+
+// Routes a force-downloading PDF URL through Google's viewer instead, which
+// opens it as a normal web page (with its own download button) rather than
+// triggering an immediate download.
+function pdfPreviewUrl(string $url): string
+{
+    return 'https://docs.google.com/viewer?url=' . rawurlencode($url);
+}
+
 function assetUrl(string $path): string
 {
     $normalizedPath = str_replace('\\', '/', ltrim($path, '/'));

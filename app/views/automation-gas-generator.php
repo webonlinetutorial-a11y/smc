@@ -1,5 +1,5 @@
 <?php
-$gasGeneratorUrl = '/automation-gas-generator-membrane-nitrogen-generator.php';
+$gasGeneratorUrl = '/category.php?category=gas-generator-membrane-nitrogen-generator';
 
 $categorySidebar = automationSidebarCategories('gas-generator');
 

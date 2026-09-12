@@ -1,5 +1,5 @@
 <?php
-$processValveSolenoidUrl = '/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php';
+$processValveSolenoidUrl = '/category.php?category=process-valves-2-3-port-solenoid-valves-air-operated-valves';
 
 $categorySidebar = automationSidebarCategories('process-valves');
 

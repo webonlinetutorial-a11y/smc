@@ -22,7 +22,7 @@
 
 ## 1. Introduction
 
-This document defines the step-by-step process for adding a new product to the live Nepack Website (Bharat Mill), covering both supported approaches: a CMS-managed product entry, and a fully custom static product detail page.
+This document defines the step-by-step process for adding a new product to the live Nepack Website (Indian Mill Stores), covering both supported approaches: a CMS-managed product entry, and a fully custom static product detail page.
 
 ## 2. Two Ways to Add a Product
 

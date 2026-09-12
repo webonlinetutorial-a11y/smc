@@ -1,7 +1,7 @@
 <?php
-$electroPneumaticRegulatorsUrl = '/automation-pressure-control-equipment-electro-automatic-regulators.php';
-$regulatorsUrl = '/automation-pressure-control-equipment-regulators.php';
-$boosterRegulatorsUrl = '/automation-pressure-control-equipment-booster-regulators.php';
+$electroPneumaticRegulatorsUrl = '/category.php?category=pressure-control-equipment-electro-automatic-regulators';
+$regulatorsUrl = '/category.php?category=pressure-control-equipment-regulators';
+$boosterRegulatorsUrl = '/category.php?category=pressure-control-equipment-booster-regulators';
 
 $categorySidebar = automationSidebarCategories('pressure-control-equipment');
 

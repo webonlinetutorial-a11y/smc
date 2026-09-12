@@ -69,6 +69,7 @@
                             <th>Type</th>
                             <th>Size</th>
                             <th>Uploaded</th>
+                            <th>Path (paste this into Image Path)</th>
                             <th>File</th>
                         </tr>
                     </thead>
@@ -80,6 +81,10 @@
                                 <td><?= e(strtoupper((string) $mediaFile['file_type'])); ?></td>
                                 <td><?= e(formatFileSize((int) $mediaFile['file_size'])); ?></td>
                                 <td><?= e(date('M j, Y', strtotime((string) $mediaFile['created_at']))); ?></td>
+                                <td class="admin-media-path">
+                                    <input type="text" class="admin-media-path__input" value="<?= e($mediaFile['relative_path']); ?>" readonly onclick="this.select()">
+                                    <button type="button" class="admin-button admin-button-secondary" data-copy-path>Copy</button>
+                                </td>
                                 <td><a href="<?= e(appUrl($mediaFile['relative_path'])); ?>" target="_blank" rel="noopener">Open</a></td>
                             </tr>
                         <?php endforeach; ?>

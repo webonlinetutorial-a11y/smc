@@ -1,6 +1,6 @@
 <?php
-$electricActuatorUrl = '/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php';
-$electricActuatorEqfshUrl = '/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller.php';
+$electricActuatorUrl = '/category.php?category=electric-actuators-mounting-kit-for-multi-axis-system-lea-series';
+$electricActuatorEqfshUrl = '/category.php?category=electric-actuators-e-actuator-easy-to-operate-integrated-controller';
 
 $categorySidebar = automationSidebarCategories('electric-actuators');
 
@@ -32,7 +32,7 @@ $electricActuatorProducts = [
                 <p>SMC Electric Actuator Manufacturer in India – Advanced Automation Solutions. As a leading electric actuator manufacturer in India, SMC provides cutting‑edge motion control solutions designed to meet the growing demands of Indian manufacturing and automation industries. SMC is widely recognized as a reliable electric actuator cylinder manufacturer, offering compact and energy‑efficient designs.</p>
             </div>
             <div class="automation-intro__image">
-                <img src="<?= e(assetUrl('images/Electric-Actuators.jpg')); ?>" alt="SMC electric actuators" loading="eager">
+                <img src="<?= e(assetUrl('images/Electric-Actuators.webp')); ?>" alt="SMC electric actuators" loading="eager">
             </div>
         </section>
 

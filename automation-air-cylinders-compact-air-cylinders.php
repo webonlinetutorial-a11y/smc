@@ -2,14 +2,9 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-air-cylinders-compact-air-cylinders', [
-    'title' => 'Compact Air Cylinders | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC Compact Air Cylinders for tight installations and reliable motion in minimal space.',
-    'canonicalUrl' => appUrl('/automation-air-cylinders-compact-air-cylinders.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Air Cylinders', 'path' => '/automation-air-cylinders.php'],
-        ['label' => 'Compact Air Cylinders'],
-    ],
-]);
+// Compact Air Cylinders is now a CMS-backed category (slug "compact-air-cylinders"), so
+// this legacy static URL delegates to category.php instead of rendering its own
+// hardcoded content, keeping old bookmarks/search results working without duplicating
+// the category.php logic.
+$_GET['category'] = 'compact-air-cylinders';
+require __DIR__ . '/category.php';

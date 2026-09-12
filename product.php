@@ -10,7 +10,7 @@ if ($product === null) {
     http_response_code(404);
 
     renderView('public/cms-product-detail', [
-        'title' => 'Product Not Found | ' . configValue('app.name', 'Bharat Mill Website'),
+        'title' => 'Product Not Found | ' . configValue('app.name', 'Indian Mill Stores Website'),
         'metaDescription' => 'The requested product could not be found.',
         'canonicalUrl' => appUrl('/product.php'),
         'product' => null,
@@ -46,7 +46,11 @@ if ($category !== null) {
     }
 }
 
-$breadcrumbs[] = ['label' => $product['name']];
+$productDisplayTitle = trim((string) ($product['card_detail_heading'] ?? '')) !== ''
+    ? $product['card_detail_heading']
+    : $product['name'];
+
+$breadcrumbs[] = ['label' => $productDisplayTitle];
 
 $images = $content->activeProductImages((int) $product['id']);
 
@@ -57,9 +61,18 @@ if (trim((string) ($product['image_path'] ?? '')) !== '') {
     ]);
 }
 
+$cardDetailImagePath = trim((string) ($product['card_detail_image_path'] ?? ''));
+
+if ($cardDetailImagePath !== '') {
+    array_unshift($images, [
+        'image_path' => $cardDetailImagePath,
+        'alt_text' => $productDisplayTitle,
+    ]);
+}
+
 renderView('public/cms-product-detail', [
-    'title' => $product['name'] . ' | ' . configValue('app.name', 'Bharat Mill Website'),
-    'metaDescription' => $product['short_description'] ?: ('Explore ' . $product['name'] . ' from Bharat Mill.'),
+    'title' => $productDisplayTitle . ' | ' . configValue('app.name', 'Indian Mill Stores Website'),
+    'metaDescription' => $product['short_description'] ?: ('Explore ' . $product['name'] . ' from Indian Mill Stores.'),
     'canonicalUrl' => appUrl('/product.php?slug=' . $product['slug']),
     'product' => $product,
     'images' => $images,

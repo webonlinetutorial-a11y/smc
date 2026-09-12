@@ -2,13 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-air-cylinders', [
-    'title' => 'Air Cylinders | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC Air Cylinders for reliable pneumatic linear motion in industrial automation applications.',
-    'canonicalUrl' => appUrl('/automation-air-cylinders.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Air Cylinders'],
-    ],
-]);
+// This category is now CMS-backed (slug "air-cylinders"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'air-cylinders';
+require __DIR__ . '/category.php';

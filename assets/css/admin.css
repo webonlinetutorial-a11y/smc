@@ -303,7 +303,7 @@ body.admin-shell {
 }
 
 .admin-form label {
-    display: grid;
+    /* display: grid; */
     gap: 7px;
     color: #344153;
     font-size: 14px;
@@ -313,6 +313,7 @@ body.admin-shell {
 .admin-form input,
 .admin-form select,
 .admin-form textarea {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px 12px;
     color: #202b36;
@@ -389,6 +390,24 @@ body.admin-shell {
 
 .admin-media-panel {
     margin-top: 22px;
+}
+
+.admin-media-path {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 220px;
+}
+
+.admin-media-path__input {
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    padding: 5px 8px;
+    border: 1px solid #d7dde5;
+    border-radius: 4px;
+    background: #f7f9fb;
+    color: #384454;
 }
 
 .admin-footer {

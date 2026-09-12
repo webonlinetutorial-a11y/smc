@@ -13,16 +13,25 @@
         <?php
         $galleryImages = $images ?? [];
         $primaryImage = $galleryImages[0] ?? null;
+        $productDisplayTitle = trim((string) ($product['card_detail_heading'] ?? '')) !== ''
+            ? $product['card_detail_heading']
+            : $product['name'];
         $featureLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($product['features'] ?? '')))));
         $partNumberRows = $partNumberRows ?? [];
 
         $partSpecDefinitions = $partNumberSpecDefinitions ?? [];
         $availablePartSpecs = [];
 
-        foreach ($partSpecDefinitions as $specKey => $specDefinition) {
+        // A spec column (spec1/spec2) can appear either because the product has a
+        // Column Heading configured for it, or because a row supplies its own
+        // "Label: value" override with no Column Heading set at all — so this
+        // scans every row's actual keys rather than only the configured headings,
+        // falling back to a blank/global label when no per-row override exists.
+        foreach (['spec1', 'spec2'] as $specKey) {
             foreach ($partNumberRows as $part) {
                 if (($part[$specKey] ?? '') !== '') {
-                    $availablePartSpecs[$specKey] = $specDefinition;
+                    $fallbackLabel = $part[$specKey . 'Label'] ?? $specKey;
+                    $availablePartSpecs[$specKey] = $partSpecDefinitions[$specKey] ?? ['label' => $fallbackLabel, 'dataKey' => $specKey];
                     break;
                 }
             }
@@ -60,16 +69,28 @@
                 </div>
 
                 <div class="product-detail-hero__content">
-                    <div class="product-detail-title-row">
-                        <h1 id="product-detail-title"><?= e($product['name']); ?></h1>
+                    <div class="product-detail-title-row<?= !empty($product['is_new']) ? ' has-new-ribbon' : ''; ?>">
+                        <h1 id="product-detail-title"><?= e($productDisplayTitle); ?></h1>
                     </div>
 
                     <?php if (($product['product_line'] ?? '') !== ''): ?>
                         <p class="product-detail-hero__summary"><?= e($product['product_line']); ?></p>
                     <?php endif; ?>
 
-                    <?php if (($product['short_description'] ?? '') !== ''): ?>
-                        <p class="product-detail-hero__summary"><?= e($product['short_description']); ?></p>
+                    <?php
+                    $heroSummary = trim((string) ($product['detailed_description'] ?? '')) !== ''
+                        ? $product['detailed_description']
+                        : ($product['short_description'] ?? '');
+                    $heroSummaryLines = array_values(array_filter(array_map('trim', explode("\n", (string) $heroSummary))));
+                    ?>
+                    <?php if (count($heroSummaryLines) > 1): ?>
+                        <ul class="product-detail-hero__summary-bullets">
+                            <?php foreach ($heroSummaryLines as $heroSummaryLine): ?>
+                                <li><?= e($heroSummaryLine); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php elseif ($heroSummaryLines !== []): ?>
+                        <p class="product-detail-hero__summary"><?= e($heroSummaryLines[0]); ?></p>
                     <?php endif; ?>
 
                     <?php if ($featureLines !== []): ?>
@@ -82,7 +103,18 @@
 
                     <div class="product-detail-actions" aria-label="Product actions">
                         <?php if (($product['catalog_url'] ?? '') !== ''): ?>
-                            <a class="product-detail-action" href="<?= e($product['catalog_url']); ?>" target="_blank" rel="noopener">
+                            <?php
+                            $catalogUrl = (string) $product['catalog_url'];
+
+                            // View in-browser instead of force-downloading (GitHub Releases
+                            // always send the file as an attachment regardless of our link's
+                            // target/rel attributes; other hosts like jsDelivr don't have
+                            // this problem and are left to open natively).
+                            if (forcesPdfDownload($catalogUrl)) {
+                                $catalogUrl = pdfPreviewUrl($catalogUrl);
+                            }
+                            ?>
+                            <a class="product-detail-action" href="<?= e($catalogUrl); ?>" target="_blank" rel="noopener">
                                 <span>Catalog</span>
                                 <?= lucideIcon('file-text'); ?>
                             </a>
@@ -156,7 +188,10 @@
                                 $specValue = (string) ($part[$specKey] ?? '');
                                 if ($specValue !== '') {
                                     $partSpecs[] = [
-                                        'label' => $specDefinition['label'],
+                                        // A row can override the product's default column heading by
+                                        // prefixing its value with "Label: " in the Part Numbers field
+                                        // (e.g. "Nozzle Diameter: Φ1.5"), so each row can show its own heading.
+                                        'label' => $part[$specKey . 'Label'] ?? $specDefinition['label'],
                                         'value' => $specValue,
                                     ];
                                 }

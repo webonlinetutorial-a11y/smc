@@ -7,6 +7,7 @@ $productSlug = sanitizeSlug($_GET['product'] ?? '');
 $dynamicTitle = 'Products | ' . configValue('app.name', 'Nepack Website');
 $dynamicDescription = 'Explore Nepack industrial automation product categories.';
 $canonicalUrl = appUrl('/products.php');
+$embeddedCmsCategorySlugs = automationEmbeddedCmsCategorySlugs();
 
 if ($productSlug !== '') {
     foreach ($content->publishedProducts() as $product) {
@@ -29,6 +30,8 @@ renderView('products', [
         ['label' => 'Home', 'path' => '/'],
         ['label' => 'Products'],
     ],
-    'cmsProducts' => $content->publishedProducts(),
-    'cmsCategories' => $content->topLevelCategories(),
+    'cmsCategories' => array_values(array_filter(
+        $content->topLevelCategories(),
+        static fn (array $category): bool => !isset($embeddedCmsCategorySlugs[$category['slug']])
+    )),
 ]);

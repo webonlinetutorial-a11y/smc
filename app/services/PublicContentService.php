@@ -135,17 +135,35 @@ class PublicContentService extends BaseService
             ];
 
             if (($segments[1] ?? '') !== '') {
-                $row['spec1'] = $segments[1];
+                [$row['spec1'], $row['spec1Label']] = $this->splitPartNumberSpecSegment($segments[1]);
             }
 
             if (($segments[2] ?? '') !== '') {
-                $row['spec2'] = $segments[2];
+                [$row['spec2'], $row['spec2Label']] = $this->splitPartNumberSpecSegment($segments[2]);
             }
 
             $rows[] = $row;
         }
 
         return $rows;
+    }
+
+    /**
+     * Splits a "Label: Value" spec segment into its value and an optional
+     * row-specific label override. A segment with no colon (or one that looks
+     * like a plain value, e.g. a fraction such as `1/4"`) is returned as-is
+     * with no label override, so it falls back to the product's Part Number
+     * Column Heading.
+     *
+     * @return array{0: string, 1: ?string}
+     */
+    private function splitPartNumberSpecSegment(string $segment): array
+    {
+        if (preg_match('/^([^:]{1,60}):\s*(.+)$/', $segment, $matches) === 1) {
+            return [trim($matches[2]), trim($matches[1])];
+        }
+
+        return [$segment, null];
     }
 
     public function productPartNumberSpecDefinitions(array $product): array
@@ -167,9 +185,12 @@ class PublicContentService extends BaseService
 
     public function productDetailPayload(array $product): array
     {
-        $primaryImage = $this->productPrimaryImagePath($product);
+        $cardDetailImage = trim((string) ($product['card_detail_image_path'] ?? ''));
+        $primaryImage = $cardDetailImage !== '' ? $cardDetailImage : $this->productPrimaryImagePath($product);
 
         $actions = [];
+
+        $isNew = (bool) ($product['is_new'] ?? false);
 
         if (trim((string) ($product['part_numbers'] ?? '')) !== '') {
             $actions[] = [
@@ -200,11 +221,22 @@ class PublicContentService extends BaseService
 
         $actions[] = ['label' => 'Enquiry', 'icon' => 'circle-help'];
 
+        $detailedHeading = trim((string) ($product['card_detail_heading'] ?? ''));
+        $detailedDescription = trim((string) ($product['detailed_description'] ?? ''));
+        $description = $detailedDescription !== '' ? $detailedDescription : (string) ($product['short_description'] ?? '');
+
+        // Same "one line per bullet" convention used for Category Description and
+        // Features elsewhere: multiple lines in Card Detail Text render as a bullet
+        // list on the expanded bottom card, a single line stays a plain paragraph.
+        $descriptionLines = array_values(array_filter(array_map('trim', explode("\n", $description))));
+
         return [
-            'title' => $product['name'],
+            'title' => $detailedHeading !== '' ? $detailedHeading : $product['name'],
             'image' => $primaryImage !== '' ? assetUrl($primaryImage) : '',
-            'description' => (string) ($product['short_description'] ?? ''),
+            'description' => $descriptionLines[0] ?? '',
+            'descriptionItems' => count($descriptionLines) > 1 ? $descriptionLines : [],
             'url' => appUrl('/product.php?slug=' . $product['slug']),
+            'isNew' => $isNew,
             'actions' => $actions,
         ];
     }
@@ -246,6 +278,7 @@ class PublicContentService extends BaseService
                     'name' => $product['name'],
                     'short_description' => (string) ($product['short_description'] ?? ''),
                     'imagePath' => $this->productPrimaryImagePath($product),
+                    'isNew' => (bool) ($product['is_new'] ?? false),
                 ],
             ];
             $details[$product['slug']] = $this->productDetailPayload($product);
@@ -275,6 +308,7 @@ class PublicContentService extends BaseService
                                 'name' => $product['name'],
                                 'short_description' => (string) ($product['short_description'] ?? ''),
                                 'imagePath' => $this->productPrimaryImagePath($product),
+                                'isNew' => (bool) ($product['is_new'] ?? false),
                             ],
                         ];
                         $details[$product['slug']] = $this->productDetailPayload($product);

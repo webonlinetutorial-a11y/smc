@@ -2,14 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers', [
-    'title' => 'Silencers | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC silencers for reducing exhaust noise and improving workplace safety.',
-    'canonicalUrl' => appUrl('/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Silencers/Exhaust Cleaners/Pressure Gauges/Blow Guns', 'path' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
-        ['label' => 'Silencers'],
-    ],
-]);
+// This category is now CMS-backed (slug "silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers';
+require __DIR__ . '/category.php';

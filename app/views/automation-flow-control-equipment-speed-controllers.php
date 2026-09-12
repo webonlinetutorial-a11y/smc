@@ -1,6 +1,6 @@
 <?php
-$speedControllersUrl = '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php';
-$remoteControlValveUrl = '/automation-flow-control-equipment-speed-controllers-remote-control-valve.php';
+$speedControllersUrl = '/category.php?category=flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes';
+$remoteControlValveUrl = '/category.php?category=flow-control-equipment-speed-controllers-remote-control-valve';
 
 $categorySidebar = automationSidebarCategories('flow-control-equipment');
 

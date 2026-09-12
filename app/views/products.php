@@ -1,6 +1,6 @@
 <section class="products-video-hero" aria-label="Products video banner">
     <video autoplay muted loop playsinline preload="metadata">
-        <source src="<?= e(assetUrl('videos/Smc-Corporate-Video.mp4')); ?>" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/webonlinetutorial-a11y/smc/3123fd19e1640f7ea81026a399bfb07740799ab5/assets/videos/Smc-Corporate-Video.mp4" type="video/mp4">
     </video>
 </section>
 
@@ -14,33 +14,7 @@
             </div>
 
             <div class="product-category-list" aria-label="Product categories">
-                <?php foreach ([
-                    ['Air Cylinders', 'Linear motion for precise and reliable operation', 'air-cylinder.webp', '/automation-air-cylinders.php'],
-                    ['Directional Control Valves', 'Control airflow direction for efficient automation', 'Direction-control-valves.webp', '/automation-directional-control-valves.php'],
-                    ['Pressure Control Equipment', 'Maintain optimal system pressure', 'pressure-control-equipment.webp', '/automation-pressure-control-equipment.php'],
-                    ['Modular FRL Units', 'Air preparation in a compact design', 'modular-frl-unit.webp', '/automation-modular-f.r.l.-units-.php'],
-                    ['Switches / Sensors', 'Accurate position and presence detection', 'Switches-sensors.webp', '/automation-switches-sensors-controller-.php'],
-                    ['Flow Control Equipment', 'Precise flow regulation', 'flow-control-equipment.webp', '/automation-flow-control-equipment-speed-controllers.php'],
-                    ['Vacuum Equipment', 'Reliable vacuum generation and handling', 'Vacuum-Equipment.webp', '/automation-vacuum-equipment-vacuum-ejectors-.php'],
-                    ['Process Valves', 'Accurate control for process applications', 'Process-Valves.webp', '/automation-process-valves.php'],
-                    ['Air Preparation Equipment', 'Clean, dry and regulated air supply', 'air-preparation-equipment.webp', '/automation-air-preparation-equipment.php'],
-                    ['Silencers / Exhaust', 'Noise reduction for quiet operation', 'Silencer-Exhaust.webp', '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php'],
-                    ['Fittings & Tubings', 'Secure connections and flexible routing', 'Fittings-Tubings.webp', '/automation-fittings-tubings.php'],
-                    ['Electric Actuators', 'SMC Electric Actuator Manufacturer in India – Advanced Automation Solutions. As a leading electri...', 'Electric-Actuators.jpg', '/automation-electric-actuators.php'],
-                    ['Gas Generator', 'Generate 99.9%+ high-purity nitrogen on-site with the Membrane Nitrogen Generator (NMG) using only compressed air....', 'Gas-Generator/Gas-generator-245.webp', '/automation-gas-generator.php'],
-                ] as $category): ?>
-                    <a class="product-category-card" href="<?= e(appUrl($category[3])); ?>">
-                        <span class="product-category-card__image">
-                            <img src="<?= e(assetUrl('images/' . $category[2])); ?>" alt="<?= e($category[0]); ?>" loading="lazy">
-                        </span>
-                        <span class="product-category-card__body">
-                            <strong><?= e($category[0]); ?></strong>
-                            <span><?= e($category[1]); ?></span>
-                            <small>Explore <?= lucideIcon('arrow-right'); ?></small>
-                        </span>
-                    </a>
-                <?php endforeach; ?>
-
+                <?php // Every automation category is now fully CMS-backed — see automationCategoryDefinitions() in automation_catalog_helper.php. ?>
                 <?php foreach ($cmsCategories ?? [] as $cmsCategory): ?>
                     <?php
                     $cmsCategoryDescLines = array_values(array_filter(array_map('trim', explode("\n", (string) ($cmsCategory['description'] ?? '')))));
@@ -86,12 +60,12 @@
 
             <div class="new-products-list" aria-label="New products">
                 <?php foreach ([
-                    ['Mounting Kit for Multi-Axis System - LCA Series', 'Compatible actuator for X, Y axis', 'Mounting-Kit-400-removebg-preview.webp', 'mounting-kit-for-multi-axis-system-lca-series', '/product-detail.php?product=mounting-kit-for-multi-axis-system-lea-series'],
-                    ['Residual Pressure Release Valve', 'Can be connected to F.R.L. units (LAC O series). Allows for precise early and...', 'Residual-Pressure-VP346-400.webp', 'residual-pressure-release-valve', '/product-detail.php?product=residual-pressure-release-valve'],
-                    ['Pulse Blow Unit PU Series', 'Intermittent pulse blow improves removal efficiency of dust and particles.', 'Pulse-Blow-Unit-PU-Series.webp', 'pulse-blow-unit-pu-series', '/product-detail.php?product=air-blowing-equipment'],
-                    ['Membrane Nitrogen Generator', 'Nitrogen enriched air purification is easily possible with only a compressed air supply.', 'Membrane-Nitrogen-Generator.webp', 'membrane-nitrogen-generator', '/product-detail.php?product=membrane-nitrogen-generator'],
-                    ['Slider Type/Rod Type/Guide Rod Type EQF Series', 'Easy to set up, built to outperform. Simplified operation.', 'Slider-Type-Guide-Rod.webp', 'slider-type-rod-type-guide-rod-type-eqf-series', '/product-detail.php?product=slider-type-rod-type-guide-rod-type-eqfsh-series'],
-                    ['Remote Control Valve (Electric Speed Controller)', 'Speed controlled regulation of turntable control for "scientific control".', 'Remote-Control-Valve.webp', 'remote-control-valve-electric-speed-controller', '/product-detail.php?product=remote-control-valve'],
+                    ['Mounting Kit for Multi-Axis System - LCA Series', 'Compatible actuator for X, Y axis', 'Mounting-Kit-400-removebg-preview.webp', 'mounting-kit-for-multi-axis-system-lca-series', '/product.php?slug=mounting-kit-for-multi-axis-system-lea-series'],
+                    ['Residual Pressure Release Valve', 'Can be connected to F.R.L. units (LAC O series). Allows for precise early and...', 'Residual-Pressure-VP346-400.webp', 'residual-pressure-release-valve', '/product.php?slug=residual-pressure-release-valve'],
+                    ['Pulse Blow Unit PU Series', 'Intermittent pulse blow improves removal efficiency of dust and particles.', 'Pulse-Blow-Unit-PU-Series.webp', 'pulse-blow-unit-pu-series', '/product.php?slug=air-blowing-equipment'],
+                    ['Membrane Nitrogen Generator', 'Nitrogen enriched air purification is easily possible with only a compressed air supply.', 'Membrane-Nitrogen-Generator.webp', 'membrane-nitrogen-generator', '/product.php?slug=membrane-nitrogen-generator'],
+                    ['Slider Type/Rod Type/Guide Rod Type EQF Series', 'Easy to set up, built to outperform. Simplified operation.', 'Slider-Type-Guide-Rod.webp', 'slider-type-rod-type-guide-rod-type-eqf-series', '/product.php?slug=e-actuator-easy-to-operate-integrated-controller'],
+                    ['Remote Control Valve (Electric Speed Controller)', 'Speed controlled regulation of turntable control for "scientific control".', 'Remote-Control-Valve.webp', 'remote-control-valve-electric-speed-controller', '/product.php?slug=remote-control-valve'],
                 ] as $product): ?>
                     <article class="new-product-card">
                         <div class="new-product-card__media">
@@ -144,27 +118,6 @@
             </div>
         </div>
     </section>
-
-    <?php if (($cmsProducts ?? []) !== []): ?>
-        <section class="section">
-            <div class="container content-shell">
-                <div class="section-heading section-heading--tight">
-                    <h2>CMS Products</h2>
-                </div>
-                <div class="cms-listing-grid">
-                    <?php foreach ($cmsProducts as $product): ?>
-                        <article class="cms-listing-card">
-                            <h3><?= e($product['name']); ?></h3>
-                            <?php if (($product['short_description'] ?? '') !== ''): ?>
-                                <p><?= e(mb_strimwidth((string) $product['short_description'], 0, 180, '...')); ?></p>
-                            <?php endif; ?>
-                            <a class="button button--secondary" href="<?= e(appUrl('/contact-us.php?product=' . $product['slug'])); ?>" data-enquiry-trigger data-enquiry-product="<?= e($product['name']); ?>">Send Query</a>
-                        </article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </section>
-    <?php endif; ?>
 
     <section class="section industry-section">
         <div class="container">

@@ -2,14 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-air-preparation-equipment-air-preparation-filters', [
-    'title' => 'Air Preparation Filters | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC air preparation filters for removing dust, oil, and moisture from compressed air.',
-    'canonicalUrl' => appUrl('/automation-air-preparation-equipment-air-preparation-filters.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Air Preparation Equipment', 'path' => '/automation-air-preparation-equipment.php'],
-        ['label' => 'Air Preparation Filters'],
-    ],
-]);
+// This category is now CMS-backed (slug "air-preparation-equipment-air-preparation-filters"), so this legacy static URL
+// delegates to category.php instead of rendering its own hardcoded content, keeping old
+// bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'air-preparation-equipment-air-preparation-filters';
+require __DIR__ . '/category.php';

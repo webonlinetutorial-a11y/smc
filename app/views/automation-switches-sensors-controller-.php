@@ -1,6 +1,6 @@
 <?php
-$flowSwitchUrl = '/automation-switches-sensors-controller-flow-switch.php';
-$digitalPressureSwitchUrl = '/automation-switches-sensors-controller-digital-pressure-switch.php';
+$flowSwitchUrl = '/category.php?category=switches-sensors-controller-flow-switch';
+$digitalPressureSwitchUrl = '/category.php?category=switches-sensors-controller-digital-pressure-switch';
 
 $categorySidebar = automationSidebarCategories('switches-sensors');
 

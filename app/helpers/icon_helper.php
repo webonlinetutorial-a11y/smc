@@ -28,6 +28,8 @@ function lucideIcon(string $name, string $className = 'lucide-icon'): string
         'shield-check' => '<path d="M20 13c0 5-3.5 7.5-7.6 8.8a1 1 0 0 1-.8 0C7.5 20.5 4 18 4 13V5l8-3 8 3Z"></path><path d="m9 12 2 2 4-4"></path>',
         'smile' => '<circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path>',
         'star' => '<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3L5.8 21 7 14.2 2 9.3l6.9-1Z"></path>',
+        'target' => '<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>',
+        'trending-up' => '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline>',
         'truck' => '<path d="M10 17h4V5H2v12h3"></path><path d="M14 8h4l4 4v5h-3"></path><circle cx="7.5" cy="17.5" r="2.5"></circle><circle cx="16.5" cy="17.5" r="2.5"></circle>',
         'user' => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
         'users' => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
@@ -39,6 +41,47 @@ function lucideIcon(string $name, string $className = 'lucide-icon'): string
     }
 
     return '<svg class="' . e($className) . '" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' . $icons[$name] . '</svg>';
+}
+
+/**
+ * A handful of mixed fill/stroke badge icons (target-with-check, a solid shield, a
+ * gear-with-trend composite, a plain handshake) used only by the homepage stats strip.
+ * These don't fit lucideIcon()'s uniform single-stroke rendering, so they're built as
+ * their own small multi-path markup instead.
+ */
+function statsStripIcon(string $name, string $className = 'lucide-icon'): string
+{
+    $icons = [
+        'precision-target' => '<circle cx="9" cy="9" r="6.6" stroke="currentColor" stroke-width="1.6"></circle>'
+            . '<circle cx="9" cy="9" r="3.7" stroke="currentColor" stroke-width="1.6"></circle>'
+            . '<circle cx="9" cy="9" r="1.2" fill="currentColor"></circle>'
+            . '<path d="M12.2 15.3 15.8 19 22 11.2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>',
+        'solid-shield-check' => '<path d="M12 2.2 20 5.4v5.7c0 5.6-3.6 9.1-8 10.7-4.4-1.6-8-5.1-8-10.7V5.4L12 2.2Z" fill="currentColor"></path>'
+            . '<path d="M8.3 12.3 11 15l4.7-5.3" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>',
+        'gear-trend' => '<g transform="translate(-1 -1) scale(0.62)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+            . '<path d="M12.2 2h-.4a2 2 0 0 0-2 1.7l-.1.7a2 2 0 0 1-1.1 1.4l-.7.4a2 2 0 0 1-1.8.1l-.7-.3a2 2 0 0 0-2.4.9l-.2.3a2 2 0 0 0 .4 2.6l.6.4a2 2 0 0 1 .7 1.6v.8a2 2 0 0 1-.7 1.6l-.6.4a2 2 0 0 0-.4 2.6l.2.3a2 2 0 0 0 2.4.9l.7-.3a2 2 0 0 1 1.8.1l.7.4a2 2 0 0 1 1.1 1.4l.1.7a2 2 0 0 0 2 1.7h.4a2 2 0 0 0 2-1.7l.1-.7a2 2 0 0 1 1.1-1.4l.7-.4a2 2 0 0 1 1.8-.1l.7.3a2 2 0 0 0 2.4-.9l.2-.3a2 2 0 0 0-.4-2.6l-.6-.4a2 2 0 0 1-.7-1.6v-.8a2 2 0 0 1 .7-1.6l.6-.4a2 2 0 0 0 .4-2.6l-.2-.3a2 2 0 0 0-2.4-.9l-.7.3a2 2 0 0 1-1.8-.1l-.7-.4a2 2 0 0 1-1.1-1.4l-.1-.7a2 2 0 0 0-2-1.7Z"></path>'
+            . '<circle cx="12" cy="12" r="3"></circle>'
+            . '</g>'
+            . '<g transform="translate(9 9) scale(0.6)" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">'
+            . '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>'
+            . '<polyline points="16 7 22 7 22 13"></polyline>'
+            . '</g>',
+        'plain-handshake' => '<path d="m11 17 2 2a1 1 0 1 0 3-3"></path>'
+            . '<path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path>'
+            . '<path d="m21 3 1 11h-2"></path>'
+            . '<path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path>'
+            . '<path d="M3 4h8"></path>',
+    ];
+
+    if (!array_key_exists($name, $icons)) {
+        return '';
+    }
+
+    $needsFill = $name === 'solid-shield-check';
+
+    return '<svg class="' . e($className) . '" aria-hidden="true" viewBox="0 0 24 24" fill="' . ($needsFill ? 'currentColor' : 'none') . '"'
+        . ($needsFill ? '' : ' stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"')
+        . '>' . $icons[$name] . '</svg>';
 }
 
 /**

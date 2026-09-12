@@ -2,13 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-pressure-control-equipment', [
-    'title' => 'Pressure Control Equipment | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC pressure control equipment including electro-pneumatic regulators, precision regulators, and booster regulators for pneumatic systems.',
-    'canonicalUrl' => appUrl('/automation-pressure-control-equipment.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Pressure Control Equipment'],
-    ],
-]);
+// This category is now CMS-backed (slug "pressure-control-equipment"), so this legacy
+// static URL delegates to category.php instead of rendering its own hardcoded content,
+// keeping old bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'pressure-control-equipment';
+require __DIR__ . '/category.php';

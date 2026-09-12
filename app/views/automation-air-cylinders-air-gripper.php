@@ -7,19 +7,28 @@ $autoSwitchUrl = '/automation-air-cylinders-auto-switch.php';
 
 $categorySidebar = automationSidebarCategories('air-cylinders');
 
+// Each entry here is a "product group" top card. Its own image/description show on the
+// top card; clicking it expands the panel below to show every product listed in
+// 'detailItems' as its own bottom card, each linking to its own final product page.
+// Add more entries to 'detailItems' to grow a group, or add more top-level array
+// entries to add another group alongside this one.
 $airGripperProducts = [
     [
-        'title' => 'Parallel Type Air Gripper',
+        'title' => 'Parallel Type Air Grippers',
         'image' => 'Air-gripper/images/Linear-Guide-Parallel-Type-Air-Gripper-MHZ2.jpg',
         'description' => 'SMC\'s parallel-type air grippers are precision devices designed for gripping workpieces with synchronized jaw motion...',
-        'slug' => 'parallel-type-air-gripper',
-        'detailTitle' => 'Linear Guide Parallel Type Air Gripper MHZ2',
-        'detailUrl' => '/product-detail.php?product=linear-guide-parallel-type-air-gripper-mhz2',
-        'detailImage' => 'Air-cylinders/Air-gripper/Parallel-Type-Air Grippers-img1.jpg',
-        'detailDescription' => 'The MHZ Series features a compact, high-rigidity design with an integrated linear guide secured by dual dowel pins to prevent...',
-        'detailActions' => [
-            ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/linear-guide-parallel-type-air-gripper-mhz2.pdf')],
-            ['label' => 'Enquiry', 'icon' => 'circle-help'],
+        'slug' => 'parallel-type-air-grippers',
+        'detailItems' => [
+            [
+                'title' => 'Linear Guide Parallel Type Air Gripper MHZ2',
+                'image' => 'Air-cylinders/Air-gripper/Parallel-Type-Air Grippers-img1.jpg',
+                'detailUrl' => '/product-detail.php?product=linear-guide-parallel-type-air-gripper-mhz2',
+                'description' => 'The MHZ Series features a compact, high-rigidity design with an integrated linear guide secured by dual dowel pins to prevent...',
+                'actions' => [
+                    ['label' => 'Catalog', 'icon' => 'file-text', 'primary' => true, 'url' => appUrl('/catalogs/linear-guide-parallel-type-air-gripper-mhz2.pdf')],
+                    ['label' => 'Enquiry', 'icon' => 'circle-help'],
+                ],
+            ],
         ],
     ],
 ];
@@ -28,11 +37,18 @@ $airGripperProductDetails = [];
 
 foreach ($airGripperProducts as $product) {
     $airGripperProductDetails[$product['slug']] = [
-        'title' => $product['detailTitle'],
-        'image' => assetUrl('images/' . ($product['detailImage'] ?? $product['image'])),
-        'url' => isset($product['detailUrl']) ? appUrl($product['detailUrl']) : '',
-        'description' => $product['detailDescription'],
-        'actions' => $product['detailActions'],
+        'items' => array_map(
+            static function (array $item): array {
+                return [
+                    'title' => $item['title'],
+                    'image' => assetUrl('images/' . $item['image']),
+                    'description' => $item['description'],
+                    'actions' => $item['actions'],
+                    'url' => isset($item['detailUrl']) ? appUrl($item['detailUrl']) : '',
+                ];
+            },
+            $product['detailItems']
+        ),
     ];
 }
 ?>

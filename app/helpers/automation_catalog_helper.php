@@ -1,5 +1,26 @@
 <?php
 
+// Resolves a category/item image value to a full asset URL. Static automation-*.php
+// definitions store a bare filename meant to live under assets/images/, so those need
+// an "images/" prefix added before calling assetUrl(). CMS-backed categories instead
+// store whatever the admin pasted into Image Path, which is already a full path rooted
+// at either assets/images/ or the Media Library's uploads/ folder — those must be passed
+// through as-is, or they'd get a wrong double "images/uploads/..." prefix.
+function automationImageUrl(string $image): string
+{
+    if ($image === '') {
+        return '';
+    }
+
+    $normalized = ltrim(str_replace('\\', '/', $image), '/');
+
+    if (str_starts_with($normalized, 'images/') || str_starts_with($normalized, 'uploads/')) {
+        return assetUrl($normalized);
+    }
+
+    return assetUrl('images/' . $normalized);
+}
+
 function automationPublicPathAliases(): array
 {
     return [
@@ -78,32 +99,32 @@ function publicPathAliases(): array
 function automationItemRoutes(): array
 {
     return [
-        'Standard Air Cylinders (Square Cover)' => '/automation-air-cylinders-standard-air-cylinders-square-cover.php',
-        'Compact Air Cylinders' => '/automation-air-cylinders-compact-air-cylinders.php',
-        'ISO Cylinders' => '/automation-air-cylinders-iso-cylinders.php',
-        'Air Gripper' => '/automation-air-cylinders-air-gripper.php',
-        'Auto Switch' => '/automation-air-cylinders-auto-switch.php',
-        'Air Preparation Filters' => '/automation-air-preparation-equipment-air-preparation-filters.php',
-        'Air Dryer' => '/automation-air-preparation-equipment-air-dryer.php',
-        'Auto Drains' => '/automation-air-preparation-equipment-auto-drains.php',
-        'Auto-Drain' => '/automation-air-preparation-equipment-auto-drains.php',
-        'Pilot Operated 4/5 Port Solenoid Valves' => '/automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves.php',
-        'Direct Operated 3/4/5 Port Solenoid Valves' => '/automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves.php',
-        'Mechanical Valves' => '/automation-directional-control-valves-mechanical-valves.php',
-        'Finger Valve/Hand Valves/Residual Relief 3 Port Valve' => '/automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve.php',
-        'Blow Guns' => '/automation-directional-control-valves-blow-guns.php',
-        'Fittings For General Purposes' => '/automation-fittings-and-tubings-fittings-for-general-purposes.php',
-        'Fittings For General Purposes(S Couplers/Multi-Connectors)' => '/automation-fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors.php',
-        'Tubing' => '/automation-fittings-and-tubings-tubing.php',
-        'Related Products' => '/automation-fittings-and-tubings-related-products.php',
-        'Speed Controllers For General Purposes' => '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php',
-        'Speed Controllers for General Purposes' => '/automation-flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes.php',
-        'Remote Control Valve' => '/automation-flow-control-equipment-speed-controllers-remote-control-valve.php',
-        'Electro-Pneumatic Regulators' => '/automation-pressure-control-equipment-electro-automatic-regulators.php',
-        'Electro Pneumatic Regulatoers' => '/automation-pressure-control-equipment-electro-automatic-regulators.php',
-        'Mounting Kit for Multi-Axis System' => '/automation-electric-actuators-mounting-kit-for-multi-axis-system-lea-series.php',
-        'e-Actuator Easy to Operate Integrated Controller' => '/automation-electric-actuators-e-actuator-easy-to-operate-integrated-controller.php',
-        'Nitrogen Gas Generator' => '/automation-gas-generator-membrane-nitrogen-generator.php',
+        'Standard Air Cylinders (Square Cover)' => '/category.php?category=standard-air-cylinders-square-cover',
+        'Compact Air Cylinders' => '/category.php?category=compact-air-cylinders',
+        'ISO Cylinders' => '/category.php?category=iso-cylinders',
+        'Air Gripper' => '/category.php?category=air-gripper',
+        'Auto Switch' => '/category.php?category=auto-switch',
+        'Air Preparation Filters' => '/category.php?category=air-preparation-equipment-air-preparation-filters',
+        'Air Dryer' => '/category.php?category=air-preparation-equipment-air-dryer',
+        'Auto Drains' => '/category.php?category=air-preparation-equipment-auto-drains',
+        'Auto-Drain' => '/category.php?category=air-preparation-equipment-auto-drains',
+        'Pilot Operated 4/5 Port Solenoid Valves' => '/category.php?category=directional-control-valves-pilot-operated-4-5-port-solenoid-valves',
+        'Direct Operated 3/4/5 Port Solenoid Valves' => '/category.php?category=directional-control-valves-direct-operated-3-4-5-port-solenoid-valves',
+        'Mechanical Valves' => '/category.php?category=directional-control-valves-mechanical-valves',
+        'Finger Valve/Hand Valves/Residual Relief 3 Port Valve' => '/category.php?category=directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve',
+        'Blow Guns' => '/category.php?category=directional-control-valves-blow-guns',
+        'Fittings For General Purposes' => '/category.php?category=fittings-and-tubings-fittings-for-general-purposes',
+        'Fittings For General Purposes(S Couplers/Multi-Connectors)' => '/category.php?category=fittings-and-tubings-fittings-for-general-purposes-s-couplers-multi-connectors',
+        'Tubing' => '/category.php?category=fittings-and-tubings-tubing',
+        'Related Products' => '/category.php?category=fittings-and-tubings-related-products',
+        'Speed Controllers For General Purposes' => '/category.php?category=flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes',
+        'Speed Controllers for General Purposes' => '/category.php?category=flow-control-equipment-speed-controllers-speed-controllers-for-general-purposes',
+        'Remote Control Valve' => '/category.php?category=flow-control-equipment-speed-controllers-remote-control-valve',
+        'Electro-Pneumatic Regulators' => '/category.php?category=pressure-control-equipment-electro-automatic-regulators',
+        'Electro Pneumatic Regulatoers' => '/category.php?category=pressure-control-equipment-electro-automatic-regulators',
+        'Mounting Kit for Multi-Axis System' => '/category.php?category=electric-actuators-mounting-kit-for-multi-axis-system-lea-series',
+        'e-Actuator Easy to Operate Integrated Controller' => '/category.php?category=electric-actuators-e-actuator-easy-to-operate-integrated-controller',
+        'Nitrogen Gas Generator' => '/category.php?category=gas-generator-membrane-nitrogen-generator',
     ];
 }
 
@@ -111,31 +132,31 @@ function automationContextItemRoutes(): array
 {
     return [
         '/automation-pressure-control-equipment.php' => [
-            'Regulators' => '/automation-pressure-control-equipment-regulators.php',
-            'Booster Regulators' => '/automation-pressure-control-equipment-booster-regulators.php',
+            'Regulators' => '/category.php?category=pressure-control-equipment-regulators',
+            'Booster Regulators' => '/category.php?category=pressure-control-equipment-booster-regulators',
         ],
         '/automation-modular-f.r.l.-units-.php' => [
-            'Modular F.R.L. Units/Air Combination' => '/automation-modular-f.r.l.-units-modular-f.r.l.-units-air-combination.php',
-            'Filter Regulators' => '/automation-modular-f.r.l.-units-filter-regulators.php',
-            'Air Filters' => '/automation-modular-f.r.l.-units-air-filters.php',
-            'Regulators' => '/automation-modular-f.r.l.-units-regulators.php',
-            'Modular F.R.L. Units AC D' => '/automation-modular-f.r.l.-units-ac-d.php',
+            'Modular F.R.L. Units/Air Combination' => '/category.php?category=modular-f-r-l--units-modular-f-r-l--units-air-combination',
+            'Filter Regulators' => '/category.php?category=modular-f-r-l--units-filter-regulators',
+            'Air Filters' => '/category.php?category=modular-f-r-l--units-air-filters',
+            'Regulators' => '/category.php?category=modular-f-r-l--units-regulators',
+            'Modular F.R.L. Units AC D' => '/category.php?category=modular-f-r-l--units-ac-d',
         ],
         '/automation-vacuum-equipment-vacuum-ejectors-.php' => [
-            'Vacuum Ejector' => '/automation-vacuum-equipment-vacuum-ejectors-vacuum-ejector.php',
-            'Vacuum Pad' => '/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad.php',
-            'Vacuum pad' => '/automation-vacuum-equipment-vacuum-ejectors-vacuum-pad.php',
+            'Vacuum Ejector' => '/category.php?category=vacuum-equipment-vacuum-ejectors-vacuum-ejector',
+            'Vacuum Pad' => '/category.php?category=vacuum-equipment-vacuum-ejectors-vacuum-pad',
+            'Vacuum pad' => '/category.php?category=vacuum-equipment-vacuum-ejectors-vacuum-pad',
         ],
         '/automation-switches-sensors-controller-.php' => [
-            'Flow Switch' => '/automation-switches-sensors-controller-flow-switch.php',
-            'Digital Pressure Switch' => '/automation-switches-sensors-controller-digital-pressure-switch.php',
+            'Flow Switch' => '/category.php?category=switches-sensors-controller-flow-switch',
+            'Digital Pressure Switch' => '/category.php?category=switches-sensors-controller-digital-pressure-switch',
         ],
         '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php' => [
-            'Silencers' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers.php',
-            'Blow Guns *Blowing Equipments' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns.php',
+            'Silencers' => '/category.php?category=silencers-exhaust-cleaners-blow-guns-pressure-gauges-silencers',
+            'Blow Guns *Blowing Equipments' => '/category.php?category=silencers-exhaust-cleaners-blow-guns-pressure-gauges-blow-guns',
         ],
         '/automation-process-valves.php' => [
-            '2/3 Port Solenoid Valves/Air Operated Valves' => '/automation-process-valves-2-3-port-solenoid-valves-air-operated-valves.php',
+            '2/3 Port Solenoid Valves/Air Operated Valves' => '/category.php?category=process-valves-2-3-port-solenoid-valves-air-operated-valves',
         ],
     ];
 }
@@ -199,7 +220,7 @@ function automationItemIntroImages(): array
             '2/3 Port Solenoid Valves/Air Operated Valves' => 'Process-Valve/Port-Solenoid-Valve/23 Port Solenoid ValvesAir Operated Valves.webp',
         ],
         '/automation-electric-actuators.php' => [
-            'Mounting Kit for Multi-Axis System' => 'Electric-Actuators.jpg',
+            'Mounting Kit for Multi-Axis System' => 'Electric-Actuators/Mounting Kit for Multi-Axis System/Mounting-Kit-400-removebg-preview - img1.webp',
             'e-Actuator Easy to Operate Integrated Controller' => 'Electric-Actuators/e-Actuator Easy to Operate Integrated Controller/EQFSHEQYH-C-C1-4.webp',
         ],
         '/automation-gas-generator.php' => [
@@ -210,129 +231,12 @@ function automationItemIntroImages(): array
 
 function automationCategoryDefinitions(): array
 {
-    return [
-        [
-            'title' => 'Air Cylinders',
-            'slug' => 'air-cylinders',
-            'url' => '/automation-air-cylinders.php',
-            'image' => 'air-cylinder.webp',
-            'description' => 'Boost motion efficiency with SMC Air Cylinders, designed for precise and reliable linear actuation.',
-            'items' => ['Standard Air Cylinders (Square Cover)', 'Compact Air Cylinders', 'ISO Cylinders', 'Air Gripper', 'Auto Switch'],
-        ],
-        [
-            'title' => 'Air Preparation Equipment',
-            'slug' => 'air-preparation-equipment',
-            'url' => '/automation-air-preparation-equipment.php',
-            'image' => 'air-preparation-equipment.webp',
-            'description' => 'Ensure optimal system performance with SMC Air Preparation Units, including air filters, pressure regulators, and lubricators.',
-            'items' => ['Air Preparation Filters', 'Air Dryer', 'Auto Drains'],
-        ],
-        [
-            'title' => 'Directional Control Valves',
-            'slug' => 'directional-control-valves',
-            'url' => '/automation-directional-control-valves.php',
-            'image' => 'Direction-control-valves.webp',
-            'description' => 'Control pneumatic systems efficiently with SMC Directional Control Valves, available in multiple configurations.',
-            'items' => [
-                'Pilot Operated 4/5 Port Solenoid Valves',
-                'Direct Operated 3/4/5 Port Solenoid Valves',
-                'Mechanical Valves',
-                'Finger Valve/Hand Valves/Residual Relief 3 Port Valve',
-                'Blow Guns',
-            ],
-        ],
-        [
-            'title' => 'Fittings and Tubings',
-            'slug' => 'fittings-tubings',
-            'url' => '/automation-fittings-tubings.php',
-            'image' => 'Fittings-Tubings.webp',
-            'description' => 'Get reliable, high-quality connections with SMC pneumatic fittings and tubing in a wide range of sizes.',
-            'items' => [
-                'Fittings For General Purposes',
-                'Fittings For General Purposes(S Couplers/Multi-Connectors)',
-                'Tubing',
-                'Related Products',
-            ],
-        ],
-        [
-            'title' => 'Flow Control Equipment/Speed Controllers',
-            'slug' => 'flow-control-equipment',
-            'url' => '/automation-flow-control-equipment-speed-controllers.php',
-            'image' => 'flow-control-equipment.webp',
-            'description' => 'Fine-tune actuator speed with SMC Speed Controllers and Flow Control Valves for precise airflow adjustment.',
-            'items' => ['Speed Controllers For General Purposes', 'Remote Control Valve'],
-        ],
-        [
-            'title' => 'Pressure Control Equipment',
-            'slug' => 'pressure-control-equipment',
-            'url' => '/automation-pressure-control-equipment.php',
-            'image' => 'pressure-control-equipment.webp',
-            'description' => 'Achieve accurate pressure management with SMC pressure control equipment and precision regulators.',
-            'items' => ['Electro-Pneumatic Regulators', 'Regulators', 'Booster Regulators'],
-        ],
-        [
-            'title' => 'Modular F.R.L. Units',
-            'slug' => 'modular-frl-units',
-            'url' => '/automation-modular-f.r.l.-units-.php',
-            'image' => 'modular-frl-unit.webp',
-            'description' => 'SMC Modular FRL Units combine filters, regulators and lubricators into a single, easy-to-install module.',
-            'items' => [
-                'Modular F.R.L. Units/Air Combination',
-                'Filter Regulators',
-                'Air Filters',
-                'Regulators',
-                'Modular F.R.L. Units AC D',
-            ],
-        ],
-        [
-            'title' => 'Vacuum Equipment/Vacuum Ejectors',
-            'slug' => 'vacuum-equipment',
-            'url' => '/automation-vacuum-equipment-vacuum-ejectors-.php',
-            'image' => 'Vacuum-Equipment.webp',
-            'description' => 'SMC Vacuum Ejectors provide compact, energy-efficient vacuum solutions for automated handling systems.',
-            'items' => ['Vacuum Ejector', 'Vacuum Pad'],
-        ],
-        [
-            'title' => 'Switches and Sensors',
-            'slug' => 'switches-sensors',
-            'url' => '/automation-switches-sensors-controller-.php',
-            'image' => 'Switches-sensors.webp',
-            'description' => 'SMC switches and sensors are engineered to deliver precise, reliable control for advanced pneumatic and automation applications.',
-            'items' => ['Flow Switch', 'Digital Pressure Switch'],
-        ],
-        [
-            'title' => 'Silencers/Exhaust Cleaners/Pressure Gauges/Blow Guns',
-            'slug' => 'silencers-exhaust',
-            'url' => '/automation-silencers-exhaust-cleaners-blow-guns-pressure-gauges.php',
-            'image' => 'Silencer-Exhaust.webp',
-            'description' => 'Complete your pneumatic system with SMC accessories including silencers, exhaust cleaners, air blow guns and pressure gauges.',
-            'items' => ['Silencers', 'Blow Guns *Blowing Equipments'],
-        ],
-        [
-            'title' => 'Process Valves',
-            'slug' => 'process-valves',
-            'url' => '/automation-process-valves.php',
-            'image' => 'Process-Valves.webp',
-            'description' => 'Handle demanding applications with SMC Process Valves, suitable for controlling air, water, chemicals and steam.',
-            'items' => ['2/3 Port Solenoid Valves/Air Operated Valves'],
-        ],
-        [
-            'title' => 'Electric Actuators',
-            'slug' => 'electric-actuators',
-            'url' => '/automation-electric-actuators.php',
-            'image' => 'Electric-Actuators.jpg',
-            'description' => 'SMC Electric Actuator Manufacturer in India – Advanced Automation Solutions. As a leading electri...',
-            'items' => ['Mounting Kit for Multi-Axis System', 'e-Actuator Easy to Operate Integrated Controller'],
-        ],
-        [
-            'title' => 'Gas Generator',
-            'slug' => 'gas-generator',
-            'url' => '/automation-gas-generator.php',
-            'image' => 'Gas-Generator/Gas-generator-245.webp',
-            'description' => 'Generate 99.9%+ high-purity nitrogen on-site with the Membrane Nitrogen Generator (NMG) using only compressed air....',
-            'items' => ['Nitrogen Gas Generator'],
-        ],
-    ];
+    // Every automation category is now fully CMS-backed (see
+    // cmsAutomationCategoryDefinitions()) — this list is intentionally empty. Adding,
+    // renaming or removing a category or product via the admin CMS needs no matching
+    // edit in this file; it flows straight from the database everywhere (category
+    // grids, the sidebar/nav/mega-menu, search suggestions, and the sitemap).
+    return [];
 }
 
 function automationCategoryRoutes(): array
@@ -343,7 +247,31 @@ function automationCategoryRoutes(): array
         $routes[$category['slug']] = $category['url'];
     }
 
+    // Also include CMS-backed top-level categories (e.g. Electric Actuators) so their
+    // pages still count as "Products" nav active-state, same as the static ones above.
+    foreach (cmsAutomationCategoryDefinitions() as $category) {
+        $routes[$category['slug']] = $category['url'];
+    }
+
     return $routes;
+}
+
+/**
+ * Resolves a sidebar/menu "item" to a [label, url] pair, whether it's a plain string
+ * (the static automation-*.php categories' shape — label only, URL looked up via
+ * automationSidebarItemUrl()) or an array with its own label/url (the shape
+ * cmsAutomationCategoryDefinitions() produces for CMS-backed categories).
+ *
+ * @param array<string, mixed>|string $item
+ * @return array{0: string, 1: string}
+ */
+function automationMenuItemParts($item, string $fallbackUrl): array
+{
+    if (is_array($item)) {
+        return [(string) ($item['label'] ?? ''), (string) ($item['url'] ?? $fallbackUrl)];
+    }
+
+    return [$item, automationSidebarItemUrl($item, $fallbackUrl)];
 }
 
 function automationSidebarItemUrl(string $item, string $fallbackUrl): string
@@ -359,12 +287,49 @@ function automationSidebarItemUrl(string $item, string $fallbackUrl): string
     return $routes[$item] ?? $fallbackUrl;
 }
 
+/**
+ * Slugs of CMS categories that are already surfaced elsewhere in the static
+ * automation-*.php tree and must not also get their own separate top-level card/section
+ * on products.php or the sidebar accordion — that would show the same category twice.
+ * This covers two cases:
+ *  - a category listed as a child item inside a static category's accordion section
+ *    (e.g. "Air Gripper" listed under "Air Cylinders" via
+ *    automationItemRoutes()/automationContextItemRoutes() pointing at
+ *    "/category.php?category=<slug>");
+ *  - a CMS category created only to give a static top-level category (e.g. "Air
+ *    Cylinders" itself) a real row for breadcrumb-chain purposes — it shares its slug
+ *    with the static automationCategoryDefinitions() entry, which already renders its
+ *    own top-level card/section.
+ */
+function automationEmbeddedCmsCategorySlugs(): array
+{
+    $routes = array_merge(automationItemRoutes(), ...array_values(automationContextItemRoutes()));
+    $slugs = [];
+
+    foreach ($routes as $url) {
+        if (preg_match('#^/category\.php\?category=([a-z0-9\-]+)$#', $url, $matches) === 1) {
+            $slugs[$matches[1]] = true;
+        }
+    }
+
+    foreach (automationCategoryDefinitions() as $category) {
+        $slugs[$category['slug']] = true;
+    }
+
+    return $slugs;
+}
+
 function cmsAutomationCategoryDefinitions(): array
 {
     $content = new PublicContentService();
     $definitions = [];
+    $embeddedSlugs = automationEmbeddedCmsCategorySlugs();
 
     foreach ($content->topLevelCategories() as $cmsCategory) {
+        if (isset($embeddedSlugs[$cmsCategory['slug']])) {
+            continue;
+        }
+
         $childItems = array_map(
             static fn (array $childCategory): array => [
                 'label' => $childCategory['name'],
@@ -377,7 +342,7 @@ function cmsAutomationCategoryDefinitions(): array
             'title' => $cmsCategory['name'],
             'slug' => $cmsCategory['slug'],
             'url' => '/category.php?category=' . $cmsCategory['slug'],
-            'image' => preg_replace('#^images/#', '', ltrim(str_replace('\\', '/', (string) ($cmsCategory['image_path'] ?? '')), '/')),
+            'image' => ltrim(str_replace('\\', '/', (string) ($cmsCategory['image_path'] ?? '')), '/'),
             'description' => (string) ($cmsCategory['description'] ?? ''),
             'items' => $childItems,
         ];
@@ -410,6 +375,21 @@ function automationSitemapPaths(): array
 
         foreach ($category['items'] as $item) {
             $paths[] = automationSidebarItemUrl($item, $categoryUrl);
+        }
+    }
+
+    // CMS-backed top-level categories (e.g. Electric Actuators) and their children —
+    // these aren't in automationCategoryDefinitions() above, so list them here too.
+    foreach (cmsAutomationCategoryDefinitions() as $category) {
+        $categoryUrl = $category['url'] ?? '';
+
+        if ($categoryUrl !== '') {
+            $paths[] = $categoryUrl;
+        }
+
+        foreach ($category['items'] as $item) {
+            [, $itemUrl] = automationMenuItemParts($item, $categoryUrl);
+            $paths[] = $itemUrl;
         }
     }
 

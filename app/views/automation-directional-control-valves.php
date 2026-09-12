@@ -1,9 +1,9 @@
 <?php
-$pilotOperatedValveUrl = '/automation-directional-control-valves-pilot-operated-4-5-port-solenoid-valves.php';
-$directOperatedValveUrl = '/automation-directional-control-valves-direct-operated-3-4-5-port-solenoid-valves.php';
-$mechanicalValveUrl = '/automation-directional-control-valves-mechanical-valves.php';
-$fingerValveUrl = '/automation-directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve.php';
-$blowGunsUrl = '/automation-directional-control-valves-blow-guns.php';
+$pilotOperatedValveUrl = '/category.php?category=directional-control-valves-pilot-operated-4-5-port-solenoid-valves';
+$directOperatedValveUrl = '/category.php?category=directional-control-valves-direct-operated-3-4-5-port-solenoid-valves';
+$mechanicalValveUrl = '/category.php?category=directional-control-valves-mechanical-valves';
+$fingerValveUrl = '/category.php?category=directional-control-valves-finger-valve-hand-valves-residual-relief-3-port-valve';
+$blowGunsUrl = '/category.php?category=directional-control-valves-blow-guns';
 
 $categorySidebar = automationSidebarCategories('directional-control-valves');
 

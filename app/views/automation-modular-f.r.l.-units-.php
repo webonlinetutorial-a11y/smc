@@ -1,9 +1,9 @@
 <?php
-$modularFrlAirCombinationUrl = '/automation-modular-f.r.l.-units-modular-f.r.l.-units-air-combination.php';
-$filterRegulatorsUrl = '/automation-modular-f.r.l.-units-filter-regulators.php';
-$airFiltersUrl = '/automation-modular-f.r.l.-units-air-filters.php';
-$modularRegulatorsUrl = '/automation-modular-f.r.l.-units-regulators.php';
-$residualPressureReleaseValveUrl = '/automation-modular-f.r.l.-units-ac-d.php';
+$modularFrlAirCombinationUrl = '/category.php?category=modular-f-r-l--units-modular-f-r-l--units-air-combination';
+$filterRegulatorsUrl = '/category.php?category=modular-f-r-l--units-filter-regulators';
+$airFiltersUrl = '/category.php?category=modular-f-r-l--units-air-filters';
+$modularRegulatorsUrl = '/category.php?category=modular-f-r-l--units-regulators';
+$residualPressureReleaseValveUrl = '/category.php?category=modular-f-r-l--units-ac-d';
 
 $categorySidebar = automationSidebarCategories('modular-frl-units');
 

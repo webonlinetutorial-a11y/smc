@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var desktopMegaMenu = document.querySelector('.mega-menu');
     var productsCategoryTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-products-category-trigger]'));
     var backToTop = document.querySelector('[data-back-to-top]');
+    var whatsappFloat = document.querySelector('.whatsapp-float');
     var testimonialTrack = document.querySelector('[data-testimonial-carousel]');
     var testimonialSlides = testimonialTrack ? Array.prototype.slice.call(testimonialTrack.children) : [];
     var testimonialIndex = 0;
@@ -1025,11 +1026,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (backToTop) {
+    if (backToTop || whatsappFloat) {
         window.addEventListener('scroll', function () {
-            backToTop.classList.toggle('is-visible', window.scrollY > 480);
-        });
+            var isVisible = window.scrollY > 480;
 
+            if (backToTop) {
+                backToTop.classList.toggle('is-visible', isVisible);
+            }
+
+            if (whatsappFloat) {
+                whatsappFloat.classList.toggle('is-visible', isVisible);
+            }
+        });
+    }
+
+    if (backToTop) {
         backToTop.addEventListener('click', function () {
             window.scrollTo({
                 top: 0,

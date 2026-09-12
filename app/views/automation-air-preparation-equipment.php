@@ -1,7 +1,7 @@
 <?php
-$airPreparationFilterUrl = '/automation-air-preparation-equipment-air-preparation-filters.php';
-$airDryerUrl = '/automation-air-preparation-equipment-air-dryer.php';
-$autoDrainsUrl = '/automation-air-preparation-equipment-auto-drains.php';
+$airPreparationFilterUrl = '/category.php?category=air-preparation-equipment-air-preparation-filters';
+$airDryerUrl = '/category.php?category=air-preparation-equipment-air-dryer';
+$autoDrainsUrl = '/category.php?category=air-preparation-equipment-auto-drains';
 
 $categorySidebar = automationSidebarCategories('air-preparation-equipment');
 

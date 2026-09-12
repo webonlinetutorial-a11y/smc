@@ -7,7 +7,7 @@ $publicNavigation = [
     ['label' => 'Contact Us', 'path' => '/contact-us.php'],
 ];
 
-$automationCategories = automationCategoryDefinitions();
+$automationCategories = array_merge(automationCategoryDefinitions(), cmsAutomationCategoryDefinitions());
 $automationCategoryRoutes = automationCategoryRoutes();
 ?>
 <button class="nav-toggle" type="button" data-site-menu-toggle aria-label="Toggle navigation" aria-expanded="false">
@@ -64,7 +64,8 @@ $automationCategoryRoutes = automationCategoryRoutes();
                                     </a>
                                     <div class="mega-menu__submenu">
                                         <?php foreach ($category['items'] as $product): ?>
-                                            <a href="<?= e(appUrl(automationSidebarItemUrl($product, $categoryUrl))); ?>"><?= e($product); ?></a>
+                                            <?php [$productLabel, $productUrl] = automationMenuItemParts($product, $categoryUrl); ?>
+                                            <a href="<?= e(appUrl($productUrl)); ?>"><?= e($productLabel); ?></a>
                                         <?php endforeach; ?>
                                     </div>
                                 </div>

@@ -10,7 +10,7 @@ if ($category === null) {
     http_response_code(404);
 
     renderView('public/category', [
-        'title' => 'Category Not Found | ' . configValue('app.name', 'Bharat Mill Website'),
+        'title' => 'Category Not Found | ' . configValue('app.name', 'Indian Mill Stores Website'),
         'metaDescription' => 'The requested product category could not be found.',
         'canonicalUrl' => appUrl('/category.php'),
         'category' => null,
@@ -56,8 +56,8 @@ foreach ($breadcrumbChain as $index => $chainCategory) {
 }
 
 renderView('public/category', [
-    'title' => $category['name'] . ' | ' . configValue('app.name', 'Bharat Mill Website'),
-    'metaDescription' => $category['description'] ?: ('Explore ' . $category['name'] . ' products from Bharat Mill.'),
+    'title' => $category['name'] . ' | ' . configValue('app.name', 'Indian Mill Stores Website'),
+    'metaDescription' => $category['description'] ?: ('Explore ' . $category['name'] . ' products from Indian Mill Stores.'),
     'canonicalUrl' => appUrl('/category.php?category=' . $category['slug']),
     'category' => $category,
     'childCategories' => $childCategories,

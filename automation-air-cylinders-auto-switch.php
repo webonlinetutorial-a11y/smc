@@ -2,14 +2,8 @@
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-renderView('automation-air-cylinders-auto-switch', [
-    'title' => 'Auto Switch | ' . configValue('app.name', 'Nepack Website'),
-    'metaDescription' => 'Explore SMC auto switches for real-time cylinder position feedback and automation precision.',
-    'canonicalUrl' => appUrl('/automation-air-cylinders-auto-switch.php'),
-    'breadcrumbs' => [
-        ['label' => 'Home', 'path' => '/'],
-        ['label' => 'Automation', 'path' => '/automation.php'],
-        ['label' => 'Air Cylinders', 'path' => '/automation-air-cylinders.php'],
-        ['label' => 'Auto Switch'],
-    ],
-]);
+// Auto Switch is now a CMS-backed category (slug "auto-switch"), so this legacy static
+// URL delegates to category.php instead of rendering its own hardcoded content, keeping
+// old bookmarks/search results working without duplicating the category.php logic.
+$_GET['category'] = 'auto-switch';
+require __DIR__ . '/category.php';
