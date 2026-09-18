@@ -3,15 +3,19 @@
 $publicNavigation = [
     ['label' => 'Home', 'path' => '/'],
     ['label' => 'Products', 'path' => '/products.php'],
+    ['label' => 'Solution', 'path' => '/products.php'],
     ['label' => 'About Us', 'path' => '/about-us.php'],
     ['label' => 'Contact Us', 'path' => '/contact-us.php'],
 ];
 
 $automationCategories = array_merge(automationCategoryDefinitions(), cmsAutomationCategoryDefinitions());
 $automationCategoryRoutes = automationCategoryRoutes();
+
+$solutionIndustries = industryDefinitions();
 ?>
 <button class="nav-toggle" type="button" data-site-menu-toggle aria-label="Toggle navigation" aria-expanded="false">
-    <?= lucideIcon('menu'); ?>
+    <?= lucideIcon('menu', 'lucide-icon nav-toggle__icon-open'); ?>
+    <?= lucideIcon('x', 'lucide-icon nav-toggle__icon-close'); ?>
 </button>
 <nav class="site-nav" data-site-nav aria-label="Primary navigation">
     <?php foreach ($publicNavigation as $item): ?>
@@ -70,6 +74,47 @@ $automationCategoryRoutes = automationCategoryRoutes();
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                        </div>
+                        <div class="mega-menu__products" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+        <?php elseif ($item['label'] === 'Solution'): ?>
+            <div class="site-nav__item site-nav__item--solution">
+                <a
+                    href="<?= e(appUrl($item['path'])); ?>"
+                    data-solution-menu-toggle
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    <?= e($item['label']); ?>
+                    <?= lucideIcon('chevron-down', 'site-nav__chevron'); ?>
+                </a>
+                <div class="mega-menu mega-menu--solution" aria-label="Solution menu">
+                    <div class="mega-menu__inner">
+                        <div class="mega-menu__mobile-head">
+                            <button class="mega-menu__back" type="button" data-solution-menu-back aria-label="Go back">
+                                <?= lucideIcon('arrow-left', 'mega-menu__back-icon'); ?>
+                            </button>
+                            <span data-solution-menu-title>Solution</span>
+                        </div>
+                        <div class="mega-menu__categories">
+                            <div class="mega-menu__category">
+                                <a
+                                    href="<?= e(appUrl('/industries.php')); ?>"
+                                    data-solution-category-trigger
+                                    data-mega-category-trigger
+                                    data-category-label="Industry"
+                                >
+                                    <span>Industry</span>
+                                    <?= lucideIcon('chevron-right', 'mega-menu__icon'); ?>
+                                </a>
+                                <div class="mega-menu__submenu mega-menu__submenu--columns">
+                                    <?php foreach ($solutionIndustries as $industry): ?>
+                                        <a href="<?= e(appUrl('/products.php?industry=' . $industry['slug'])); ?>"><?= e($industry['label']); ?></a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
                         </div>
                         <div class="mega-menu__products" aria-hidden="true"></div>
                     </div>

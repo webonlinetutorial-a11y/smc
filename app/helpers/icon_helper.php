@@ -34,6 +34,7 @@ function lucideIcon(string $name, string $className = 'lucide-icon'): string
         'user' => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
         'users' => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.9"></path><path d="M16 3.1a4 4 0 0 1 0 7.8"></path>',
         'wrench' => '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L2 19l3 3 7.3-7.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2.8-.8-.8-2.8Z"></path>',
+        'x' => '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>',
     ];
 
     if (!array_key_exists($name, $icons)) {

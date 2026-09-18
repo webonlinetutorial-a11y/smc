@@ -8,9 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var productsLineTrigger = document.querySelector('[data-products-line-trigger]');
     var productsBackButton = document.querySelector('[data-products-menu-back]');
     var productsMenuTitle = document.querySelector('[data-products-menu-title]');
-    var productsPanel = document.querySelector('.mega-menu__products');
-    var desktopMegaMenu = document.querySelector('.mega-menu');
+    var productsPanel = productsNavItem ? productsNavItem.querySelector('.mega-menu__products') : null;
     var productsCategoryTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-products-category-trigger]'));
+    var solutionNavItem = document.querySelector('.site-nav__item--solution');
+    var solutionMenuToggle = document.querySelector('[data-solution-menu-toggle]');
+    var solutionBackButton = document.querySelector('[data-solution-menu-back]');
+    var solutionMenuTitle = document.querySelector('[data-solution-menu-title]');
+    var solutionPanel = solutionNavItem ? solutionNavItem.querySelector('.mega-menu__products') : null;
+    var solutionCategoryTriggers = Array.prototype.slice.call(document.querySelectorAll('[data-solution-category-trigger]'));
+    var desktopMegaMenus = Array.prototype.slice.call(document.querySelectorAll('.mega-menu'));
     var backToTop = document.querySelector('[data-back-to-top]');
     var whatsappFloat = document.querySelector('.whatsapp-float');
     var testimonialTrack = document.querySelector('[data-testimonial-carousel]');
@@ -317,6 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return currentScrollY <= headerTopOffset ||
                 document.body.classList.contains('site-nav-open') ||
                 document.body.classList.contains('products-menu-open') ||
+                document.body.classList.contains('solution-menu-open') ||
                 siteHeaderInner.contains(document.activeElement);
         }
 
@@ -377,126 +384,166 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function closeProductsMenu() {
-        if (!productsNavItem || !productsMenuToggle) {
+    function setupMegaMenu(config) {
+        var navItem = config.navItem;
+        var menuToggle = config.menuToggle;
+        var lineTrigger = config.lineTrigger;
+        var backButton = config.backButton;
+        var menuTitle = config.menuTitle;
+        var panel = config.panel;
+        var categoryTriggers = config.categoryTriggers;
+        var openBodyClass = config.openBodyClass;
+        var initialLevel = config.initialLevel;
+        var initialTitle = config.initialTitle;
+        var lineLevelTitle = config.lineLevelTitle;
+
+        if (!navItem || !menuToggle) {
             return;
         }
 
-        productsNavItem.classList.remove('is-open');
-        productsNavItem.classList.remove('is-mobile-level-line');
-        productsNavItem.classList.remove('is-mobile-level-categories');
-        productsNavItem.classList.remove('is-mobile-level-products');
-        document.body.classList.remove('products-menu-open');
-        productsMenuToggle.setAttribute('aria-expanded', 'false');
+        function closeMenu() {
+            navItem.classList.remove('is-open');
+            navItem.classList.remove('is-mobile-level-line');
+            navItem.classList.remove('is-mobile-level-categories');
+            navItem.classList.remove('is-mobile-level-products');
+            document.body.classList.remove(openBodyClass);
+            menuToggle.setAttribute('aria-expanded', 'false');
 
-        if (productsPanel) {
-            productsPanel.innerHTML = '';
-        }
-    }
-
-    function setProductsMenuLevel(level, title) {
-        if (!productsNavItem || !productsMenuTitle) {
-            return;
+            if (panel) {
+                panel.innerHTML = '';
+            }
         }
 
-        productsNavItem.classList.remove('is-mobile-level-line');
-        productsNavItem.classList.remove('is-mobile-level-categories');
-        productsNavItem.classList.remove('is-mobile-level-products');
-        productsNavItem.classList.add('is-mobile-level-' + level);
-        productsMenuTitle.textContent = title;
-    }
+        function setMenuLevel(level, title) {
+            if (!menuTitle) {
+                return;
+            }
 
-    if (productsNavItem && productsMenuToggle) {
-        productsMenuToggle.addEventListener('click', function (event) {
+            navItem.classList.remove('is-mobile-level-line');
+            navItem.classList.remove('is-mobile-level-categories');
+            navItem.classList.remove('is-mobile-level-products');
+            navItem.classList.add('is-mobile-level-' + level);
+            menuTitle.textContent = title;
+        }
+
+        menuToggle.addEventListener('click', function (event) {
             event.preventDefault();
             showSiteHeader();
             syncHeaderHeight();
 
             if (!mobileMenuQuery.matches) {
-                closeProductsMenu();
+                closeMenu();
                 return;
             }
 
-            var isOpen = productsNavItem.classList.toggle('is-open');
-            productsMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            var isOpen = navItem.classList.toggle('is-open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
             if (isOpen) {
-                document.body.classList.add('products-menu-open');
-                setProductsMenuLevel('line', 'Product Line');
+                document.body.classList.add(openBodyClass);
+                setMenuLevel(initialLevel, initialTitle);
             } else {
-                closeProductsMenu();
+                closeMenu();
             }
         });
 
-        if (productsLineTrigger) {
-            productsLineTrigger.addEventListener('click', function (event) {
+        if (lineTrigger) {
+            lineTrigger.addEventListener('click', function (event) {
                 if (!mobileMenuQuery.matches) {
                     return;
                 }
 
                 event.preventDefault();
-                setProductsMenuLevel('categories', 'Automation');
+                setMenuLevel('categories', lineLevelTitle);
             });
         }
 
-        productsCategoryTriggers.forEach(function (categoryTrigger) {
+        categoryTriggers.forEach(function (categoryTrigger) {
             categoryTrigger.addEventListener('click', function (event) {
                 var submenu = categoryTrigger.parentElement ? categoryTrigger.parentElement.querySelector('.mega-menu__submenu') : null;
 
-                if (!mobileMenuQuery.matches || !submenu || !productsPanel) {
+                if (!mobileMenuQuery.matches || !submenu || !panel) {
                     return;
                 }
 
                 event.preventDefault();
-                productsPanel.innerHTML = submenu.innerHTML;
-                setProductsMenuLevel('products', categoryTrigger.getAttribute('data-category-label') || categoryTrigger.textContent.trim());
+                panel.innerHTML = submenu.innerHTML;
+                setMenuLevel('products', categoryTrigger.getAttribute('data-category-label') || categoryTrigger.textContent.trim());
             });
         });
 
-        if (productsBackButton) {
-            productsBackButton.addEventListener('click', function () {
+        if (backButton) {
+            backButton.addEventListener('click', function () {
                 if (!mobileMenuQuery.matches) {
                     return;
                 }
 
-                if (productsNavItem.classList.contains('is-mobile-level-products')) {
-                    if (productsPanel) {
-                        productsPanel.innerHTML = '';
+                if (navItem.classList.contains('is-mobile-level-products')) {
+                    if (panel) {
+                        panel.innerHTML = '';
                     }
 
-                    setProductsMenuLevel('categories', 'Automation');
+                    setMenuLevel('categories', lineLevelTitle);
                     return;
                 }
 
-                if (productsNavItem.classList.contains('is-mobile-level-categories')) {
-                    setProductsMenuLevel('line', 'Product Line');
+                if (navItem.classList.contains('is-mobile-level-categories') && initialLevel === 'line') {
+                    setMenuLevel('line', initialTitle);
                     return;
                 }
 
-                closeProductsMenu();
+                closeMenu();
             });
         }
 
         document.addEventListener('click', function (event) {
-            if (productsNavItem.contains(event.target)) {
+            if (navItem.contains(event.target)) {
                 return;
             }
 
-            closeProductsMenu();
+            closeMenu();
         });
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
-                closeProductsMenu();
+                closeMenu();
             }
         });
 
         if (typeof mobileMenuQuery.addEventListener === 'function') {
-            mobileMenuQuery.addEventListener('change', closeProductsMenu);
+            mobileMenuQuery.addEventListener('change', closeMenu);
         } else if (typeof mobileMenuQuery.addListener === 'function') {
-            mobileMenuQuery.addListener(closeProductsMenu);
+            mobileMenuQuery.addListener(closeMenu);
         }
     }
+
+    setupMegaMenu({
+        navItem: productsNavItem,
+        menuToggle: productsMenuToggle,
+        lineTrigger: productsLineTrigger,
+        backButton: productsBackButton,
+        menuTitle: productsMenuTitle,
+        panel: productsPanel,
+        categoryTriggers: productsCategoryTriggers,
+        openBodyClass: 'products-menu-open',
+        initialLevel: 'line',
+        initialTitle: 'Product Line',
+        lineLevelTitle: 'Automation'
+    });
+
+    setupMegaMenu({
+        navItem: solutionNavItem,
+        menuToggle: solutionMenuToggle,
+        lineTrigger: null,
+        backButton: solutionBackButton,
+        menuTitle: solutionMenuTitle,
+        panel: solutionPanel,
+        categoryTriggers: solutionCategoryTriggers,
+        openBodyClass: 'solution-menu-open',
+        initialLevel: 'categories',
+        initialTitle: 'Solution',
+        lineLevelTitle: 'Solution'
+    });
 
     function clearDesktopMegaSubmenus() {
         Array.prototype.slice.call(document.querySelectorAll('.mega-menu__category.is-submenu-active')).forEach(function (category) {
@@ -530,9 +577,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    if (desktopMegaMenu) {
-        desktopMegaMenu.addEventListener('mouseleave', clearDesktopMegaSubmenus);
-    }
+    desktopMegaMenus.forEach(function (megaMenu) {
+        megaMenu.addEventListener('mouseleave', clearDesktopMegaSubmenus);
+    });
 
     Array.prototype.slice.call(document.querySelectorAll('[data-product-gallery]')).forEach(function (gallery) {
         var mainImage = gallery.querySelector('[data-product-gallery-main]');

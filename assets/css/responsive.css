@@ -5,7 +5,8 @@
         object-fit: contain;
     }
     .site-header__inner {
-        min-height: 68px;
+        /* min-height: 68px; */
+        min-height: 57px;
     }
 
     .nav-toggle {
@@ -63,12 +64,18 @@
         display: none;
     }
 
-    body.products-menu-open .site-nav {
+    body.solution-menu-open .site-nav > :not(.site-nav__item--solution) {
+        display: none;
+    }
+
+    body.products-menu-open .site-nav,
+    body.solution-menu-open .site-nav {
         gap: 0;
         padding: 0;
     }
 
-    body.products-menu-open [data-products-menu-toggle] {
+    body.products-menu-open [data-products-menu-toggle],
+    body.solution-menu-open [data-solution-menu-toggle] {
         display: none;
     }
 
@@ -94,7 +101,8 @@
         transition: none;
     }
 
-    .site-nav__item--products.is-open .mega-menu {
+    .site-nav__item--products.is-open .mega-menu,
+    .site-nav__item--solution.is-open .mega-menu {
         display: block;
     }
 
@@ -158,11 +166,14 @@
     .site-nav__item--products.is-mobile-level-categories .mega-menu__line,
     .site-nav__item--products.is-mobile-level-categories .mega-menu__products,
     .site-nav__item--products.is-mobile-level-products .mega-menu__line,
-    .site-nav__item--products.is-mobile-level-products .mega-menu__categories {
+    .site-nav__item--products.is-mobile-level-products .mega-menu__categories,
+    .site-nav__item--solution.is-mobile-level-categories .mega-menu__products,
+    .site-nav__item--solution.is-mobile-level-products .mega-menu__categories {
         display: none;
     }
 
-    .site-nav__item--products.is-mobile-level-products .mega-menu__products {
+    .site-nav__item--products.is-mobile-level-products .mega-menu__products,
+    .site-nav__item--solution.is-mobile-level-products .mega-menu__products {
         display: flex;
     }
 
@@ -217,6 +228,14 @@
         color: #454545;
         font-size: 21px;
         line-height: 1.45;
+    }
+
+    .mega-menu__submenu--columns {
+        flex-direction: column;
+    }
+
+    .mega-menu__submenu--columns a {
+        flex: 0 0 auto;
     }
 
     .site-nav__search-toggle {
@@ -308,7 +327,23 @@
     }
 
     .stats-strip article {
+        gap: 8px;
+        padding: 0 4px;
         border-left: none;
+    }
+
+    .stats-strip__icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .stats-strip__icon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .stats-strip strong {
+        font-size: 11px;
     }
 
     .stats-strip article:nth-child(odd) {
@@ -459,7 +494,7 @@
     }
 
     .product-detail-hero__inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         /* grid-template-columns: repeat(auto-fit, minmax(339px, 0fr)); */
         gap: 28px;
     }
@@ -473,6 +508,7 @@
 
     .product-detail-hero__content h1 {
         font-size: 28px;
+        min-width: 0;
     }
 
     .product-detail-parts__header {
@@ -524,6 +560,28 @@
     }
 }
 
+/* iPad Mini and similar tablet widths: .about-preview stacks to a single column
+   here (see the max-width: 900px rule above), which otherwise stretches the
+   image to the full container width. Cap and center it instead. */
+@media (min-width: 561px) and (max-width: 900px) {
+    .about-preview__image {
+        max-width: 378px;
+        min-height: 180px;
+        margin: 0 auto;
+    }
+}
+
+/* Between ~991px and 560px, .hero-carousel__track's fixed min-height: 300px
+   (set in main.css) is taller than what its aspect-ratio would give at these
+   narrower widths, so the min-height wins and forces a taller/narrower box
+   than the image's natural ratio — object-fit: cover then crops the image's
+   sides to fill it. Scale the min-height down so aspect-ratio governs here too. */
+@media (min-width: 561px) and (max-width: 991px) {
+    .hero-carousel__track {
+        min-height: 0;
+    }
+}
+
 @media (max-width: 768px) {
     .automation-page .automation-categories__layout {
         flex-direction: column;
@@ -554,8 +612,7 @@
 
     .product-detail-actions {
         display: grid;
-        /* grid-template-columns: 1fr; */
-        grid-template-columns: auto auto;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
 
     .product-detail-action {
@@ -593,13 +650,17 @@
     }
 
     .hero-carousel__track {
-        aspect-ratio: 16 / 5.1;
+        /* 16/5.8 is a middle ground: taller than the original 16/5.1 (so the
+           banner isn't too short), but still close enough to the banner
+           images' own ratio (~3:1) that "cover" below only trims a small,
+           mostly-empty margin off the sides instead of the logo/text. */
+        aspect-ratio: 16 / 5.8;
         min-height: 136px;
         background: #ffffff;
     }
 
     .hero-carousel__slide img {
-        /* object-fit: cover; */
+        object-fit: cover;
         height: 92%;
         background: #ffffff;
     }
@@ -1010,6 +1071,20 @@
 @media (max-width: 480px) {
     .automation-selected-product-card {
         width: min(169px, 100%);
+    }
+
+    .new-product-card__actions .button {
+        min-height: 32px;
+        padding: 6px 8px;
+        font-size: 8px;
+    }
+
+    .automation-intro h1 {
+        font-size: 22px;
+    }
+
+    .product-detail-hero__content h1 {
+        font-size: 22px;
     }
 }
 
