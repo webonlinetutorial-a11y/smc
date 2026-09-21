@@ -5,6 +5,10 @@ require_once dirname(__DIR__) . '/includes/admin-auth.php';
 $controller = new MediaController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (($_POST['action'] ?? '') === 'delete') {
+        $controller->delete();
+    }
+
     $controller->upload();
 }
 

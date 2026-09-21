@@ -71,6 +71,7 @@
                             <th>Uploaded</th>
                             <th>Path (paste this into Image Path)</th>
                             <th>File</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,6 +87,14 @@
                                     <button type="button" class="admin-button admin-button-secondary" data-copy-path>Copy</button>
                                 </td>
                                 <td><a href="<?= e(appUrl($mediaFile['relative_path'])); ?>" target="_blank" rel="noopener">Open</a></td>
+                                <td class="admin-table-actions">
+                                    <form method="post" action="<?= e(appUrl('/admin/media.php')); ?>" onsubmit="return confirm('Permanently delete this media file? Any product or page still using its path will show a broken image. This cannot be undone.');">
+                                        <?= csrfField(); ?>
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="media_id" value="<?= e($mediaFile['id']); ?>">
+                                        <button type="submit" class="admin-button-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

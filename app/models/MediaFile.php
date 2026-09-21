@@ -21,6 +21,11 @@ class MediaFile extends BaseModel
         );
     }
 
+    public function delete(int $id): void
+    {
+        $this->execute('DELETE FROM media_files WHERE id = :id', ['id' => $id]);
+    }
+
     public function create(array $data): void
     {
         $this->execute(

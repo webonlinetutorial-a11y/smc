@@ -40,4 +40,22 @@ class MediaController extends BaseController
         $_SESSION['media_errors'] = $this->mediaService->errors();
         $this->redirect('/admin/media.php');
     }
+
+    public function delete(): never
+    {
+        if (!verifyCsrfToken((string) ($_POST['csrf_token'] ?? ''))) {
+            setFlash('error', 'Your session expired. Please try again.');
+            $this->redirect('/admin/media.php');
+        }
+
+        $mediaId = sanitizeInt($_POST['media_id'] ?? 0);
+
+        if ($mediaId > 0 && $this->mediaService->delete($mediaId)) {
+            setFlash('success', 'Media file deleted successfully.');
+        } else {
+            setFlash('error', 'Media file could not be deleted.');
+        }
+
+        $this->redirect('/admin/media.php');
+    }
 }

@@ -85,6 +85,26 @@ class MediaService extends BaseService
         return true;
     }
 
+    public function delete(int $id): bool
+    {
+        $this->errors = [];
+        $mediaFile = $this->mediaFileModel->find($id);
+
+        if ($mediaFile === null) {
+            $this->addError('Media file could not be found.');
+            return false;
+        }
+
+        $this->mediaFileModel->delete($id);
+
+        $filePath = ROOT_PATH . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, (string) $mediaFile['relative_path']);
+        if (is_file($filePath)) {
+            unlink($filePath);
+        }
+
+        return true;
+    }
+
     public function validateUpload(array $file, string $category, string $title): void
     {
         if (!in_array($category, self::ALLOWED_CATEGORIES, true)) {
