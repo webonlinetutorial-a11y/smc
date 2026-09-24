@@ -1027,7 +1027,8 @@
     }
 
     .product-detail-hero__media img {
-        max-height: 170px;
+        /* max-height: 170px; */
+        max-height: 250px;
     }
 
     .product-detail-hero__content h1 {
