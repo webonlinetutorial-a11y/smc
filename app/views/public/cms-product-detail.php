@@ -96,7 +96,16 @@
                     <?php if ($featureLines !== []): ?>
                         <ul class="product-detail-feature-list">
                             <?php foreach ($featureLines as $featureLine): ?>
-                                <li><?= e($featureLine); ?></li>
+                                <?php
+                                $featureIsNew = (bool) preg_match('/\[New\]\s*$/i', $featureLine);
+                                $featureText = $featureIsNew ? trim((string) preg_replace('/\[New\]\s*$/i', '', $featureLine)) : $featureLine;
+                                ?>
+                                <li>
+                                    <?= e($featureText); ?>
+                                    <?php if ($featureIsNew): ?>
+                                        <span class="product-detail-feature-list__badge">[New]</span>
+                                    <?php endif; ?>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>
